@@ -13,7 +13,8 @@
 		B70E61AA1468993000FABBA9 /* DiveMap.m in Sources */ = {isa = PBXBuildFile; fileRef = B70E61A81468993000FABBA9 /* DiveMap.m */; };
 		B70E61AB1468993000FABBA9 /* DiveMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E61A91468993000FABBA9 /* DiveMap.xib */; };
 		B70E61F11468A16500FABBA9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70E61F01468A16500FABBA9 /* CoreData.framework */; };
-		B70E61F31468A1A500FABBA9 /* DiveLogger.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B70E61F21468A1A500FABBA9 /* DiveLogger.xcdatamodel */; };
+		B70E61F71468E3F200FABBA9 /* DiveDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B70E61F51468E3F100FABBA9 /* DiveDetails.m */; };
+		B70E61F81468E3F200FABBA9 /* DiveDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E61F61468E3F200FABBA9 /* DiveDetails.xib */; };
 		B7136C0914686123005CE555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0814686123005CE555 /* UIKit.framework */; };
 		B7136C0B14686123005CE555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0A14686123005CE555 /* Foundation.framework */; };
 		B7136C0D14686123005CE555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0C14686123005CE555 /* CoreGraphics.framework */; };
@@ -50,7 +51,9 @@
 		B70E61A81468993000FABBA9 /* DiveMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveMap.m; sourceTree = "<group>"; };
 		B70E61A91468993000FABBA9 /* DiveMap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiveMap.xib; sourceTree = "<group>"; };
 		B70E61F01468A16500FABBA9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B70E61F21468A1A500FABBA9 /* DiveLogger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiveLogger.xcdatamodel; sourceTree = "<group>"; };
+		B70E61F41468E3F100FABBA9 /* DiveDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveDetails.h; sourceTree = "<group>"; };
+		B70E61F51468E3F100FABBA9 /* DiveDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveDetails.m; sourceTree = "<group>"; };
+		B70E61F61468E3F200FABBA9 /* DiveDetails.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiveDetails.xib; sourceTree = "<group>"; };
 		B7136C0414686123005CE555 /* DiveLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7136C0814686123005CE555 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B7136C0A14686123005CE555 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -152,7 +155,6 @@
 				B7136C3C1468650D005CE555 /* Models */,
 				B7136C1714686123005CE555 /* TYAppDelegate.h */,
 				B7136C1814686123005CE555 /* TYAppDelegate.m */,
-				B70E61F21468A1A500FABBA9 /* DiveLogger.xcdatamodel */,
 				B7136C0F14686123005CE555 /* Supporting Files */,
 				B7136C3714686309005CE555 /* Home.h */,
 				B7136C3814686309005CE555 /* Home.m */,
@@ -160,6 +162,9 @@
 				B70E61A71468992F00FABBA9 /* DiveMap.h */,
 				B70E61A81468993000FABBA9 /* DiveMap.m */,
 				B70E61A91468993000FABBA9 /* DiveMap.xib */,
+				B70E61F41468E3F100FABBA9 /* DiveDetails.h */,
+				B70E61F51468E3F100FABBA9 /* DiveDetails.m */,
+				B70E61F61468E3F200FABBA9 /* DiveDetails.xib */,
 			);
 			path = DiveLogger;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				B70E61A21468977100FABBA9 /* shoebox.png in Resources */,
 				B70E61A6146897BE00FABBA9 /* notepad.png in Resources */,
 				B70E61AB1468993000FABBA9 /* DiveMap.xib in Resources */,
+				B70E61F81468E3F200FABBA9 /* DiveDetails.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +327,7 @@
 				B7136C3F1468651D005CE555 /* Dive.m in Sources */,
 				B7136C44146865E0005CE555 /* Tank.m in Sources */,
 				B70E61AA1468993000FABBA9 /* DiveMap.m in Sources */,
-				B70E61F31468A1A500FABBA9 /* DiveLogger.xcdatamodel in Sources */,
+				B70E61F71468E3F200FABBA9 /* DiveDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
