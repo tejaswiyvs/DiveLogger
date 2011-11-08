@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B70E61A11468977100FABBA9 /* map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = B70E619F1468977100FABBA9 /* map-marker.png */; };
+		B70E61A21468977100FABBA9 /* shoebox.png in Resources */ = {isa = PBXBuildFile; fileRef = B70E61A01468977100FABBA9 /* shoebox.png */; };
+		B70E61A6146897BE00FABBA9 /* notepad.png in Resources */ = {isa = PBXBuildFile; fileRef = B70E61A5146897BE00FABBA9 /* notepad.png */; };
+		B70E61AA1468993000FABBA9 /* DiveMap.m in Sources */ = {isa = PBXBuildFile; fileRef = B70E61A81468993000FABBA9 /* DiveMap.m */; };
+		B70E61AB1468993000FABBA9 /* DiveMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E61A91468993000FABBA9 /* DiveMap.xib */; };
+		B70E61F11468A16500FABBA9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70E61F01468A16500FABBA9 /* CoreData.framework */; };
+		B70E61F31468A1A500FABBA9 /* DiveLogger.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B70E61F21468A1A500FABBA9 /* DiveLogger.xcdatamodel */; };
+		B7136C0914686123005CE555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0814686123005CE555 /* UIKit.framework */; };
+		B7136C0B14686123005CE555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0A14686123005CE555 /* Foundation.framework */; };
+		B7136C0D14686123005CE555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0C14686123005CE555 /* CoreGraphics.framework */; };
+		B7136C1314686123005CE555 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7136C1114686123005CE555 /* InfoPlist.strings */; };
+		B7136C1514686123005CE555 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C1414686123005CE555 /* main.m */; };
+		B7136C1914686123005CE555 /* TYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C1814686123005CE555 /* TYAppDelegate.m */; };
+		B7136C2114686123005CE555 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C2014686123005CE555 /* SenTestingKit.framework */; };
+		B7136C2214686123005CE555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0814686123005CE555 /* UIKit.framework */; };
+		B7136C2314686123005CE555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0A14686123005CE555 /* Foundation.framework */; };
+		B7136C2B14686123005CE555 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7136C2914686123005CE555 /* InfoPlist.strings */; };
+		B7136C2E14686123005CE555 /* DiveLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C2D14686123005CE555 /* DiveLoggerTests.m */; };
+		B7136C3A14686309005CE555 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C3814686309005CE555 /* Home.m */; };
+		B7136C3B14686309005CE555 /* Home.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7136C3914686309005CE555 /* Home.xib */; };
+		B7136C3F1468651D005CE555 /* Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C3E1468651D005CE555 /* Dive.m */; };
+		B7136C411468657B005CE555 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C401468657B005CE555 /* CoreLocation.framework */; };
+		B7136C44146865E0005CE555 /* Tank.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C43146865DF005CE555 /* Tank.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B7136C2414686123005CE555 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7136BFB14686122005CE555 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7136C0314686123005CE555;
+			remoteInfo = DiveLogger;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B70E619F1468977100FABBA9 /* map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker.png"; sourceTree = "<group>"; };
+		B70E61A01468977100FABBA9 /* shoebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoebox.png; sourceTree = "<group>"; };
+		B70E61A5146897BE00FABBA9 /* notepad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notepad.png; sourceTree = "<group>"; };
+		B70E61A71468992F00FABBA9 /* DiveMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveMap.h; sourceTree = "<group>"; };
+		B70E61A81468993000FABBA9 /* DiveMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveMap.m; sourceTree = "<group>"; };
+		B70E61A91468993000FABBA9 /* DiveMap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiveMap.xib; sourceTree = "<group>"; };
+		B70E61F01468A16500FABBA9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B70E61F21468A1A500FABBA9 /* DiveLogger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiveLogger.xcdatamodel; sourceTree = "<group>"; };
+		B7136C0414686123005CE555 /* DiveLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7136C0814686123005CE555 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B7136C0A14686123005CE555 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B7136C0C14686123005CE555 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B7136C1014686123005CE555 /* DiveLogger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DiveLogger-Info.plist"; sourceTree = "<group>"; };
+		B7136C1214686123005CE555 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B7136C1414686123005CE555 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B7136C1614686123005CE555 /* DiveLogger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiveLogger-Prefix.pch"; sourceTree = "<group>"; };
+		B7136C1714686123005CE555 /* TYAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TYAppDelegate.h; sourceTree = "<group>"; };
+		B7136C1814686123005CE555 /* TYAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TYAppDelegate.m; sourceTree = "<group>"; };
+		B7136C1F14686123005CE555 /* DiveLoggerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiveLoggerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7136C2014686123005CE555 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		B7136C2814686123005CE555 /* DiveLoggerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DiveLoggerTests-Info.plist"; sourceTree = "<group>"; };
+		B7136C2A14686123005CE555 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B7136C2C14686123005CE555 /* DiveLoggerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiveLoggerTests.h; sourceTree = "<group>"; };
+		B7136C2D14686123005CE555 /* DiveLoggerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiveLoggerTests.m; sourceTree = "<group>"; };
+		B7136C3714686309005CE555 /* Home.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Home.h; sourceTree = "<group>"; };
+		B7136C3814686309005CE555 /* Home.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Home.m; sourceTree = "<group>"; };
+		B7136C3914686309005CE555 /* Home.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Home.xib; sourceTree = "<group>"; };
+		B7136C3D1468651D005CE555 /* Dive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dive.h; sourceTree = "<group>"; };
+		B7136C3E1468651D005CE555 /* Dive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dive.m; sourceTree = "<group>"; };
+		B7136C401468657B005CE555 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B7136C42146865DF005CE555 /* Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tank.h; sourceTree = "<group>"; };
+		B7136C43146865DF005CE555 /* Tank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tank.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B7136C0114686123005CE555 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B70E61F11468A16500FABBA9 /* CoreData.framework in Frameworks */,
+				B7136C411468657B005CE555 /* CoreLocation.framework in Frameworks */,
+				B7136C0914686123005CE555 /* UIKit.framework in Frameworks */,
+				B7136C0B14686123005CE555 /* Foundation.framework in Frameworks */,
+				B7136C0D14686123005CE555 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7136C1B14686123005CE555 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7136C2114686123005CE555 /* SenTestingKit.framework in Frameworks */,
+				B7136C2214686123005CE555 /* UIKit.framework in Frameworks */,
+				B7136C2314686123005CE555 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B70E61A41468977400FABBA9 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B70E61A5146897BE00FABBA9 /* notepad.png */,
+				B70E619F1468977100FABBA9 /* map-marker.png */,
+				B70E61A01468977100FABBA9 /* shoebox.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		B7136BF914686122005CE555 = {
+			isa = PBXGroup;
+			children = (
+				B7136C0E14686123005CE555 /* DiveLogger */,
+				B7136C2614686123005CE555 /* DiveLoggerTests */,
+				B7136C0714686123005CE555 /* Frameworks */,
+				B7136C0514686123005CE555 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B7136C0514686123005CE555 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B7136C0414686123005CE555 /* DiveLogger.app */,
+				B7136C1F14686123005CE555 /* DiveLoggerTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B7136C0714686123005CE555 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B70E61F01468A16500FABBA9 /* CoreData.framework */,
+				B7136C401468657B005CE555 /* CoreLocation.framework */,
+				B7136C0814686123005CE555 /* UIKit.framework */,
+				B7136C0A14686123005CE555 /* Foundation.framework */,
+				B7136C0C14686123005CE555 /* CoreGraphics.framework */,
+				B7136C2014686123005CE555 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7136C0E14686123005CE555 /* DiveLogger */ = {
+			isa = PBXGroup;
+			children = (
+				B70E61A41468977400FABBA9 /* Images */,
+				B7136C3C1468650D005CE555 /* Models */,
+				B7136C1714686123005CE555 /* TYAppDelegate.h */,
+				B7136C1814686123005CE555 /* TYAppDelegate.m */,
+				B70E61F21468A1A500FABBA9 /* DiveLogger.xcdatamodel */,
+				B7136C0F14686123005CE555 /* Supporting Files */,
+				B7136C3714686309005CE555 /* Home.h */,
+				B7136C3814686309005CE555 /* Home.m */,
+				B7136C3914686309005CE555 /* Home.xib */,
+				B70E61A71468992F00FABBA9 /* DiveMap.h */,
+				B70E61A81468993000FABBA9 /* DiveMap.m */,
+				B70E61A91468993000FABBA9 /* DiveMap.xib */,
+			);
+			path = DiveLogger;
+			sourceTree = "<group>";
+		};
+		B7136C0F14686123005CE555 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B7136C1014686123005CE555 /* DiveLogger-Info.plist */,
+				B7136C1114686123005CE555 /* InfoPlist.strings */,
+				B7136C1414686123005CE555 /* main.m */,
+				B7136C1614686123005CE555 /* DiveLogger-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B7136C2614686123005CE555 /* DiveLoggerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B7136C2C14686123005CE555 /* DiveLoggerTests.h */,
+				B7136C2D14686123005CE555 /* DiveLoggerTests.m */,
+				B7136C2714686123005CE555 /* Supporting Files */,
+			);
+			path = DiveLoggerTests;
+			sourceTree = "<group>";
+		};
+		B7136C2714686123005CE555 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B7136C2814686123005CE555 /* DiveLoggerTests-Info.plist */,
+				B7136C2914686123005CE555 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B7136C3C1468650D005CE555 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B7136C3D1468651D005CE555 /* Dive.h */,
+				B7136C3E1468651D005CE555 /* Dive.m */,
+				B7136C42146865DF005CE555 /* Tank.h */,
+				B7136C43146865DF005CE555 /* Tank.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B7136C0314686123005CE555 /* DiveLogger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7136C3114686123005CE555 /* Build configuration list for PBXNativeTarget "DiveLogger" */;
+			buildPhases = (
+				B7136C0014686123005CE555 /* Sources */,
+				B7136C0114686123005CE555 /* Frameworks */,
+				B7136C0214686123005CE555 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DiveLogger;
+			productName = DiveLogger;
+			productReference = B7136C0414686123005CE555 /* DiveLogger.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B7136C1E14686123005CE555 /* DiveLoggerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7136C3414686123005CE555 /* Build configuration list for PBXNativeTarget "DiveLoggerTests" */;
+			buildPhases = (
+				B7136C1A14686123005CE555 /* Sources */,
+				B7136C1B14686123005CE555 /* Frameworks */,
+				B7136C1C14686123005CE555 /* Resources */,
+				B7136C1D14686123005CE555 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B7136C2514686123005CE555 /* PBXTargetDependency */,
+			);
+			name = DiveLoggerTests;
+			productName = DiveLoggerTests;
+			productReference = B7136C1F14686123005CE555 /* DiveLoggerTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B7136BFB14686122005CE555 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = B7136BFE14686122005CE555 /* Build configuration list for PBXProject "DiveLogger" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B7136BF914686122005CE555;
+			productRefGroup = B7136C0514686123005CE555 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B7136C0314686123005CE555 /* DiveLogger */,
+				B7136C1E14686123005CE555 /* DiveLoggerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B7136C0214686123005CE555 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7136C1314686123005CE555 /* InfoPlist.strings in Resources */,
+				B7136C3B14686309005CE555 /* Home.xib in Resources */,
+				B70E61A11468977100FABBA9 /* map-marker.png in Resources */,
+				B70E61A21468977100FABBA9 /* shoebox.png in Resources */,
+				B70E61A6146897BE00FABBA9 /* notepad.png in Resources */,
+				B70E61AB1468993000FABBA9 /* DiveMap.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7136C1C14686123005CE555 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7136C2B14686123005CE555 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B7136C1D14686123005CE555 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B7136C0014686123005CE555 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7136C1514686123005CE555 /* main.m in Sources */,
+				B7136C1914686123005CE555 /* TYAppDelegate.m in Sources */,
+				B7136C3A14686309005CE555 /* Home.m in Sources */,
+				B7136C3F1468651D005CE555 /* Dive.m in Sources */,
+				B7136C44146865E0005CE555 /* Tank.m in Sources */,
+				B70E61AA1468993000FABBA9 /* DiveMap.m in Sources */,
+				B70E61F31468A1A500FABBA9 /* DiveLogger.xcdatamodel in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7136C1A14686123005CE555 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7136C2E14686123005CE555 /* DiveLoggerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B7136C2514686123005CE555 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7136C0314686123005CE555 /* DiveLogger */;
+			targetProxy = B7136C2414686123005CE555 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B7136C1114686123005CE555 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7136C1214686123005CE555 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B7136C2914686123005CE555 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7136C2A14686123005CE555 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B7136C2F14686123005CE555 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B7136C3014686123005CE555 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B7136C3214686123005CE555 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DiveLogger/DiveLogger-Prefix.pch";
+				INFOPLIST_FILE = "DiveLogger/DiveLogger-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B7136C3314686123005CE555 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DiveLogger/DiveLogger-Prefix.pch";
+				INFOPLIST_FILE = "DiveLogger/DiveLogger-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B7136C3514686123005CE555 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DiveLogger.app/DiveLogger";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DiveLogger/DiveLogger-Prefix.pch";
+				INFOPLIST_FILE = "DiveLoggerTests/DiveLoggerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B7136C3614686123005CE555 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DiveLogger.app/DiveLogger";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DiveLogger/DiveLogger-Prefix.pch";
+				INFOPLIST_FILE = "DiveLoggerTests/DiveLoggerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B7136BFE14686122005CE555 /* Build configuration list for PBXProject "DiveLogger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7136C2F14686123005CE555 /* Debug */,
+				B7136C3014686123005CE555 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7136C3114686123005CE555 /* Build configuration list for PBXNativeTarget "DiveLogger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7136C3214686123005CE555 /* Debug */,
+				B7136C3314686123005CE555 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7136C3414686123005CE555 /* Build configuration list for PBXNativeTarget "DiveLoggerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7136C3514686123005CE555 /* Debug */,
+				B7136C3614686123005CE555 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B7136BFB14686122005CE555 /* Project object */;
+}
