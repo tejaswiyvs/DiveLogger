@@ -5,6 +5,8 @@ This is an app that lets you log your scuba dives while complying with the stand
 
 This is currently part of a challenge I threw down for myself called the "OneDayApp". As you might've guessed, I am (was) looking to go from scratch to a fully functioning app in a day. The code quality therefore took a hit as I was pretty much coding in the evenings - late night. I'll work on cleaning the code up as soon as I can get a decent looking app out to the App Store. 
 
+If you'd like to read about the process as it happened, I have a blog post up [here](http://www.tejaswi-yerukalapudi.com/post/12487091818/one-day-app).
+
 From a technical perspective, here's what it does:
 
  - `Home` - Initial screen with a list of all the dives in a UITableView. 
