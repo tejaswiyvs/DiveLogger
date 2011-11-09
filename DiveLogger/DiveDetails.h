@@ -7,13 +7,33 @@
 //
 
 #import "Dive.h"
+#import "ActionSheetPicker.h"
 
-@interface DiveDetails : PPKUIViewController {
-    Dive *_dive
+@protocol TYDiveDetailsDelegate;
+@interface DiveDetails : UITableViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
+    __unsafe_unretained id<TYDiveDetailsDelegate> _delegate; // ?? TODO - Figure out later. Some ARC issue.
+    Dive *_dive;
+    NSMutableArray *_tableHeaders;
+    NSMutableArray *_pickerViewItems;
+    BOOL _newDive;
+    UITableView *_tableView;
+    UIPickerView *_airCompositionPicker;
 }
 
 @property (nonatomic, retain) Dive *dive;
+@property (nonatomic, assign) id<TYDiveDetailsDelegate> delegate;
+@property (nonatomic, retain) IBOutlet UIPickerView *airCompositionPicker;
+@property (nonatomic, retain) NSMutableArray *tableHeaders;
+@property (nonatomic, retain) NSMutableArray *pickerViewItems;
+@property (nonatomic, assign) BOOL newDive;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 -(id) initWithDive:(Dive *) dive;
+-(IBAction)cancelButtonClicked:(id)sender;
+-(IBAction)saveButtonClicked:(id)sender;
+@end
 
+@protocol TYDiveDetailsDelegate <NSObject>
+-(void) didSaveDive:(Dive *) dive;
+-(void) didDismissWithoutSaving;
 @end

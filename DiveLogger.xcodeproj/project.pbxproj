@@ -31,6 +31,14 @@
 		B7136C3F1468651D005CE555 /* Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C3E1468651D005CE555 /* Dive.m */; };
 		B7136C411468657B005CE555 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C401468657B005CE555 /* CoreLocation.framework */; };
 		B7136C44146865E0005CE555 /* Tank.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C43146865DF005CE555 /* Tank.m */; };
+		B7D1666B1469AF0C00280846 /* TYGenericUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D1666A1469AF0C00280846 /* TYGenericUtils.m */; };
+		B7FFF2CA146AD50B000CC125 /* ActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2C6146AD50B000CC125 /* ActionSheetPicker.m */; };
+		B7FFF2CB146AD50B000CC125 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2C9146AD50B000CC125 /* DebugLog.m */; };
+		B7FFF2D3146B0365000CC125 /* DiveAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2D2146B0365000CC125 /* DiveAnnotation.m */; };
+		B7FFF2D5146B04E5000CC125 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FFF2D4146B04E5000CC125 /* MapKit.framework */; };
+		B7FFF2D9146B0973000CC125 /* DiveLocationPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2D7146B0973000CC125 /* DiveLocationPicker.m */; };
+		B7FFF2DA146B0973000CC125 /* DiveLocationPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7FFF2D8146B0973000CC125 /* DiveLocationPicker.xib */; };
+		B7FFF2DD146B1438000CC125 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2DC146B1438000CC125 /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +86,21 @@
 		B7136C401468657B005CE555 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B7136C42146865DF005CE555 /* Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tank.h; sourceTree = "<group>"; };
 		B7136C43146865DF005CE555 /* Tank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tank.m; sourceTree = "<group>"; };
+		B7D166691469AF0C00280846 /* TYGenericUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYGenericUtils.h; sourceTree = "<group>"; };
+		B7D1666A1469AF0C00280846 /* TYGenericUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYGenericUtils.m; sourceTree = "<group>"; };
+		B7FFF2C5146AD50B000CC125 /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPicker.h; sourceTree = "<group>"; };
+		B7FFF2C6146AD50B000CC125 /* ActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetPicker.m; sourceTree = "<group>"; };
+		B7FFF2C7146AD50B000CC125 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		B7FFF2C8146AD50B000CC125 /* DebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
+		B7FFF2C9146AD50B000CC125 /* DebugLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugLog.m; sourceTree = "<group>"; };
+		B7FFF2D1146B0365000CC125 /* DiveAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveAnnotation.h; sourceTree = "<group>"; };
+		B7FFF2D2146B0365000CC125 /* DiveAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveAnnotation.m; sourceTree = "<group>"; };
+		B7FFF2D4146B04E5000CC125 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B7FFF2D6146B0973000CC125 /* DiveLocationPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveLocationPicker.h; sourceTree = "<group>"; };
+		B7FFF2D7146B0973000CC125 /* DiveLocationPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveLocationPicker.m; sourceTree = "<group>"; };
+		B7FFF2D8146B0973000CC125 /* DiveLocationPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiveLocationPicker.xib; sourceTree = "<group>"; };
+		B7FFF2DB146B1438000CC125 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		B7FFF2DC146B1438000CC125 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7FFF2D5146B04E5000CC125 /* MapKit.framework in Frameworks */,
 				B70E61F11468A16500FABBA9 /* CoreData.framework in Frameworks */,
 				B7136C411468657B005CE555 /* CoreLocation.framework in Frameworks */,
 				B7136C0914686123005CE555 /* UIKit.framework in Frameworks */,
@@ -138,6 +162,7 @@
 		B7136C0714686123005CE555 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7FFF2D4146B04E5000CC125 /* MapKit.framework */,
 				B70E61F01468A16500FABBA9 /* CoreData.framework */,
 				B7136C401468657B005CE555 /* CoreLocation.framework */,
 				B7136C0814686123005CE555 /* UIKit.framework */,
@@ -151,11 +176,14 @@
 		B7136C0E14686123005CE555 /* DiveLogger */ = {
 			isa = PBXGroup;
 			children = (
+				B7D166671469AEFC00280846 /* Utils */,
 				B70E61A41468977400FABBA9 /* Images */,
 				B7136C3C1468650D005CE555 /* Models */,
 				B7136C1714686123005CE555 /* TYAppDelegate.h */,
 				B7136C1814686123005CE555 /* TYAppDelegate.m */,
 				B7136C0F14686123005CE555 /* Supporting Files */,
+				B7FFF2D1146B0365000CC125 /* DiveAnnotation.h */,
+				B7FFF2D2146B0365000CC125 /* DiveAnnotation.m */,
 				B7136C3714686309005CE555 /* Home.h */,
 				B7136C3814686309005CE555 /* Home.m */,
 				B7136C3914686309005CE555 /* Home.xib */,
@@ -165,6 +193,9 @@
 				B70E61F41468E3F100FABBA9 /* DiveDetails.h */,
 				B70E61F51468E3F100FABBA9 /* DiveDetails.m */,
 				B70E61F61468E3F200FABBA9 /* DiveDetails.xib */,
+				B7FFF2D6146B0973000CC125 /* DiveLocationPicker.h */,
+				B7FFF2D7146B0973000CC125 /* DiveLocationPicker.m */,
+				B7FFF2D8146B0973000CC125 /* DiveLocationPicker.xib */,
 			);
 			path = DiveLogger;
 			sourceTree = "<group>";
@@ -208,6 +239,22 @@
 				B7136C43146865DF005CE555 /* Tank.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		B7D166671469AEFC00280846 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B7FFF2C5146AD50B000CC125 /* ActionSheetPicker.h */,
+				B7FFF2C6146AD50B000CC125 /* ActionSheetPicker.m */,
+				B7FFF2C7146AD50B000CC125 /* SynthesizeSingleton.h */,
+				B7FFF2C8146AD50B000CC125 /* DebugLog.h */,
+				B7FFF2C9146AD50B000CC125 /* DebugLog.m */,
+				B7D166691469AF0C00280846 /* TYGenericUtils.h */,
+				B7D1666A1469AF0C00280846 /* TYGenericUtils.m */,
+				B7FFF2DB146B1438000CC125 /* Constants.h */,
+				B7FFF2DC146B1438000CC125 /* Constants.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +334,7 @@
 				B70E61A6146897BE00FABBA9 /* notepad.png in Resources */,
 				B70E61AB1468993000FABBA9 /* DiveMap.xib in Resources */,
 				B70E61F81468E3F200FABBA9 /* DiveDetails.xib in Resources */,
+				B7FFF2DA146B0973000CC125 /* DiveLocationPicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +376,12 @@
 				B7136C44146865E0005CE555 /* Tank.m in Sources */,
 				B70E61AA1468993000FABBA9 /* DiveMap.m in Sources */,
 				B70E61F71468E3F200FABBA9 /* DiveDetails.m in Sources */,
+				B7D1666B1469AF0C00280846 /* TYGenericUtils.m in Sources */,
+				B7FFF2CA146AD50B000CC125 /* ActionSheetPicker.m in Sources */,
+				B7FFF2CB146AD50B000CC125 /* DebugLog.m in Sources */,
+				B7FFF2D3146B0365000CC125 /* DiveAnnotation.m in Sources */,
+				B7FFF2D9146B0973000CC125 /* DiveLocationPicker.m in Sources */,
+				B7FFF2DD146B1438000CC125 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

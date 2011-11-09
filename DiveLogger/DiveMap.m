@@ -7,8 +7,18 @@
 //
 
 #import "DiveMap.h"
+#import "Dive.h"
+#import "DiveAnnotation.h"
+
+@interface DiveMap (private) 
+-(void) populateTempData;
+-(void) dropPins;
+@end
 
 @implementation DiveMap
+
+@synthesize dives = _dives;
+@synthesize map = _map;
 
 -(id) init {
     self = [super initWithNibName:@"DiveMap" bundle:nil];
@@ -21,10 +31,7 @@
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -33,25 +40,50 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self populateTempData];
+    [self dropPins];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    UIAlertView *comingSoon = [[UIAlertView alloc] initWithTitle:@"Attention" message:@"Coming Soon!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [comingSoon show];
+    // [TYGenericUtils displayAttentionAlert:@"Coming Soon!"];
     [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - Helpers
+
+-(void) dropPins
+{
+    for (int i=0; i<[_dives count]; i++) {
+        DiveAnnotation *annotation = [[DiveAnnotation alloc] initWithDive:[_dives objectAtIndex:i]];
+        [_map addAnnotation:annotation];
+        [_map setShowsUserLocation:YES];
+    }
+}
+
+-(void) populateTempData {
+    _dives = [[NSMutableArray alloc] init];
+    Dive *dive1 = [[Dive alloc] init];
+    [dive1 setDiveName:@"Some dive"];
+    CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake(27.882177,-81.118927);
+    [dive1 setDiveLocation:coordinates];
+    [_dives addObject:dive1];
+    
+    Dive *dive2 = [[Dive alloc] init];
+    [dive2 setDiveName:@"Some other dive"];
+    CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(29.88, -81.11);
+    [dive2 setDiveLocation:coordinate2];
+    [_dives addObject:dive2];
 }
 
 @end

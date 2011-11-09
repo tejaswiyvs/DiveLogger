@@ -7,10 +7,15 @@
 //
 
 #import "Home.h"
+#import "DiveDetails.h"
+
+@interface Home (private)
+-(void) createBarButtons;
+@end
 
 @implementation Home
 
-@synthesize dives, divesList;
+@synthesize dives = _dives, divesList = _divesList;
 
 - (id) init {
     self = [super initWithNibName:@"Home" bundle:nil];
@@ -36,6 +41,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self createBarButtons];
 }
 
 - (void)viewDidUnload
@@ -54,7 +60,7 @@
 #pragma mark - UITableView
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [dives count];
+    return [_dives count];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -63,6 +69,34 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
+}
+
+#pragma mark - Event Handlers
+
+-(void) addButtonClicked:(id) sender {
+    DiveDetails *diveDetails = [[DiveDetails alloc] initWithDive:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:diveDetails];
+    [self presentModalViewController:navigationController animated:YES];
+}
+
+#pragma mark - DiveDetailsDelegate
+
+-(void) didSaveDive:(Dive *) dive {
+    
+}
+
+-(void) didUpdateDive:(Dive *) dive {
+
+}
+
+-(void) didDismissWithoutSaving {
+
+}
+#pragma mark - Helpers
+
+-(void) createBarButtons {
+    UIBarButtonItem *addDive = [[UIBarButtonItem alloc] initWithTitle:@"Add Dive" style:UIBarButtonItemStylePlain target:self action:@selector(addButtonClicked:)];
+    [[self navigationItem] setRightBarButtonItem:addDive];
 }
 
 @end

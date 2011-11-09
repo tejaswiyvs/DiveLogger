@@ -10,4 +10,12 @@
 
 @implementation Dive
 @synthesize diveName, diveDate, diveLocation, tank, visibility, airTemperature, waterTemperature, diveTime;
+-(id) init {
+    self = [super init];
+    if(self) {
+        [self setDiveLocation:EmptyLocationCoordinate];
+        self.tank = [[Tank alloc] init];
+    }
+    return self;
+}
 @end
