@@ -31,4 +31,27 @@
 	[dateFormatter setDateFormat:@"MM/dd/YYYY"];
     return [dateFormatter dateFromString:dateString];
 }
+
++ (void)customizeNavigationController:(UINavigationController *)navController
+{
+    UINavigationBar *navBar = [navController navigationBar];
+    [navBar setTintColor:kSCNavBarColor];
+    
+    if ([navBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+    {
+        [navBar setBackgroundImage:[UIImage imageNamed:@"UINavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+    }
+    else
+    {
+        UIImageView *imageView = (UIImageView *)[navBar viewWithTag:kSCNavBarImageTag];
+        if (imageView == nil)
+        {
+            imageView = [[UIImageView alloc] initWithImage:
+                         [UIImage imageNamed:@"UINavigationBar.png"]];
+            [imageView setTag:kSCNavBarImageTag];
+            [navBar insertSubview:imageView atIndex:0];
+        }
+    }
+}
+
 @end

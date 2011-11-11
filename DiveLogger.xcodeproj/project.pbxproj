@@ -31,8 +31,25 @@
 		B7136C3F1468651D005CE555 /* Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C3E1468651D005CE555 /* Dive.m */; };
 		B7136C411468657B005CE555 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C401468657B005CE555 /* CoreLocation.framework */; };
 		B7136C44146865E0005CE555 /* Tank.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C43146865DF005CE555 /* Tank.m */; };
+		B79DA384146B9D370078179C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B79DA383146B9D370078179C /* background.png */; };
+		B79DA398146B9F630078179C /* SCAppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA391146B9F630078179C /* SCAppUtils.m */; };
+		B79DA399146B9F630078179C /* SCClassUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA393146B9F630078179C /* SCClassUtils.m */; };
+		B79DA39A146B9F630078179C /* SCTestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA395146B9F630078179C /* SCTestTableViewController.m */; };
+		B79DA39B146B9F630078179C /* UINavigationBar+SCBackgroundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA397146B9F630078179C /* UINavigationBar+SCBackgroundImage.m */; };
+		B79DA3A4146C26960078179C /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3A3146C26960078179C /* HomeCell.xib */; };
+		B79DA3A7146C28710078179C /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3A6146C28710078179C /* HomeCell.m */; };
+		B79DA3B5146C33CE0078179C /* UITableViewCellBG.png in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3B4146C33CE0078179C /* UITableViewCellBG.png */; };
+		B79DA3B9146C4D550078179C /* CustomUINavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3B8146C4D550078179C /* CustomUINavBar.png */; };
+		B79DA3BD146C65610078179C /* TYUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3BC146C65610078179C /* TYUITabBarController.m */; };
+		B79DA3BF146C66920078179C /* CustomUITabBarController.png in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3BE146C66920078179C /* CustomUITabBarController.png */; };
+		B79DA3C3146C68E20078179C /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3C1146C68E10078179C /* Profile.m */; };
+		B79DA3C4146C68E20078179C /* Profile.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3C2146C68E10078179C /* Profile.xib */; };
+		B79DA3C6146C694D0078179C /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3C5146C694D0078179C /* user.png */; };
+		B79DA3CA146C7D970078179C /* UITableViewHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3C9146C7D970078179C /* UITableViewHeader.png */; };
+		B79DA3CC146C800D0078179C /* UITableViewCell Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3CB146C800D0078179C /* UITableViewCell Default.png */; };
+		B79DA3CE146CAE3E0078179C /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3CD146CAE3E0078179C /* ProfileCell.xib */; };
+		B79DA3D1146CAE5B0078179C /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3D0146CAE5B0078179C /* ProfileCell.m */; };
 		B7D1666B1469AF0C00280846 /* TYGenericUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D1666A1469AF0C00280846 /* TYGenericUtils.m */; };
-		B7FFF2CA146AD50B000CC125 /* ActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2C6146AD50B000CC125 /* ActionSheetPicker.m */; };
 		B7FFF2CB146AD50B000CC125 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2C9146AD50B000CC125 /* DebugLog.m */; };
 		B7FFF2D3146B0365000CC125 /* DiveAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2D2146B0365000CC125 /* DiveAnnotation.m */; };
 		B7FFF2D5146B04E5000CC125 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FFF2D4146B04E5000CC125 /* MapKit.framework */; };
@@ -86,11 +103,34 @@
 		B7136C401468657B005CE555 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B7136C42146865DF005CE555 /* Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tank.h; sourceTree = "<group>"; };
 		B7136C43146865DF005CE555 /* Tank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tank.m; sourceTree = "<group>"; };
+		B79DA383146B9D370078179C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B79DA390146B9F630078179C /* SCAppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAppUtils.h; sourceTree = "<group>"; };
+		B79DA391146B9F630078179C /* SCAppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAppUtils.m; sourceTree = "<group>"; };
+		B79DA392146B9F630078179C /* SCClassUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCClassUtils.h; sourceTree = "<group>"; };
+		B79DA393146B9F630078179C /* SCClassUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCClassUtils.m; sourceTree = "<group>"; };
+		B79DA394146B9F630078179C /* SCTestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTestTableViewController.h; sourceTree = "<group>"; };
+		B79DA395146B9F630078179C /* SCTestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTestTableViewController.m; sourceTree = "<group>"; };
+		B79DA396146B9F630078179C /* UINavigationBar+SCBackgroundImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+SCBackgroundImage.h"; sourceTree = "<group>"; };
+		B79DA397146B9F630078179C /* UINavigationBar+SCBackgroundImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+SCBackgroundImage.m"; sourceTree = "<group>"; };
+		B79DA3A3146C26960078179C /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
+		B79DA3A5146C28710078179C /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
+		B79DA3A6146C28710078179C /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
+		B79DA3B4146C33CE0078179C /* UITableViewCellBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellBG.png; sourceTree = "<group>"; };
+		B79DA3B8146C4D550078179C /* CustomUINavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CustomUINavBar.png; sourceTree = "<group>"; };
+		B79DA3BB146C65610078179C /* TYUITabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYUITabBarController.h; sourceTree = "<group>"; };
+		B79DA3BC146C65610078179C /* TYUITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYUITabBarController.m; sourceTree = "<group>"; };
+		B79DA3BE146C66920078179C /* CustomUITabBarController.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CustomUITabBarController.png; sourceTree = "<group>"; };
+		B79DA3C0146C68E00078179C /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		B79DA3C1146C68E10078179C /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		B79DA3C2146C68E10078179C /* Profile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Profile.xib; sourceTree = "<group>"; };
+		B79DA3C5146C694D0078179C /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		B79DA3C9146C7D970078179C /* UITableViewHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewHeader.png; sourceTree = "<group>"; };
+		B79DA3CB146C800D0078179C /* UITableViewCell Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UITableViewCell Default.png"; sourceTree = "<group>"; };
+		B79DA3CD146CAE3E0078179C /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
+		B79DA3CF146CAE5B0078179C /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		B79DA3D0146CAE5B0078179C /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		B7D166691469AF0C00280846 /* TYGenericUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYGenericUtils.h; sourceTree = "<group>"; };
 		B7D1666A1469AF0C00280846 /* TYGenericUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYGenericUtils.m; sourceTree = "<group>"; };
-		B7FFF2C5146AD50B000CC125 /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPicker.h; sourceTree = "<group>"; };
-		B7FFF2C6146AD50B000CC125 /* ActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetPicker.m; sourceTree = "<group>"; };
-		B7FFF2C7146AD50B000CC125 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		B7FFF2C8146AD50B000CC125 /* DebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
 		B7FFF2C9146AD50B000CC125 /* DebugLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugLog.m; sourceTree = "<group>"; };
 		B7FFF2D1146B0365000CC125 /* DiveAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveAnnotation.h; sourceTree = "<group>"; };
@@ -133,6 +173,13 @@
 		B70E61A41468977400FABBA9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B79DA3C5146C694D0078179C /* user.png */,
+				B79DA3CB146C800D0078179C /* UITableViewCell Default.png */,
+				B79DA3C9146C7D970078179C /* UITableViewHeader.png */,
+				B79DA3BE146C66920078179C /* CustomUITabBarController.png */,
+				B79DA3B4146C33CE0078179C /* UITableViewCellBG.png */,
+				B79DA3B8146C4D550078179C /* CustomUINavBar.png */,
+				B79DA383146B9D370078179C /* background.png */,
 				B70E61A5146897BE00FABBA9 /* notepad.png */,
 				B70E619F1468977100FABBA9 /* map-marker.png */,
 				B70E61A01468977100FABBA9 /* shoebox.png */,
@@ -176,6 +223,9 @@
 		B7136C0E14686123005CE555 /* DiveLogger */ = {
 			isa = PBXGroup;
 			children = (
+				B79DA3BA146C653A0078179C /* CustomUITabBar */,
+				B79DA3A2146C26780078179C /* CustomUITableViewCell */,
+				B79DA388146B9DCB0078179C /* CustomNavBar */,
 				B7D166671469AEFC00280846 /* Utils */,
 				B70E61A41468977400FABBA9 /* Images */,
 				B7136C3C1468650D005CE555 /* Models */,
@@ -196,6 +246,9 @@
 				B7FFF2D6146B0973000CC125 /* DiveLocationPicker.h */,
 				B7FFF2D7146B0973000CC125 /* DiveLocationPicker.m */,
 				B7FFF2D8146B0973000CC125 /* DiveLocationPicker.xib */,
+				B79DA3C0146C68E00078179C /* Profile.h */,
+				B79DA3C1146C68E10078179C /* Profile.m */,
+				B79DA3C2146C68E10078179C /* Profile.xib */,
 			);
 			path = DiveLogger;
 			sourceTree = "<group>";
@@ -241,12 +294,46 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		B79DA388146B9DCB0078179C /* CustomNavBar */ = {
+			isa = PBXGroup;
+			children = (
+				B79DA390146B9F630078179C /* SCAppUtils.h */,
+				B79DA391146B9F630078179C /* SCAppUtils.m */,
+				B79DA392146B9F630078179C /* SCClassUtils.h */,
+				B79DA393146B9F630078179C /* SCClassUtils.m */,
+				B79DA394146B9F630078179C /* SCTestTableViewController.h */,
+				B79DA395146B9F630078179C /* SCTestTableViewController.m */,
+				B79DA396146B9F630078179C /* UINavigationBar+SCBackgroundImage.h */,
+				B79DA397146B9F630078179C /* UINavigationBar+SCBackgroundImage.m */,
+			);
+			name = CustomNavBar;
+			sourceTree = "<group>";
+		};
+		B79DA3A2146C26780078179C /* CustomUITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B79DA3A5146C28710078179C /* HomeCell.h */,
+				B79DA3A6146C28710078179C /* HomeCell.m */,
+				B79DA3A3146C26960078179C /* HomeCell.xib */,
+				B79DA3CF146CAE5B0078179C /* ProfileCell.h */,
+				B79DA3D0146CAE5B0078179C /* ProfileCell.m */,
+				B79DA3CD146CAE3E0078179C /* ProfileCell.xib */,
+			);
+			name = CustomUITableViewCell;
+			sourceTree = "<group>";
+		};
+		B79DA3BA146C653A0078179C /* CustomUITabBar */ = {
+			isa = PBXGroup;
+			children = (
+				B79DA3BB146C65610078179C /* TYUITabBarController.h */,
+				B79DA3BC146C65610078179C /* TYUITabBarController.m */,
+			);
+			name = CustomUITabBar;
+			sourceTree = "<group>";
+		};
 		B7D166671469AEFC00280846 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B7FFF2C5146AD50B000CC125 /* ActionSheetPicker.h */,
-				B7FFF2C6146AD50B000CC125 /* ActionSheetPicker.m */,
-				B7FFF2C7146AD50B000CC125 /* SynthesizeSingleton.h */,
 				B7FFF2C8146AD50B000CC125 /* DebugLog.h */,
 				B7FFF2C9146AD50B000CC125 /* DebugLog.m */,
 				B7D166691469AF0C00280846 /* TYGenericUtils.h */,
@@ -335,6 +422,16 @@
 				B70E61AB1468993000FABBA9 /* DiveMap.xib in Resources */,
 				B70E61F81468E3F200FABBA9 /* DiveDetails.xib in Resources */,
 				B7FFF2DA146B0973000CC125 /* DiveLocationPicker.xib in Resources */,
+				B79DA384146B9D370078179C /* background.png in Resources */,
+				B79DA3A4146C26960078179C /* HomeCell.xib in Resources */,
+				B79DA3B5146C33CE0078179C /* UITableViewCellBG.png in Resources */,
+				B79DA3B9146C4D550078179C /* CustomUINavBar.png in Resources */,
+				B79DA3BF146C66920078179C /* CustomUITabBarController.png in Resources */,
+				B79DA3C4146C68E20078179C /* Profile.xib in Resources */,
+				B79DA3C6146C694D0078179C /* user.png in Resources */,
+				B79DA3CA146C7D970078179C /* UITableViewHeader.png in Resources */,
+				B79DA3CC146C800D0078179C /* UITableViewCell Default.png in Resources */,
+				B79DA3CE146CAE3E0078179C /* ProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,11 +474,18 @@
 				B70E61AA1468993000FABBA9 /* DiveMap.m in Sources */,
 				B70E61F71468E3F200FABBA9 /* DiveDetails.m in Sources */,
 				B7D1666B1469AF0C00280846 /* TYGenericUtils.m in Sources */,
-				B7FFF2CA146AD50B000CC125 /* ActionSheetPicker.m in Sources */,
 				B7FFF2CB146AD50B000CC125 /* DebugLog.m in Sources */,
 				B7FFF2D3146B0365000CC125 /* DiveAnnotation.m in Sources */,
 				B7FFF2D9146B0973000CC125 /* DiveLocationPicker.m in Sources */,
 				B7FFF2DD146B1438000CC125 /* Constants.m in Sources */,
+				B79DA398146B9F630078179C /* SCAppUtils.m in Sources */,
+				B79DA399146B9F630078179C /* SCClassUtils.m in Sources */,
+				B79DA39A146B9F630078179C /* SCTestTableViewController.m in Sources */,
+				B79DA39B146B9F630078179C /* UINavigationBar+SCBackgroundImage.m in Sources */,
+				B79DA3A7146C28710078179C /* HomeCell.m in Sources */,
+				B79DA3BD146C65610078179C /* TYUITabBarController.m in Sources */,
+				B79DA3C3146C68E20078179C /* Profile.m in Sources */,
+				B79DA3D1146CAE5B0078179C /* ProfileCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

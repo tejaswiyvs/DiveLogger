@@ -14,7 +14,7 @@
 }
 
 @property (nonatomic, retain) NSMutableArray *dives;
-@property (nonatomic, retain) UITableView *divesList;
+@property (nonatomic, retain) IBOutlet UITableView *divesList;
 
 - (id) init;
 

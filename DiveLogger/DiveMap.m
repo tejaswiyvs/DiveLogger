@@ -78,7 +78,7 @@
     CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake(27.882177,-81.118927);
     [dive1 setDiveLocation:coordinates];
     [_dives addObject:dive1];
-    
+        
     Dive *dive2 = [[Dive alloc] init];
     [dive2 setDiveName:@"Some other dive"];
     CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(29.88, -81.11);

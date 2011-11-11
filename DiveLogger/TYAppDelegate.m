@@ -9,9 +9,11 @@
 #import "TYAppDelegate.h"
 #import "Home.h"
 #import "DiveMap.h"
+#import "SCAppUtils.h"
+#import "Profile.h"
 
 @interface TYAppDelegate (private)
--(UITabBarController *) createTabBar;
+-(TYUITabBarController *) createTabBar;
 @end
 
 @implementation TYAppDelegate
@@ -69,12 +71,15 @@
 
 #pragma mark - Helpers
 
--(UITabBarController *) createTabBar {
+-(TYUITabBarController *) createTabBar {
     Home *home = [[Home alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:home];
+    [navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+    [SCAppUtils customizeNavigationController:navigationController];
     DiveMap *map = [[DiveMap alloc] init];
-    NSArray *viewControllers = [NSArray arrayWithObjects:navigationController, map, nil];
-    UITabBarController *tabBar = [[UITabBarController alloc] init];
+    Profile *profile = [[Profile alloc] init];
+    NSArray *viewControllers = [NSArray arrayWithObjects:navigationController, map, profile, nil];
+    TYUITabBarController *tabBar = [[TYUITabBarController alloc] init];
     [tabBar setViewControllers:viewControllers];
     return tabBar;
 }

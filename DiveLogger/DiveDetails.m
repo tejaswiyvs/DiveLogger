@@ -7,13 +7,14 @@
 //
 
 #import "DiveDetails.h"
-#import "ActionSheetPicker.h"
 #import "DiveLocationPicker.h"
+#import "TYAppDelegate.h"
 
 @interface DiveDetails (private)
 -(void) createNavBarButtons;
 -(void) createAirCompositionPicker;
 -(void) dismissKeyboard;
+-(UIColor *) darkBlueTextColor;
 -(UITableViewCell *) makeVisibilityCell;
 -(UITableViewCell *) makeAirTemperatureCell;
 -(UITableViewCell *) makeWaterTemperatureCell;
@@ -62,6 +63,9 @@ static int kNumberOfSections = 3;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+//    [_tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]]];
+    
     _tableHeaders = [[NSMutableArray alloc] init];
     [_tableHeaders addObject:@"Dive Info"];
     [_tableHeaders addObject:@"Tank Info"];
@@ -115,10 +119,17 @@ static int kNumberOfSections = 3;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 30.0)];
+    CGRect frame = CGRectMake(0.0, 0.0, 320.0, 30.0);
+    UIView *view = [[UIView alloc] initWithFrame:frame];
+    [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"UITableViewHeader.png"]]];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(3.0, 0.0, 320.0, 30.0)];
     [headerLabel setText:[_tableHeaders objectAtIndex:section]];
+    [headerLabel setTextColor:[UIColor whiteColor]];
+    [headerLabel setShadowColor:[UIColor blackColor]];
+    [headerLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
     [headerLabel setBackgroundColor:[UIColor clearColor]];
-    return headerLabel;
+    [view addSubview:headerLabel];
+    return view;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -126,9 +137,11 @@ static int kNumberOfSections = 3;
     if(indexPath.section == 0 && indexPath.row == 0) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+
         UITextField *nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
         nameTextField.adjustsFontSizeToFitWidth = NO;
-        nameTextField.textColor = [UIColor blueColor];
+        nameTextField.textColor = [self darkBlueTextColor];
         nameTextField.placeholder = @"Dive Name";
         nameTextField.keyboardType = UIKeyboardTypeNamePhonePad;
         nameTextField.returnKeyType = UIReturnKeyNext;
@@ -137,6 +150,7 @@ static int kNumberOfSections = 3;
         nameTextField.textAlignment = UITextAlignmentRight;
         nameTextField.tag = 0;
         nameTextField.delegate = self;
+        [nameTextField setBackgroundColor:[UIColor clearColor]];
         //playerTextField.delegate = self;
         
         nameTextField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
@@ -144,8 +158,17 @@ static int kNumberOfSections = 3;
         
         [cell addSubview:nameTextField];
         [[cell textLabel] setText:@"Dive Name"];
+        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
+        [cell.textLabel setShadowColor:[UIColor whiteColor]];
+        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+        
         if ([_dive diveName] && ![[_dive diveName] isEqualToString:@""]) {
             [nameTextField setText:[_dive diveName]];
+        }
+        
+        if(!_newDive) {
+            [nameTextField setEnabled:NO];
         }
         return cell;
     }
@@ -153,14 +176,16 @@ static int kNumberOfSections = 3;
     else if(indexPath.section == 0 && indexPath.row == 1) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
         [[cell textLabel] setText:@"Dive Date"];
-        if([_dive diveDate]) {
-            [cell.detailTextLabel setText:[TYGenericUtils stringFromDate:[_dive diveDate]]];
+        if(![_dive diveDate]) {
+            _dive.diveDate = [[NSDate alloc] init];
         }
-        else {
-            // Initialize by default to today.
-            [cell.detailTextLabel setText:[TYGenericUtils stringFromDate:[[NSDate alloc] init]]];
-        }
+        [cell.textLabel setShadowColor:[UIColor whiteColor]];
+        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [cell.detailTextLabel setText:[TYGenericUtils stringFromDate:[_dive diveDate]]];
+        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         return cell;    
     }
     // Dive Location
@@ -168,6 +193,7 @@ static int kNumberOfSections = 3;
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
         [[cell textLabel] setText:@"Dive Location"];
         if(_dive.diveLocation.latitude == EmptyLocationCoordinate.latitude && _dive.diveLocation.longitude == EmptyLocationCoordinate.longitude) {
             [[cell detailTextLabel] setText:@"Pick a Location"];
@@ -176,6 +202,10 @@ static int kNumberOfSections = 3;
             NSString *locationString = [NSString stringWithFormat:@"%f, %f", _dive.diveLocation.latitude, _dive.diveLocation.longitude];
             [[cell detailTextLabel] setText:locationString];
         }
+        [cell.textLabel setShadowColor:[UIColor whiteColor]];
+        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         return cell;
     }
     else if(indexPath.section == 0 && indexPath.row == 3) {
@@ -184,10 +214,11 @@ static int kNumberOfSections = 3;
     else if(indexPath.section == 1 && indexPath.row == 0) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
         [[cell textLabel] setText:@"Starting Pressure"];
         UITextField *startingPressureTxt = [[UITextField alloc] initWithFrame:CGRectMake(170, 12, 135, 30)];
         startingPressureTxt.adjustsFontSizeToFitWidth = NO;
-        startingPressureTxt.textColor = [UIColor blueColor];
+        startingPressureTxt.textColor = [self darkBlueTextColor];
 //        startingPressureTxt.placeholder = @"Pressure in psi";
         startingPressureTxt.keyboardType = UIKeyboardTypeNumberPad;
         startingPressureTxt.returnKeyType = UIReturnKeyNext;
@@ -207,15 +238,20 @@ static int kNumberOfSections = 3;
             NSString *startingPressure = [NSString stringWithFormat:@"%d psi", [[_dive tank] startingPressure]];
             [startingPressureTxt setText:startingPressure];
         }
+        [cell.textLabel setShadowColor:[UIColor whiteColor]];
+        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         return cell;
     }
     else if(indexPath.section == 1 && indexPath.row == 1) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
         [[cell textLabel] setText:@"Ending Pressure"];
         UITextField *endingPressureTxt = [[UITextField alloc] initWithFrame:CGRectMake(170, 12, 135, 30)];
         endingPressureTxt.adjustsFontSizeToFitWidth = NO;
-        endingPressureTxt.textColor = [UIColor blueColor];
+        endingPressureTxt.textColor = [self darkBlueTextColor];
 //        endingPressureTxt.placeholder = @"Pressure in psi";
         endingPressureTxt.keyboardType = UIKeyboardTypeNumberPad;
         endingPressureTxt.returnKeyType = UIReturnKeyNext;
@@ -234,11 +270,16 @@ static int kNumberOfSections = 3;
             NSString *endingPressure = [NSString stringWithFormat:@"%d psi", [[_dive tank] endingPressure]];
             [endingPressureTxt setText:endingPressure];
         }
+        [cell.textLabel setShadowColor:[UIColor whiteColor]];
+        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         return cell;
     }
     else if(indexPath.section == 1 && indexPath.row == 2) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
         [[cell textLabel] setText:@"Air Composition"];
         if([[_dive tank] airComposition]) {
             if([[_dive tank] airComposition] == kTYAirCompositionNitrox1) {
@@ -251,6 +292,10 @@ static int kNumberOfSections = 3;
                 [[cell detailTextLabel] setText:@"Other"];
             }
         }
+        [cell.textLabel setShadowColor:[UIColor whiteColor]];
+        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         return cell;
     }
     else if(indexPath.section == 2 && indexPath.row == 0) {
@@ -402,14 +447,14 @@ static int kNumberOfSections = 3;
     if(_delegate) {
         [_delegate didSaveDive:_dive];
     }
-    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)cancelButtonClicked:(id)sender {
     if(_delegate) {
         [_delegate didDismissWithoutSaving];
     }
-    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void) datePicked:(NSDate *) date {
@@ -419,25 +464,29 @@ static int kNumberOfSections = 3;
 #pragma mark - Helpers
 
 -(void) createNavBarButtons {
-    if(_newDive) {
-        UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveButtonClicked:)];
-        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked:)];
-        [[self navigationItem] setRightBarButtonItem:saveButton];
-        [[self navigationItem] setLeftBarButtonItem:cancelButton];
-    }
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveButtonClicked:)];
+    [[self navigationItem] setRightBarButtonItem:saveButton];
+
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked:)];
+    [[self navigationItem] setLeftBarButtonItem:cancelButton];
 }
 
 -(void) createAirCompositionPicker {
     [_airCompositionPicker setHidden:YES];
 }
 
+-(UIColor *) darkBlueTextColor {
+    return [UIColor colorWithRed:0.22f green:0.33f blue:0.53f alpha:1.0f];
+}
+
 -(UITableViewCell *) makeVisibilityCell {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
     [[cell textLabel] setText:@"Visibility (ft)"];
     UITextField *visibilityTxt = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
     visibilityTxt.adjustsFontSizeToFitWidth = NO;
-    visibilityTxt.textColor = [UIColor blueColor];
+    visibilityTxt.textColor = [self darkBlueTextColor];
     visibilityTxt.keyboardType = UIKeyboardTypeNamePhonePad;
     visibilityTxt.returnKeyType = UIReturnKeyNext;
     visibilityTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
@@ -454,16 +503,21 @@ static int kNumberOfSections = 3;
         NSString *visibility = [NSString stringWithFormat:@"%d", [_dive visibility]];
         [visibilityTxt setText:visibility];
     }
+    [cell.textLabel setShadowColor:[UIColor whiteColor]];
+    [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+    [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+    [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
     return cell;
 }
 
 -(UITableViewCell *) makeAirTemperatureCell {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
     [[cell textLabel] setText:@"Air Temperature (°F)"];
     UITextField *airTemperatureTxt = [[UITextField alloc] initWithFrame:CGRectMake(190, 12, 115, 30)];
     airTemperatureTxt.adjustsFontSizeToFitWidth = NO;
-    airTemperatureTxt.textColor = [UIColor blueColor];
+    airTemperatureTxt.textColor = [self darkBlueTextColor];
     airTemperatureTxt.keyboardType = UIKeyboardTypeNumberPad;
     airTemperatureTxt.returnKeyType = UIReturnKeyNext;
     airTemperatureTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
@@ -481,16 +535,21 @@ static int kNumberOfSections = 3;
         NSString *airTemperature = [NSString stringWithFormat:@"%d", [_dive airTemperature]];
         [airTemperatureTxt setText:airTemperature];
     }
+    [cell.textLabel setShadowColor:[UIColor whiteColor]];
+    [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+    [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+    [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
     return cell;
 }
 
 -(UITableViewCell *) makeWaterTemperatureCell {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
     [[cell textLabel] setText:@"Water temperature (°F)"];
     UITextField *waterTemperatureTxt = [[UITextField alloc] initWithFrame:CGRectMake(215, 12, 90, 30)];
     waterTemperatureTxt.adjustsFontSizeToFitWidth = NO;
-    waterTemperatureTxt.textColor = [UIColor blueColor];
+    waterTemperatureTxt.textColor = [self darkBlueTextColor];
     waterTemperatureTxt.keyboardType = UIKeyboardTypeNumberPad;
     waterTemperatureTxt.returnKeyType = UIReturnKeyNext;
     waterTemperatureTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
@@ -507,16 +566,21 @@ static int kNumberOfSections = 3;
         NSString *waterTemperature = [NSString stringWithFormat:@"%d", [_dive waterTemperature]];
         [waterTemperatureTxt setText:waterTemperature];
     }
+    [cell.textLabel setShadowColor:[UIColor whiteColor]];
+    [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+    [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+    [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
     return cell;
 }
 
 -(UITableViewCell *) makeDiveTimeCell {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
     [[cell textLabel] setText:@"Dive Time"];
     UITextField *currentDiveTimeTxt = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
     currentDiveTimeTxt.adjustsFontSizeToFitWidth = NO;
-    currentDiveTimeTxt.textColor = [UIColor blueColor];
+    currentDiveTimeTxt.textColor = [self darkBlueTextColor];
     currentDiveTimeTxt.keyboardType = UIKeyboardTypeNumberPad;
     currentDiveTimeTxt.returnKeyType = UIReturnKeyNext;
     currentDiveTimeTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
@@ -533,6 +597,10 @@ static int kNumberOfSections = 3;
         NSString *diveTime = [NSString stringWithFormat:@"%d", [_dive diveTime]];
         [currentDiveTimeTxt setText:diveTime];
     }
+    [cell.textLabel setShadowColor:[UIColor whiteColor]];
+    [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+    [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+    [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
     return cell;
 }
 @end

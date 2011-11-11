@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "TYUITabBarController.h"
 
 @interface TYAppDelegate : UIResponder <UIApplicationDelegate>
 {
-    UITabBarController *_tabBar;
+    TYUITabBarController *_tabBar;
 }
 
-@property (nonatomic, retain) UITabBarController *tabBar;
+@property (nonatomic, retain) TYUITabBarController *tabBar;
 @property (strong, nonatomic) UIWindow *window;
 
 @end

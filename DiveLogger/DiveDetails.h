@@ -7,7 +7,6 @@
 //
 
 #import "Dive.h"
-#import "ActionSheetPicker.h"
 
 @protocol TYDiveDetailsDelegate;
 @interface DiveDetails : UITableViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
