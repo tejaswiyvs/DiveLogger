@@ -9,6 +9,7 @@
 #import "DiveMap.h"
 #import "Dive.h"
 #import "DiveAnnotation.h"
+#import "TYAppDelegate.h"
 
 @interface DiveMap (private) 
 -(void) populateTempData;
@@ -40,8 +41,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self populateTempData];
-    [self dropPins];
+    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+    if(!appDelegate.dives) {
+        appDelegate.dives = [[NSMutableArray alloc] init];
+    }
+    _dives = appDelegate.dives;    [self dropPins];
 }
 
 - (void) viewDidAppear:(BOOL)animated {

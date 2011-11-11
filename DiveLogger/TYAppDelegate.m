@@ -19,7 +19,8 @@
 @implementation TYAppDelegate
 
 @synthesize window = _window, 
-            tabBar = _tabBar;
+            tabBar = _tabBar,
+            dives = _dives;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

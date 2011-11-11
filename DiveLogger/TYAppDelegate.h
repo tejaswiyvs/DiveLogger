@@ -13,9 +13,11 @@
 @interface TYAppDelegate : UIResponder <UIApplicationDelegate>
 {
     TYUITabBarController *_tabBar;
+    NSMutableArray *_dives;
 }
 
 @property (nonatomic, retain) TYUITabBarController *tabBar;
+@property (nonatomic, retain) NSMutableArray *dives;
 @property (strong, nonatomic) UIWindow *window;
 
 @end

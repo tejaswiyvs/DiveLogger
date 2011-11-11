@@ -10,6 +10,7 @@
 #import "DiveDetails.h"
 #import "HomeCell.h"
 #import "SCAppUtils.h"
+#import "TYAppDelegate.h"
 
 @interface Home (private)
 -(void) createBarButtons;
@@ -48,7 +49,11 @@
     [self createTempDives];
     [_divesList setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
     [_divesList setBackgroundColor:[UIColor whiteColor]];
-//    [_divesList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]]];
+    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+    if(!appDelegate.dives) {
+        appDelegate.dives = [[NSMutableArray alloc] init];
+    }
+    _dives = appDelegate.dives;
     [_divesList reloadData];
 }
 
@@ -142,7 +147,6 @@
 }
 
 -(void) createTempDives {
-    _dives = [[NSMutableArray alloc] init];
     Dive *dive1 = [[Dive alloc] init];
     dive1.diveName = @"Test Dive 1";
     dive1.diveDate = [[NSDate alloc] init];
