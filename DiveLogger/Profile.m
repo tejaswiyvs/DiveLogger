@@ -28,7 +28,7 @@
 - (id) init {
     self = [super initWithNibName:@"Profile" bundle:nil];
     [self setTitle:@"Profile"];
-    [self.tabBarItem setImage:[UIImage imageNamed:@"shoebox.png"]];
+    [self.tabBarItem setImage:[UIImage imageNamed:@"user.png"]];
     if(self) {
         // Load 
     }
@@ -55,7 +55,7 @@
     }
     _dives = _appDelegate.dives;
     [_profileTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
-    [_profileTableView setBackgroundColor:[UIColor whiteColor]];
+    [_profileTableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background_retinadisplay.png"]]];
     [_profileTableView reloadData];
 }
 
@@ -80,6 +80,24 @@
 
 #pragma mark - UITableView
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    CGRect frame = CGRectMake(0.0, 0.0, 320.0, 30.0);
+    UIView *view = [[UIView alloc] initWithFrame:frame];
+    [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"UITableViewHeader.png"]]];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(3.0, 0.0, 320.0, 30.0)];
+    [headerLabel setText:@"Your Profile"];
+    [headerLabel setTextColor:[UIColor whiteColor]];
+    [headerLabel setShadowColor:[UIColor blackColor]];
+    [headerLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+    [headerLabel setBackgroundColor:[UIColor clearColor]];
+    [view addSubview:headerLabel];
+    return view;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 75.0;
 }
@@ -102,14 +120,18 @@
     cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCellBG.png"]];
     
     if(indexPath.row == 0) {
-        [cell.img setImage:[UIImage imageNamed:@""]];
+        [cell.img setImage:[UIImage imageNamed:@"line-chart.png"]];
         [cell.categoryName setText:@"Total Dives"];
+        [[cell categoryName] setShadowColor:[UIColor whiteColor]];
+        [cell.categoryName setShadowOffset:CGSizeMake(0.0, 1.0)];
         NSString *totalDives = [NSString stringWithFormat:@"%d", _totalDives];
         [cell.categoryDetail setText:totalDives];
     }
     else if(indexPath.row == 1) {
-        [cell.img setImage:[UIImage imageNamed:@""]];
+        [cell.img setImage:[UIImage imageNamed:@"clock.png"]];
         [cell.categoryName setText:@"Total Minutes"];
+        [[cell categoryName] setShadowColor:[UIColor whiteColor]];
+        [cell.categoryName setShadowOffset:CGSizeMake(0.0, 1.0)];
         NSString *totalMinutes = [NSString stringWithFormat:@"%d", _totalMinutesSpentDiving];
         [cell.categoryDetail setText:totalMinutes];
     }

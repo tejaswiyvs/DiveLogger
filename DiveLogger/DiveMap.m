@@ -45,11 +45,12 @@
     if(!appDelegate.dives) {
         appDelegate.dives = [[NSMutableArray alloc] init];
     }
-    _dives = appDelegate.dives;    [self dropPins];
+    _dives = appDelegate.dives;    
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     // [TYGenericUtils displayAttentionAlert:@"Coming Soon!"];
+    [self dropPins];
     [super viewDidAppear:animated];
 }
 

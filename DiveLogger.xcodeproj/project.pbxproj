@@ -31,6 +31,11 @@
 		B7136C3F1468651D005CE555 /* Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C3E1468651D005CE555 /* Dive.m */; };
 		B7136C411468657B005CE555 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C401468657B005CE555 /* CoreLocation.framework */; };
 		B7136C44146865E0005CE555 /* Tank.m in Sources */ = {isa = PBXBuildFile; fileRef = B7136C43146865DF005CE555 /* Tank.m */; };
+		B71AEB65146CE30000646545 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = B71AEB64146CE30000646545 /* clock.png */; };
+		B71AEB68146CE37E00646545 /* line-chart.png in Resources */ = {isa = PBXBuildFile; fileRef = B71AEB67146CE37E00646545 /* line-chart.png */; };
+		B71AEB6B146D358C00646545 /* CustomUINavBar_Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B71AEB69146D358C00646545 /* CustomUINavBar_Blue.png */; };
+		B71AEB6C146D358C00646545 /* CustomUITabBarController_Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B71AEB6A146D358C00646545 /* CustomUITabBarController_Blue.png */; };
+		B71AEB6E146D383700646545 /* background_retinadisplay.png in Resources */ = {isa = PBXBuildFile; fileRef = B71AEB6D146D383700646545 /* background_retinadisplay.png */; };
 		B79DA384146B9D370078179C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B79DA383146B9D370078179C /* background.png */; };
 		B79DA398146B9F630078179C /* SCAppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA391146B9F630078179C /* SCAppUtils.m */; };
 		B79DA399146B9F630078179C /* SCClassUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA393146B9F630078179C /* SCClassUtils.m */; };
@@ -105,6 +110,11 @@
 		B7136C401468657B005CE555 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B7136C42146865DF005CE555 /* Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tank.h; sourceTree = "<group>"; };
 		B7136C43146865DF005CE555 /* Tank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tank.m; sourceTree = "<group>"; };
+		B71AEB64146CE30000646545 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		B71AEB67146CE37E00646545 /* line-chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line-chart.png"; sourceTree = "<group>"; };
+		B71AEB69146D358C00646545 /* CustomUINavBar_Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CustomUINavBar_Blue.png; sourceTree = "<group>"; };
+		B71AEB6A146D358C00646545 /* CustomUITabBarController_Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CustomUITabBarController_Blue.png; sourceTree = "<group>"; };
+		B71AEB6D146D383700646545 /* background_retinadisplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_retinadisplay.png; sourceTree = "<group>"; };
 		B79DA383146B9D370078179C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B79DA390146B9F630078179C /* SCAppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAppUtils.h; sourceTree = "<group>"; };
 		B79DA391146B9F630078179C /* SCAppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAppUtils.m; sourceTree = "<group>"; };
@@ -177,6 +187,11 @@
 		B70E61A41468977400FABBA9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B71AEB6D146D383700646545 /* background_retinadisplay.png */,
+				B71AEB69146D358C00646545 /* CustomUINavBar_Blue.png */,
+				B71AEB6A146D358C00646545 /* CustomUITabBarController_Blue.png */,
+				B71AEB67146CE37E00646545 /* line-chart.png */,
+				B71AEB64146CE30000646545 /* clock.png */,
 				B79DA3D6146CDEAC0078179C /* Icon@2x.png */,
 				B79DA3D7146CDEAC0078179C /* Icon.png */,
 				B79DA3C5146C694D0078179C /* user.png */,
@@ -440,6 +455,11 @@
 				B79DA3CE146CAE3E0078179C /* ProfileCell.xib in Resources */,
 				B79DA3D8146CDEAD0078179C /* Icon@2x.png in Resources */,
 				B79DA3D9146CDEAD0078179C /* Icon.png in Resources */,
+				B71AEB65146CE30000646545 /* clock.png in Resources */,
+				B71AEB68146CE37E00646545 /* line-chart.png in Resources */,
+				B71AEB6B146D358C00646545 /* CustomUINavBar_Blue.png in Resources */,
+				B71AEB6C146D358C00646545 /* CustomUITabBarController_Blue.png in Resources */,
+				B71AEB6E146D383700646545 /* background_retinadisplay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

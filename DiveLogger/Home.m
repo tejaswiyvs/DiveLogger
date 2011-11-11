@@ -48,7 +48,7 @@
     [self createBarButtons];
     [self createTempDives];
     [_divesList setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
-    [_divesList setBackgroundColor:[UIColor whiteColor]];
+    [_divesList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background_retinadisplay.png"]]];
     TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
     if(!appDelegate.dives) {
         appDelegate.dives = [[NSMutableArray alloc] init];
