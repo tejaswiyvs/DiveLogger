@@ -57,6 +57,7 @@
 		B79DA3D8146CDEAD0078179C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3D6146CDEAC0078179C /* Icon@2x.png */; };
 		B79DA3D9146CDEAD0078179C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3D7146CDEAC0078179C /* Icon.png */; };
 		B7D1666B1469AF0C00280846 /* TYGenericUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D1666A1469AF0C00280846 /* TYGenericUtils.m */; };
+		B7F85B4F14716754008EE873 /* DiveLogger.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */; };
 		B7FFF2CB146AD50B000CC125 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2C9146AD50B000CC125 /* DebugLog.m */; };
 		B7FFF2D3146B0365000CC125 /* DiveAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2D2146B0365000CC125 /* DiveAnnotation.m */; };
 		B7FFF2D5146B04E5000CC125 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FFF2D4146B04E5000CC125 /* MapKit.framework */; };
@@ -145,6 +146,7 @@
 		B79DA3D7146CDEAC0078179C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		B7D166691469AF0C00280846 /* TYGenericUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYGenericUtils.h; sourceTree = "<group>"; };
 		B7D1666A1469AF0C00280846 /* TYGenericUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYGenericUtils.m; sourceTree = "<group>"; };
+		B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiveLogger.xcdatamodel; sourceTree = "<group>"; };
 		B7FFF2C8146AD50B000CC125 /* DebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
 		B7FFF2C9146AD50B000CC125 /* DebugLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugLog.m; sourceTree = "<group>"; };
 		B7FFF2D1146B0365000CC125 /* DiveAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveAnnotation.h; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				B7D166671469AEFC00280846 /* Utils */,
 				B70E61A41468977400FABBA9 /* Images */,
 				B7136C3C1468650D005CE555 /* Models */,
+				B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */,
 				B7136C1714686123005CE555 /* TYAppDelegate.h */,
 				B7136C1814686123005CE555 /* TYAppDelegate.m */,
 				B7136C0F14686123005CE555 /* Supporting Files */,
@@ -514,6 +517,7 @@
 				B79DA3BD146C65610078179C /* TYUITabBarController.m in Sources */,
 				B79DA3C3146C68E20078179C /* Profile.m in Sources */,
 				B79DA3D1146CAE5B0078179C /* ProfileCell.m in Sources */,
+				B7F85B4F14716754008EE873 /* DiveLogger.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

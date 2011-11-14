@@ -12,8 +12,8 @@
 
 @interface DiveDetails (private)
 -(void) createNavBarButtons;
--(void) createAirCompositionPicker;
 -(void) dismissKeyboard;
+-(void) validateDive;
 -(UIColor *) darkBlueTextColor;
 -(UITableViewCell *) makeVisibilityCell;
 -(UITableViewCell *) makeAirTemperatureCell;
@@ -28,8 +28,6 @@
 @synthesize newDive = _newDive;
 @synthesize tableHeaders = _tableHeaders;
 @synthesize tableView = _tableView;
-@synthesize pickerViewItems = _pickerViewItems;
-@synthesize airCompositionPicker = _airCompositionPicker;
 
 static int kNumberOfSections = 3;
 
@@ -63,21 +61,13 @@ static int kNumberOfSections = 3;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-//    [_tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]]];
     
     _tableHeaders = [[NSMutableArray alloc] init];
     [_tableHeaders addObject:@"Dive Info"];
     [_tableHeaders addObject:@"Tank Info"];
     [_tableHeaders addObject:@"Conditions"];
-    
-    _pickerViewItems = [[NSMutableArray alloc] init];
-    [_pickerViewItems addObject:@"Nitrox 1"];
-    [_pickerViewItems addObject:@"Nitrox 2"];
-    [_pickerViewItems addObject:@"Other"];
-    
+        
     [self createNavBarButtons];
-    [self createAirCompositionPicker];
 }
 
 -(void) viewDidAppear:(BOOL) animated {
@@ -281,21 +271,31 @@ static int kNumberOfSections = 3;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
         [[cell textLabel] setText:@"Air Composition"];
+        
+        UITextField *airCompositionTxt = [[UITextField alloc] initWithFrame:CGRectMake(170, 12, 135, 30)];
+        airCompositionTxt.adjustsFontSizeToFitWidth = NO;
+        airCompositionTxt.textColor = [self darkBlueTextColor];
+        //        endingPressureTxt.placeholder = @"Pressure in psi";
+        airCompositionTxt.keyboardType = UIKeyboardTypeNamePhonePad;
+        airCompositionTxt.returnKeyType = UIReturnKeyNext;
+        airCompositionTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+        airCompositionTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
+        airCompositionTxt.textAlignment = UITextAlignmentRight;
+        airCompositionTxt.tag = 2;
+        airCompositionTxt.delegate = self;
+        
+        airCompositionTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+        [airCompositionTxt setEnabled: YES];
+        
+        [cell addSubview:airCompositionTxt];
+
+        
         if([[_dive tank] airComposition]) {
-            if([[_dive tank] airComposition] == kTYAirCompositionNitrox1) {
-                [[cell detailTextLabel] setText:@"Nitrox 1"];
-            }
-            else if([[_dive tank] airComposition] == kTYAirCompositionNitrox2) {
-                [[cell detailTextLabel] setText:@"Nitrox 2"];
-            }
-            else {
-                [[cell detailTextLabel] setText:@"Other"];
-            }
+            [airCompositionTxt setText:_dive.tank.airComposition];
         }
         [cell.textLabel setShadowColor:[UIColor whiteColor]];
         [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
         [cell.textLabel setBackgroundColor:[UIColor clearColor]];
-        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         return cell;
     }
     else if(indexPath.section == 2 && indexPath.row == 0) {
@@ -311,52 +311,23 @@ static int kNumberOfSections = 3;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Date of dive picker
-    if(indexPath.section == 0 && indexPath.row == 1) {
-        UIDatePicker *pickerView = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 40, 320, 216)];
+    // Date of dive picke4
+    /* if(indexPath.section == 0 && indexPath.row == 1) {
+        UIDatePicker *pickerView = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 164.0, 320, 216)];
         [pickerView setDatePickerMode:UIDatePickerModeDate];
         [pickerView setMaximumDate:[[NSDate alloc] init]];
         [pickerView setDate:[[NSDate alloc] init]];
-    }
+        [self.view addSubview:pickerView];
+    } */
     // Location Picker
-    else if(indexPath.section == 0 && indexPath.row == 2) {
+    if(indexPath.section == 0 && indexPath.row == 2) {
         DiveLocationPicker *locationPicker = [[DiveLocationPicker alloc] initWithDive:_dive];
         [[self navigationController] pushViewController:locationPicker animated:YES];
     }
     // Air Composition Picker
-    else if(indexPath.section == 1 && indexPath.row == 2) {
+    /* else if(indexPath.section == 1 && indexPath.row == 2) {
         [_airCompositionPicker setHidden:NO];
-    }
-}
-
-#pragma mark - PickerView
-
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
-}
-
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [_pickerViewItems count];
-}
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [_pickerViewItems objectAtIndex:row];
-}
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if(!_dive.tank) {
-        _dive.tank = [[Tank alloc] init];
-    }
-    if (row == 0) {
-        [_dive.tank setAirComposition:kTYAirCompositionNitrox1];
-    }
-    else if(row == 1) {
-        [_dive.tank setAirComposition:kTYAirCompositionNitrox2];
-    }
-    else if(row == 2) {
-        [_dive.tank setAirComposition:kTYAirCompositionOther];
-    }
-    [_tableView reloadData];
+    } */
 }
 
 #pragma mark - UITextField Delegate
@@ -374,7 +345,7 @@ static int kNumberOfSections = 3;
             if (!_dive.tank) {
                 _dive.tank = [[Tank alloc] init];
             }
-            if(!isInteger) {
+            if(!isInteger && ![textField.text isEqualToString:@""]) {
                 // Not an integer.
                 [TYGenericUtils displayErrorAlert:@"Please enter a number for the starting pressure. Units in psi."];
                 [textField setText:@""];
@@ -387,7 +358,7 @@ static int kNumberOfSections = 3;
             if (!_dive.tank) {
                 _dive.tank = [[Tank alloc] init];
             }
-            if(!isInteger) {
+            if(!isInteger && ![textField.text isEqualToString:@""]) {
                 // Not an integer.
                 [TYGenericUtils displayErrorAlert:@"Please enter a number for the ending pressure. Units in psi."];
                 [textField setText:@""];
@@ -397,7 +368,7 @@ static int kNumberOfSections = 3;
             break;
         case 3:
             // visibility
-            if(!isInteger) {
+            if(!isInteger && ![textField.text isEqualToString:@""]) {
                 // Not an integer.
                 [TYGenericUtils displayErrorAlert:@"Please enter a number for the visibility. Units are in feet."];
                 [textField setText:@""];
@@ -407,7 +378,7 @@ static int kNumberOfSections = 3;
             break;
         case 4:
             // air temperature
-            if(!isInteger) {
+            if(!isInteger && ![textField.text isEqualToString:@""]) {
                 // Not an integer.
                 [TYGenericUtils displayErrorAlert:@"Please enter a number for the current air temperature. Units are in °F."];
                 [textField setText:@""];
@@ -418,7 +389,7 @@ static int kNumberOfSections = 3;
             break;
         case 5:
             // water temperature
-            if(!isInteger) {
+            if(!isInteger && ![textField.text isEqualToString:@""]) {
                 // Not an integer.
                 [TYGenericUtils displayErrorAlert:@"Please enter a number for the water temperature. Units are in °F."];
                 [textField setText:@""];
@@ -427,7 +398,7 @@ static int kNumberOfSections = 3;
             _dive.waterTemperature = [[textField text] intValue];
             break;
         case 6:
-            if(!isInteger) {
+            if(!isInteger && ![textField.text isEqualToString:@""]) {
                 // Not an integer.
                 [TYGenericUtils displayErrorAlert:@"Please enter a number in minutes for the dive time. Typing in value of 60 indicates 60 minutes."];
                 [textField setText:@""];
@@ -446,7 +417,7 @@ static int kNumberOfSections = 3;
 -(IBAction) saveButtonClicked:(id) sender {
     if(_delegate) {
         [_delegate didSaveDive:_dive];
-    }
+    }   
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -469,10 +440,6 @@ static int kNumberOfSections = 3;
 
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked:)];
     [[self navigationItem] setLeftBarButtonItem:cancelButton];
-}
-
--(void) createAirCompositionPicker {
-    [_airCompositionPicker setHidden:YES];
 }
 
 -(UIColor *) darkBlueTextColor {

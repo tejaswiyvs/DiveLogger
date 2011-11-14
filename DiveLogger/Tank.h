@@ -8,22 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-    kTYAirCompositionNitrox1,
-    kTYAirCompositionNitrox2,
-    kTYAirCompositionOther
-} TYAirComposition;
-
 @interface Tank : NSObject {
     NSString *airCompositionNotes; // Optional field that holds notes on air composition if a custom blend was used.
     int startingPressure;
     int endingPressure;
-    TYAirComposition airComposition;
+    NSString *airComposition;
 }
 
 @property (nonatomic, retain) NSString *airCompositionNotes;
 @property (nonatomic, assign) int startingPressure;
 @property (nonatomic, assign) int endingPressure;
-@property (nonatomic, assign) TYAirComposition airComposition;
+@property (nonatomic, retain) NSString *airComposition;
 
 @end
