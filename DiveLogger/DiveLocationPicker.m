@@ -72,7 +72,8 @@
     CGPoint touchPoint = [gestureRecognizer locationInView:_map];   
     CLLocationCoordinate2D touchMapCoordinate = 
     [_map convertPoint:touchPoint toCoordinateFromView:_map];
-    [_dive setDiveLocation:touchMapCoordinate];
+    [_dive setDiveLocationX:[NSNumber numberWithFloat:touchMapCoordinate.latitude]];
+    [_dive setDiveLocationY:[NSNumber numberWithFloat:touchMapCoordinate.longitude]];
     DiveAnnotation *annot = [[DiveAnnotation alloc] initWithDive:_dive];
     [_map removeAnnotations:[_map annotations]];
     [_map addAnnotation:annot];

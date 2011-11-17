@@ -146,7 +146,7 @@
     _totalMinutesSpentDiving = 0;
     for (int i=0; i < [_dives count]; i++) {
         Dive *dive = [_dives objectAtIndex:i];
-        _totalMinutesSpentDiving += dive.diveTime;
+        _totalMinutesSpentDiving += [dive.diveTime intValue];
     }
     return;
 }

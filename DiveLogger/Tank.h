@@ -2,22 +2,21 @@
 //  Tank.h
 //  DiveLogger
 //
-//  Created by Tejaswi Y on 11/7/11.
+//  Created by Tejaswi Y on 11/14/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Tank : NSObject {
-    NSString *airCompositionNotes; // Optional field that holds notes on air composition if a custom blend was used.
-    int startingPressure;
-    int endingPressure;
-    NSString *airComposition;
-}
+@class Dive;
 
-@property (nonatomic, retain) NSString *airCompositionNotes;
-@property (nonatomic, assign) int startingPressure;
-@property (nonatomic, assign) int endingPressure;
-@property (nonatomic, retain) NSString *airComposition;
+@interface Tank : NSManagedObject
+
+@property (nonatomic, retain) NSNumber * startingPressure;
+@property (nonatomic, retain) NSNumber * endingPressure;
+@property (nonatomic, retain) NSString * airComposition;
+@property (nonatomic, retain) NSString * airCompositionNotes;
+@property (nonatomic, retain) Dive *dive;
 
 @end

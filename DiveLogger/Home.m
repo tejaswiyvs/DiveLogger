@@ -147,7 +147,7 @@
 }
 
 -(void) createTempDives {
-    Dive *dive1 = [[Dive alloc] init];
+    /* Dive *dive1 = [[Dive alloc] init];
     dive1.diveName = @"Test Dive 1";
     dive1.diveDate = [[NSDate alloc] init];
     dive1.tank.startingPressure = 3000;
@@ -167,7 +167,7 @@
     dive2.airTemperature = 72;
     dive2.waterTemperature = 67;
     dive2.diveTime = 30;
-    [_dives addObject:dive2];
+    [_dives addObject:dive2]; */
 }
 
 @end

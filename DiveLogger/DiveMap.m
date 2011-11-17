@@ -77,7 +77,7 @@
 }
 
 -(void) populateTempData {
-    _dives = [[NSMutableArray alloc] init];
+    /* _dives = [[NSMutableArray alloc] init];
     Dive *dive1 = [[Dive alloc] init];
     [dive1 setDiveName:@"Some dive"];
     CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake(27.882177,-81.118927);
@@ -88,7 +88,7 @@
     [dive2 setDiveName:@"Some other dive"];
     CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(29.88, -81.11);
     [dive2 setDiveLocation:coordinate2];
-    [_dives addObject:dive2];
+    [_dives addObject:dive2]; */
 }
 
 @end

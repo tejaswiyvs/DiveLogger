@@ -9,6 +9,7 @@
 #import "DiveDetails.h"
 #import "DiveLocationPicker.h"
 #import "TYAppDelegate.h"
+#import "Tank.h"
 
 @interface DiveDetails (private)
 -(void) createNavBarButtons;
@@ -223,8 +224,7 @@ static int kNumberOfSections = 3;
         [startingPressureTxt setEnabled: YES];
         
         [cell addSubview:startingPressureTxt];
-
-        if ([[_dive tank] startingPressure]) {
+        if ([_dive.tank startingPressure]) {
             NSString *startingPressure = [NSString stringWithFormat:@"%d psi", [[_dive tank] startingPressure]];
             [startingPressureTxt setText:startingPressure];
         }
@@ -290,7 +290,7 @@ static int kNumberOfSections = 3;
         [cell addSubview:airCompositionTxt];
 
         
-        if([[_dive tank] airComposition]) {
+        if([_dive.tank airComposition]) {
             [airCompositionTxt setText:_dive.tank.airComposition];
         }
         [cell.textLabel setShadowColor:[UIColor whiteColor]];
@@ -351,7 +351,7 @@ static int kNumberOfSections = 3;
                 [textField setText:@""];
                 return;
             }
-            _dive.tank.startingPressure = [[textField text] intValue];
+            _dive.tank.startingPressure = [NSNumber numberWithInt:[[textField text] intValue]];
             break;
         case 2:
             // ending pressure
@@ -364,7 +364,7 @@ static int kNumberOfSections = 3;
                 [textField setText:@""];
                 return;
             }
-            _dive.tank.endingPressure = [[textField text] intValue];
+            _dive.tank.endingPressure = [NSNumber numberWithInt:[[textField text] intValue]];
             break;
         case 3:
             // visibility
@@ -374,7 +374,7 @@ static int kNumberOfSections = 3;
                 [textField setText:@""];
                 return;
             }
-            _dive.visibility = [[textField text] intValue];
+            _dive.visibility = [NSNumber numberWithInt:[[textField text] intValue]];
             break;
         case 4:
             // air temperature
@@ -385,7 +385,7 @@ static int kNumberOfSections = 3;
                 return;
             }
 
-            _dive.airTemperature = [[textField text] intValue];
+            _dive.airTemperature = [NSNumber numberWithInt:[[textField text] intValue]];
             break;
         case 5:
             // water temperature
@@ -395,7 +395,7 @@ static int kNumberOfSections = 3;
                 [textField setText:@""];
                 return;
             }
-            _dive.waterTemperature = [[textField text] intValue];
+            _dive.waterTemperature = [NSNumber numberWithInt:[[textField text] intValue]];
             break;
         case 6:
             if(!isInteger && ![textField.text isEqualToString:@""]) {
@@ -404,7 +404,7 @@ static int kNumberOfSections = 3;
                 [textField setText:@""];
                 return;
             }
-            _dive.diveTime = [[textField text] intValue];
+            _dive.diveTime = [NSNumber numberWithInt:[[textField text] intValue]];
             // dive time (don't ask)
             break;
         default:

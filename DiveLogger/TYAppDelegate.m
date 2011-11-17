@@ -32,6 +32,18 @@
     self.tabBar = [self createTabBar];
     [self.window addSubview:self.tabBar.view];
     [self.window makeKeyAndVisible];
+    
+    // Core Data Setup
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSManagedObject *dive = [NSEntityDescription insertNewObjectForEntityForName:@"Dive" inManagedObjectContext:context];
+    [dive setValue:@"Test Dive 1" forKey:@"diveName"];
+    [dive setValue:@"01/01/2001" forKey:@"diveDate"];
+    [dive setValue:@"18.56" forKey:@"diveLocationX"];
+    [dive setValue:@"24.23" forKey:@"diveLocationY"];
+    [dive setValue:@"200" forKey:@"visibility"];
+    [dive setValue:@"85" forKey:@"airTemperature"];
+    [dive setValue:@"78" forKey:@"waterTemperature"];
+    [dive setValue:@"35" forKey:@"diveTime"];
     return YES;
 }
 
