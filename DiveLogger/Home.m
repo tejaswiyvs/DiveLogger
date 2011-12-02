@@ -3,7 +3,7 @@
 //  DiveLogger
 //
 //  Created by Tejaswi Y on 11/7/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Tejaswi Yerukalapudi. All rights reserved.
 //
 
 #import "Home.h"
@@ -46,7 +46,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self createBarButtons];
-    [self createTempDives];
     [_divesList setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
     [_divesList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background_retinadisplay.png"]]];
     TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
@@ -124,7 +123,7 @@
 #pragma mark - DiveDetailsDelegate
 
 -(void) didSaveDive:(Dive *) dive {
-    for(int i=0; i<[_dives count]; i++) {
+    /* for(int i=0; i<[_dives count]; i++) {
         Dive *temp = [_dives objectAtIndex:i];
         if([temp.diveName isEqualToString:dive.diveName]) {
             [_dives replaceObjectAtIndex:i withObject:dive];
@@ -132,7 +131,10 @@
         }
     }
     
-    [_dives addObject:dive];
+    [_dives addObject:dive]; */
+    TYAppDelegate *delegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [delegate saveContext];
+    [_divesList reloadData];
 }
 
 -(void) didDismissWithoutSaving {

@@ -3,7 +3,7 @@
 //  DiveLogger
 //
 //  Created by Tejaswi Y on 11/7/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Tejaswi Yerukalapudi. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -25,6 +25,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)saveContext;
+-(void) reloadFromDB;
 - (NSURL *)applicationDocumentsDirectory;
 
 @end

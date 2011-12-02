@@ -3,7 +3,7 @@
 //  DiveLogger
 //
 //  Created by Tejaswi Y on 11/7/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Tejaswi Yerukalapudi. All rights reserved.
 //
 
 #import "DiveDetails.h"
@@ -15,6 +15,7 @@
 -(void) createNavBarButtons;
 -(void) dismissKeyboard;
 -(void) validateDive;
+-(BOOL) validateAndSave;
 -(UIColor *) darkBlueTextColor;
 -(UITableViewCell *) makeVisibilityCell;
 -(UITableViewCell *) makeAirTemperatureCell;
@@ -30,6 +31,10 @@
 @synthesize tableHeaders = _tableHeaders;
 @synthesize tableView = _tableView;
 
+@synthesize diveAirTempTxt = _diveAirTempTxt, diveDateTxt = _diveDateTxt, diveLocTxt = _diveLocTxt, diveNameTxt = _diveNameTxt, diveTimeTxt = _diveTimeTxt, diveVisibilityTxt = _diveVisibilityTxt, diveWaterTempTxt = _diveWaterTempTxt;
+
+@synthesize tankAirCompositionTxt = _tankAirCompositionTxt, tankEndingPressureTxt = _tankEndingPressureTxt, tankStartingPressureTxt = _tankStartingPressureTxt;
+
 static int kNumberOfSections = 3;
 
 -(id) initWithDive:(Dive *) dive {
@@ -38,7 +43,24 @@ static int kNumberOfSections = 3;
         if(!dive) {
             [self setTitle:@"Add a dive"];
             _newDive = YES;
-            dive = [[Dive alloc] init];
+            TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+            dive = (Dive *) [NSEntityDescription insertNewObjectForEntityForName:@"Dive" inManagedObjectContext:[appDelegate managedObjectContext]];
+            Tank *tank = (Tank *) [NSEntityDescription insertNewObjectForEntityForName:@"Tank" inManagedObjectContext:[appDelegate managedObjectContext]];
+            tank.airComposition = @"";
+            tank.airCompositionNotes = @"";
+            tank.dive = dive;
+            tank.startingPressure = nil;
+            tank.endingPressure = nil;
+            dive.tank = tank;
+            dive.diveDate = [[NSDate alloc] init];
+            dive.diveName = @"";
+            dive.diveLocationX = nil;
+            dive.diveLocationY = nil;
+            dive.diveTime = [NSNumber numberWithInt:0];
+            dive.visibility = nil;
+            dive.airTemperature = nil;
+            dive.waterTemperature = nil;
+            dive.diveTime = nil;
         }
         else {
             _newDive = NO;
@@ -51,10 +73,7 @@ static int kNumberOfSections = 3;
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -130,24 +149,23 @@ static int kNumberOfSections = 3;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
 
-        UITextField *nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
-        nameTextField.adjustsFontSizeToFitWidth = NO;
-        nameTextField.textColor = [self darkBlueTextColor];
-        nameTextField.placeholder = @"Dive Name";
-        nameTextField.keyboardType = UIKeyboardTypeNamePhonePad;
-        nameTextField.returnKeyType = UIReturnKeyNext;
-        nameTextField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-        nameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
-        nameTextField.textAlignment = UITextAlignmentRight;
-        nameTextField.tag = 0;
-        nameTextField.delegate = self;
-        [nameTextField setBackgroundColor:[UIColor clearColor]];
+        _diveNameTxt = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
+        _diveNameTxt.adjustsFontSizeToFitWidth = NO;
+        _diveNameTxt.textColor = [self darkBlueTextColor];
+        _diveNameTxt.placeholder = @"Dive Name";
+        _diveNameTxt.keyboardType = UIKeyboardTypeNamePhonePad;
+        _diveNameTxt.returnKeyType = UIReturnKeyNext;
+        _diveNameTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+        _diveNameTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
+        _diveNameTxt.textAlignment = UITextAlignmentRight;
+        _diveNameTxt.delegate = self;
+        [_diveNameTxt setBackgroundColor:[UIColor clearColor]];
         //playerTextField.delegate = self;
         
-        nameTextField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-        [nameTextField setEnabled: YES];
+        _diveNameTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+        [_diveNameTxt setEnabled: YES];
         
-        [cell addSubview:nameTextField];
+        [cell addSubview:_diveNameTxt];
         [[cell textLabel] setText:@"Dive Name"];
         [cell.textLabel setBackgroundColor:[UIColor clearColor]];
         [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
@@ -155,11 +173,11 @@ static int kNumberOfSections = 3;
         [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
         
         if ([_dive diveName] && ![[_dive diveName] isEqualToString:@""]) {
-            [nameTextField setText:[_dive diveName]];
+            [_diveNameTxt setText:[_dive diveName]];
         }
         
         if(!_newDive) {
-            [nameTextField setEnabled:NO];
+            [_diveNameTxt setEnabled:NO];
         }
         return cell;
     }
@@ -168,15 +186,29 @@ static int kNumberOfSections = 3;
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+        _diveDateTxt = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
+        _diveDateTxt.adjustsFontSizeToFitWidth = NO;
+        _diveDateTxt.textColor = [self darkBlueTextColor];
+        _diveDateTxt.placeholder = @"Dive Name";
+        _diveDateTxt.keyboardType = UIKeyboardTypeNamePhonePad;
+        _diveDateTxt.returnKeyType = UIReturnKeyNext;
+        _diveDateTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+        _diveDateTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
+        _diveDateTxt.textAlignment = UITextAlignmentRight;
+        _diveDateTxt.delegate = self;
+        [_diveDateTxt setBackgroundColor:[UIColor clearColor]];
+        //playerTextField.delegate = self;
+        
+        _diveDateTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+        [_diveDateTxt setEnabled: YES];
+        
+        [cell addSubview:_diveDateTxt];
+
         [[cell textLabel] setText:@"Dive Date"];
         if(![_dive diveDate]) {
             _dive.diveDate = [[NSDate alloc] init];
         }
-        [cell.textLabel setShadowColor:[UIColor whiteColor]];
-        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-        [cell.detailTextLabel setText:[TYGenericUtils stringFromDate:[_dive diveDate]]];
-        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
-        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
+        [_diveDateTxt setText:[TYGenericUtils stringFromDate:_dive.diveDate]];
         return cell;    
     }
     // Dive Location
@@ -207,26 +239,26 @@ static int kNumberOfSections = 3;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
         [[cell textLabel] setText:@"Starting Pressure"];
-        UITextField *startingPressureTxt = [[UITextField alloc] initWithFrame:CGRectMake(170, 12, 135, 30)];
-        startingPressureTxt.adjustsFontSizeToFitWidth = NO;
-        startingPressureTxt.textColor = [self darkBlueTextColor];
+        _tankStartingPressureTxt = [[UITextField alloc] initWithFrame:CGRectMake(170, 12, 135, 30)];
+        _tankStartingPressureTxt.adjustsFontSizeToFitWidth = NO;
+        _tankStartingPressureTxt.textColor = [self darkBlueTextColor];
 //        startingPressureTxt.placeholder = @"Pressure in psi";
-        startingPressureTxt.keyboardType = UIKeyboardTypeNumberPad;
-        startingPressureTxt.returnKeyType = UIReturnKeyNext;
-        startingPressureTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-        startingPressureTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
-        startingPressureTxt.textAlignment = UITextAlignmentRight;
-        startingPressureTxt.tag = 1;
-        startingPressureTxt.delegate = self;
+        _tankStartingPressureTxt.keyboardType = UIKeyboardTypeNumberPad;
+        _tankStartingPressureTxt.returnKeyType = UIReturnKeyNext;
+        _tankStartingPressureTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+        _tankStartingPressureTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
+        _tankStartingPressureTxt.textAlignment = UITextAlignmentRight;
+        _tankStartingPressureTxt.tag = 1;
+        _tankStartingPressureTxt.delegate = self;
         //playerTextField.delegate = self;
         
-        startingPressureTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-        [startingPressureTxt setEnabled: YES];
+        _tankStartingPressureTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+        [_tankStartingPressureTxt setEnabled: YES];
         
-        [cell addSubview:startingPressureTxt];
+        [cell addSubview:_tankStartingPressureTxt];
         if ([_dive.tank startingPressure]) {
-            NSString *startingPressure = [NSString stringWithFormat:@"%d psi", [[_dive tank] startingPressure]];
-            [startingPressureTxt setText:startingPressure];
+            NSString *startingPressure = [NSString stringWithFormat:@"%f psi", [[_dive tank] startingPressure]];
+            [_tankStartingPressureTxt setText:startingPressure];
         }
         [cell.textLabel setShadowColor:[UIColor whiteColor]];
         [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
@@ -257,7 +289,7 @@ static int kNumberOfSections = 3;
         [cell addSubview:endingPressureTxt];
         
         if ([[_dive tank] endingPressure]) {
-            NSString *endingPressure = [NSString stringWithFormat:@"%d psi", [[_dive tank] endingPressure]];
+            NSString *endingPressure = [NSString stringWithFormat:@"%f psi", [[_dive tank] endingPressure]];
             [endingPressureTxt setText:endingPressure];
         }
         [cell.textLabel setShadowColor:[UIColor whiteColor]];
@@ -272,26 +304,26 @@ static int kNumberOfSections = 3;
         cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
         [[cell textLabel] setText:@"Air Composition"];
         
-        UITextField *airCompositionTxt = [[UITextField alloc] initWithFrame:CGRectMake(170, 12, 135, 30)];
-        airCompositionTxt.adjustsFontSizeToFitWidth = NO;
-        airCompositionTxt.textColor = [self darkBlueTextColor];
+        _tankAirCompositionTxt = [[UITextField alloc] initWithFrame:CGRectMake(170, 12, 135, 30)];
+        _tankAirCompositionTxt.adjustsFontSizeToFitWidth = NO;
+        _tankAirCompositionTxt.textColor = [self darkBlueTextColor];
         //        endingPressureTxt.placeholder = @"Pressure in psi";
-        airCompositionTxt.keyboardType = UIKeyboardTypeNamePhonePad;
-        airCompositionTxt.returnKeyType = UIReturnKeyNext;
-        airCompositionTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-        airCompositionTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
-        airCompositionTxt.textAlignment = UITextAlignmentRight;
-        airCompositionTxt.tag = 2;
-        airCompositionTxt.delegate = self;
+        _tankAirCompositionTxt.keyboardType = UIKeyboardTypeNamePhonePad;
+        _tankAirCompositionTxt.returnKeyType = UIReturnKeyNext;
+        _tankAirCompositionTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+        _tankAirCompositionTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
+        _tankAirCompositionTxt.textAlignment = UITextAlignmentRight;
+        _tankAirCompositionTxt.tag = 2;
+        _tankAirCompositionTxt.delegate = self;
         
-        airCompositionTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-        [airCompositionTxt setEnabled: YES];
+        _tankAirCompositionTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+        [_tankAirCompositionTxt setEnabled: YES];
         
-        [cell addSubview:airCompositionTxt];
+        [cell addSubview:_tankAirCompositionTxt];
 
         
         if([_dive.tank airComposition]) {
-            [airCompositionTxt setText:_dive.tank.airComposition];
+            [_tankAirCompositionTxt setText:_dive.tank.airComposition];
         }
         [cell.textLabel setShadowColor:[UIColor whiteColor]];
         [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
@@ -330,95 +362,15 @@ static int kNumberOfSections = 3;
     } */
 }
 
-#pragma mark - UITextField Delegate
-
--(void)textFieldDidEndEditing:(UITextField *)textField {
-    NSScanner *intScanner = [NSScanner scannerWithString:[textField text]];
-    BOOL isInteger = [intScanner scanInt:NULL];
-    switch (textField.tag) {
-        case 0:
-            // dive name
-            [_dive setDiveName:[textField text]];
-            break;
-        case 1:
-            // starting pressure
-            if (!_dive.tank) {
-                _dive.tank = [[Tank alloc] init];
-            }
-            if(!isInteger && ![textField.text isEqualToString:@""]) {
-                // Not an integer.
-                [TYGenericUtils displayErrorAlert:@"Please enter a number for the starting pressure. Units in psi."];
-                [textField setText:@""];
-                return;
-            }
-            _dive.tank.startingPressure = [NSNumber numberWithInt:[[textField text] intValue]];
-            break;
-        case 2:
-            // ending pressure
-            if (!_dive.tank) {
-                _dive.tank = [[Tank alloc] init];
-            }
-            if(!isInteger && ![textField.text isEqualToString:@""]) {
-                // Not an integer.
-                [TYGenericUtils displayErrorAlert:@"Please enter a number for the ending pressure. Units in psi."];
-                [textField setText:@""];
-                return;
-            }
-            _dive.tank.endingPressure = [NSNumber numberWithInt:[[textField text] intValue]];
-            break;
-        case 3:
-            // visibility
-            if(!isInteger && ![textField.text isEqualToString:@""]) {
-                // Not an integer.
-                [TYGenericUtils displayErrorAlert:@"Please enter a number for the visibility. Units are in feet."];
-                [textField setText:@""];
-                return;
-            }
-            _dive.visibility = [NSNumber numberWithInt:[[textField text] intValue]];
-            break;
-        case 4:
-            // air temperature
-            if(!isInteger && ![textField.text isEqualToString:@""]) {
-                // Not an integer.
-                [TYGenericUtils displayErrorAlert:@"Please enter a number for the current air temperature. Units are in °F."];
-                [textField setText:@""];
-                return;
-            }
-
-            _dive.airTemperature = [NSNumber numberWithInt:[[textField text] intValue]];
-            break;
-        case 5:
-            // water temperature
-            if(!isInteger && ![textField.text isEqualToString:@""]) {
-                // Not an integer.
-                [TYGenericUtils displayErrorAlert:@"Please enter a number for the water temperature. Units are in °F."];
-                [textField setText:@""];
-                return;
-            }
-            _dive.waterTemperature = [NSNumber numberWithInt:[[textField text] intValue]];
-            break;
-        case 6:
-            if(!isInteger && ![textField.text isEqualToString:@""]) {
-                // Not an integer.
-                [TYGenericUtils displayErrorAlert:@"Please enter a number in minutes for the dive time. Typing in value of 60 indicates 60 minutes."];
-                [textField setText:@""];
-                return;
-            }
-            _dive.diveTime = [NSNumber numberWithInt:[[textField text] intValue]];
-            // dive time (don't ask)
-            break;
-        default:
-            break;
-    }
-}
-
 #pragma mark - Event Handlers
 
--(IBAction) saveButtonClicked:(id) sender {
-    if(_delegate) {
-        [_delegate didSaveDive:_dive];
-    }   
-    [self.navigationController popViewControllerAnimated:YES];
+-(IBAction) saveButtonClicked:(id) sender {   
+    if([self validateAndSave]) {
+        if(_delegate) {
+            [_delegate didSaveDive:_dive];
+        }   
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(IBAction)cancelButtonClicked:(id)sender {
@@ -433,6 +385,85 @@ static int kNumberOfSections = 3;
 }
 
 #pragma mark - Helpers
+
+-(BOOL) validateAndSave {
+    if([_diveNameTxt.text isEqualToString:@""]) {
+        [TYGenericUtils displayErrorAlert:@"Dive Name Cannot be empty"];
+        return NO;
+    }
+    [_dive setDiveName:_diveNameTxt.text];
+    
+    NSDate *diveDate = [TYGenericUtils dateFromString:[_diveDateTxt text]];
+    if(!diveDate && ![_diveDateTxt.text isEqualToString:@""]) {
+        [TYGenericUtils displayErrorAlert:@"Dive Date doesn't look valid. Please check."];
+        return NO;
+    }
+    [_dive setDiveDate:diveDate];
+    
+    if(_diveVisibilityTxt.text && ![_diveVisibilityTxt.text isEqualToString:@""]) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_diveVisibilityTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(!isFloat) {
+            [TYGenericUtils displayErrorAlert:@"Please enter a number for the dive visibility"];
+            return NO;
+        }
+        [_dive setVisibility:[NSNumber numberWithFloat:[_diveVisibilityTxt.text floatValue]]];
+    }
+    
+    if(_diveAirTempTxt.text && ![_diveAirTempTxt.text isEqualToString:@""]) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_diveAirTempTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(!isFloat) {
+            [TYGenericUtils displayErrorAlert:@"Please enter a number for the air temperature"];
+            return NO;
+        }
+        [_dive setAirTemperature:[NSNumber numberWithFloat:[_diveAirTempTxt.text floatValue]]];
+    }
+    
+    if(_diveWaterTempTxt.text && ![_diveWaterTempTxt.text isEqualToString:@""]) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_diveWaterTempTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(!isFloat) {
+            [TYGenericUtils displayErrorAlert:@"Please enter a number for the water temperature"];
+            return NO;
+        }
+        [_dive setWaterTemperature:[NSNumber numberWithFloat:[_diveWaterTempTxt.text floatValue]]];
+    }
+    
+    if(_diveTimeTxt.text && ![_diveTimeTxt.text isEqualToString:@""]) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_diveTimeTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(!isFloat) {
+            [TYGenericUtils displayErrorAlert:@"Please enter a number for the dive time."];
+            return NO;
+        }
+        [_dive setDiveTime:[NSNumber numberWithFloat:[_diveTimeTxt.text floatValue]]];
+    }
+    
+    [_dive.tank setAirComposition:_tankAirCompositionTxt.text];
+    
+    if(_tankEndingPressureTxt.text && ![_tankEndingPressureTxt.text isEqualToString:@""]) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_tankEndingPressureTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(!isFloat) {
+            [TYGenericUtils displayErrorAlert:@"Please enter a number for the ending pressure. Units in psi."];
+            return NO;
+        }
+        [_dive setDiveTime:[NSNumber numberWithFloat:[_tankEndingPressureTxt.text floatValue]]];
+    }
+    
+    if(_tankStartingPressureTxt.text && ![_tankStartingPressureTxt.text isEqualToString:@""]) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_tankStartingPressureTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(!isFloat) {
+            [TYGenericUtils displayErrorAlert:@"Please enter a number for the starting pressure. Units in psi."];
+            return NO;
+        }
+        [_dive setDiveTime:[NSNumber numberWithFloat:[_tankStartingPressureTxt.text floatValue]]];
+    }
+    
+    return YES;
+}
 
 -(void) createNavBarButtons {
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveButtonClicked:)];
@@ -451,24 +482,24 @@ static int kNumberOfSections = 3;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
     [[cell textLabel] setText:@"Visibility (ft)"];
-    UITextField *visibilityTxt = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
-    visibilityTxt.adjustsFontSizeToFitWidth = NO;
-    visibilityTxt.textColor = [self darkBlueTextColor];
-    visibilityTxt.keyboardType = UIKeyboardTypeNamePhonePad;
-    visibilityTxt.returnKeyType = UIReturnKeyNext;
-    visibilityTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-    visibilityTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
-    visibilityTxt.textAlignment = UITextAlignmentRight;
-    visibilityTxt.tag = 3;
-    visibilityTxt.delegate = self;
+    _diveVisibilityTxt = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
+    _diveVisibilityTxt.adjustsFontSizeToFitWidth = NO;
+    _diveVisibilityTxt.textColor = [self darkBlueTextColor];
+    _diveVisibilityTxt.keyboardType = UIKeyboardTypeNamePhonePad;
+    _diveVisibilityTxt.returnKeyType = UIReturnKeyNext;
+    _diveVisibilityTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+    _diveVisibilityTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
+    _diveVisibilityTxt.textAlignment = UITextAlignmentRight;
+    _diveVisibilityTxt.tag = 3;
+    _diveVisibilityTxt.delegate = self;
     
-    visibilityTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-    [visibilityTxt setEnabled: YES];
+    _diveVisibilityTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+    [_diveVisibilityTxt setEnabled: YES];
     
-    [cell addSubview:visibilityTxt];    
+    [cell addSubview:_diveVisibilityTxt];    
     if ([_dive visibility]) {
-        NSString *visibility = [NSString stringWithFormat:@"%d", [_dive visibility]];
-        [visibilityTxt setText:visibility];
+        NSString *visibility = [NSString stringWithFormat:@"%f", [_dive visibility]];
+        [_diveVisibilityTxt setText:visibility];
     }
     [cell.textLabel setShadowColor:[UIColor whiteColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
@@ -482,25 +513,25 @@ static int kNumberOfSections = 3;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
     [[cell textLabel] setText:@"Air Temperature (°F)"];
-    UITextField *airTemperatureTxt = [[UITextField alloc] initWithFrame:CGRectMake(190, 12, 115, 30)];
-    airTemperatureTxt.adjustsFontSizeToFitWidth = NO;
-    airTemperatureTxt.textColor = [self darkBlueTextColor];
-    airTemperatureTxt.keyboardType = UIKeyboardTypeNumberPad;
-    airTemperatureTxt.returnKeyType = UIReturnKeyNext;
-    airTemperatureTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-    airTemperatureTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
-    airTemperatureTxt.textAlignment = UITextAlignmentRight;
-    airTemperatureTxt.tag = 4;
-    airTemperatureTxt.delegate = self;
+    _diveAirTempTxt = [[UITextField alloc] initWithFrame:CGRectMake(190, 12, 115, 30)];
+    _diveAirTempTxt.adjustsFontSizeToFitWidth = NO;
+    _diveAirTempTxt.textColor = [self darkBlueTextColor];
+    _diveAirTempTxt.keyboardType = UIKeyboardTypeNumberPad;
+    _diveAirTempTxt.returnKeyType = UIReturnKeyNext;
+    _diveAirTempTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+    _diveAirTempTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
+    _diveAirTempTxt.textAlignment = UITextAlignmentRight;
+    _diveAirTempTxt.tag = 4;
+    _diveAirTempTxt.delegate = self;
     
-    airTemperatureTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-    [airTemperatureTxt setEnabled: YES];
+    _diveAirTempTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+    [_diveAirTempTxt setEnabled: YES];
     
-    [cell addSubview:airTemperatureTxt];
+    [cell addSubview:_diveAirTempTxt];
     
     if ([_dive airTemperature]) {
-        NSString *airTemperature = [NSString stringWithFormat:@"%d", [_dive airTemperature]];
-        [airTemperatureTxt setText:airTemperature];
+        NSString *airTemperature = [NSString stringWithFormat:@"%f", [_dive airTemperature]];
+        [_diveAirTempTxt setText:airTemperature];
     }
     [cell.textLabel setShadowColor:[UIColor whiteColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
@@ -514,24 +545,24 @@ static int kNumberOfSections = 3;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
     [[cell textLabel] setText:@"Water temperature (°F)"];
-    UITextField *waterTemperatureTxt = [[UITextField alloc] initWithFrame:CGRectMake(215, 12, 90, 30)];
-    waterTemperatureTxt.adjustsFontSizeToFitWidth = NO;
-    waterTemperatureTxt.textColor = [self darkBlueTextColor];
-    waterTemperatureTxt.keyboardType = UIKeyboardTypeNumberPad;
-    waterTemperatureTxt.returnKeyType = UIReturnKeyNext;
-    waterTemperatureTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-    waterTemperatureTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
-    waterTemperatureTxt.textAlignment = UITextAlignmentRight;
-    waterTemperatureTxt.tag = 5;
-    waterTemperatureTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-    [waterTemperatureTxt setEnabled:YES];
-    waterTemperatureTxt.delegate = self;
+    _diveWaterTempTxt = [[UITextField alloc] initWithFrame:CGRectMake(215, 12, 90, 30)];
+    _diveWaterTempTxt.adjustsFontSizeToFitWidth = NO;
+    _diveWaterTempTxt.textColor = [self darkBlueTextColor];
+    _diveWaterTempTxt.keyboardType = UIKeyboardTypeNumberPad;
+    _diveWaterTempTxt.returnKeyType = UIReturnKeyNext;
+    _diveWaterTempTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+    _diveWaterTempTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
+    _diveWaterTempTxt.textAlignment = UITextAlignmentRight;
+    _diveWaterTempTxt.tag = 5;
+    _diveWaterTempTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+    [_diveWaterTempTxt setEnabled:YES];
+    _diveWaterTempTxt.delegate = self;
     
-    [cell addSubview:waterTemperatureTxt];
+    [cell addSubview:_diveWaterTempTxt];
     
     if ([_dive waterTemperature]) {
-        NSString *waterTemperature = [NSString stringWithFormat:@"%d", [_dive waterTemperature]];
-        [waterTemperatureTxt setText:waterTemperature];
+        NSString *waterTemperature = [NSString stringWithFormat:@"%f", [_dive waterTemperature]];
+        [_diveWaterTempTxt setText:waterTemperature];
     }
     [cell.textLabel setShadowColor:[UIColor whiteColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
@@ -545,24 +576,24 @@ static int kNumberOfSections = 3;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
     [[cell textLabel] setText:@"Dive Time"];
-    UITextField *currentDiveTimeTxt = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
-    currentDiveTimeTxt.adjustsFontSizeToFitWidth = NO;
-    currentDiveTimeTxt.textColor = [self darkBlueTextColor];
-    currentDiveTimeTxt.keyboardType = UIKeyboardTypeNumberPad;
-    currentDiveTimeTxt.returnKeyType = UIReturnKeyNext;
-    currentDiveTimeTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-    currentDiveTimeTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
-    currentDiveTimeTxt.textAlignment = UITextAlignmentRight;
-    currentDiveTimeTxt.tag = 6;
-    currentDiveTimeTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-    [currentDiveTimeTxt setEnabled:YES];
-    currentDiveTimeTxt.delegate = self;
+    _diveTimeTxt = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
+    _diveTimeTxt.adjustsFontSizeToFitWidth = NO;
+    _diveTimeTxt.textColor = [self darkBlueTextColor];
+    _diveTimeTxt.keyboardType = UIKeyboardTypeNumberPad;
+    _diveTimeTxt.returnKeyType = UIReturnKeyNext;
+    _diveTimeTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+    _diveTimeTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
+    _diveTimeTxt.textAlignment = UITextAlignmentRight;
+    _diveTimeTxt.tag = 6;
+    _diveTimeTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+    [_diveTimeTxt setEnabled:YES];
+    _diveTimeTxt.delegate = self;
     
-    [cell addSubview:currentDiveTimeTxt];
+    [cell addSubview:_diveTimeTxt];
     
     if ([_dive diveTime]) {
-        NSString *diveTime = [NSString stringWithFormat:@"%d", [_dive diveTime]];
-        [currentDiveTimeTxt setText:diveTime];
+        NSString *diveTime = [NSString stringWithFormat:@"%f", [_dive diveTime]];
+        [_diveTimeTxt setText:diveTime];
     }
     [cell.textLabel setShadowColor:[UIColor whiteColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
