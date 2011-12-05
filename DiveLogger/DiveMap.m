@@ -41,15 +41,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
-    if(!appDelegate.dives) {
-        appDelegate.dives = [[NSMutableArray alloc] init];
-    }
-    _dives = appDelegate.dives;    
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     // [TYGenericUtils displayAttentionAlert:@"Coming Soon!"];
+    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+    _dives = [appDelegate reloadFromDB];
     [self dropPins];
     [super viewDidAppear:animated];
 }

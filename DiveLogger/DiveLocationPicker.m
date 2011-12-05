@@ -19,6 +19,8 @@
 @synthesize map = _map;
 @synthesize dive = _dive;
 
+static float kEmptyLocation = -1000;
+
 -(id) initWithDive:(Dive *) dive
 {
     self = [super initWithNibName:@"DiveLocationPicker" bundle:nil];
@@ -41,14 +43,22 @@
     [super viewDidLoad];
     // Listen to long press. Drop a pin.
     UILongPressGestureRecognizer *gestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    [gestureRecognizer setMinimumPressDuration:2];
+    [gestureRecognizer setMinimumPressDuration:1.2];
     [_map addGestureRecognizer:gestureRecognizer];
     [_map setShowsUserLocation:YES];
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    if(!(_dive.diveLocation.latitude == EmptyLocationCoordinate.latitude && _dive.diveLocation.latitude == EmptyLocationCoordinate.latitude)) {
+    if((_dive.diveLocationX == nil || _dive.diveLocationY == nil) || ([_dive.diveLocationX floatValue] == kEmptyLocation  && [_dive.diveLocationY floatValue] == kEmptyLocation)) {
+        [TYGenericUtils displayAttentionAlert:@"To drop a pin, touch and hold at the location you'd like till the pin appears"];
+    }
+    else {
         // Dive has valid coordinates
         [self dropPinAtCurrentLocation];
     }
+
 }
 
 - (void)viewDidUnload

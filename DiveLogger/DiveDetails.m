@@ -36,6 +36,7 @@
 @synthesize tankAirCompositionTxt = _tankAirCompositionTxt, tankEndingPressureTxt = _tankEndingPressureTxt, tankStartingPressureTxt = _tankStartingPressureTxt;
 
 static int kNumberOfSections = 3;
+static float kEmptyLocation = -1000;
 
 -(id) initWithDive:(Dive *) dive {
     self = [super initWithNibName:@"DiveDetails" bundle:nil];
@@ -43,7 +44,11 @@ static int kNumberOfSections = 3;
         if(!dive) {
             [self setTitle:@"Add a dive"];
             _newDive = YES;
-            TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+
+            TYAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            NSManagedObjectContext *managedObjectContext = appDelegate.managedObjectContext;
+            NSUndoManager *undoManager = [[NSUndoManager alloc] init];
+            [managedObjectContext setUndoManager:undoManager];
             dive = (Dive *) [NSEntityDescription insertNewObjectForEntityForName:@"Dive" inManagedObjectContext:[appDelegate managedObjectContext]];
             Tank *tank = (Tank *) [NSEntityDescription insertNewObjectForEntityForName:@"Tank" inManagedObjectContext:[appDelegate managedObjectContext]];
             tank.airComposition = @"";
@@ -54,8 +59,8 @@ static int kNumberOfSections = 3;
             dive.tank = tank;
             dive.diveDate = [[NSDate alloc] init];
             dive.diveName = @"";
-            dive.diveLocationX = nil;
-            dive.diveLocationY = nil;
+            dive.diveLocationX = [NSNumber numberWithFloat:kEmptyLocation];
+            dive.diveLocationY = [NSNumber numberWithFloat:kEmptyLocation];
             dive.diveTime = [NSNumber numberWithInt:0];
             dive.visibility = nil;
             dive.airTemperature = nil;
@@ -189,7 +194,7 @@ static int kNumberOfSections = 3;
         _diveDateTxt = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
         _diveDateTxt.adjustsFontSizeToFitWidth = NO;
         _diveDateTxt.textColor = [self darkBlueTextColor];
-        _diveDateTxt.placeholder = @"Dive Name";
+        _diveDateTxt.placeholder = @"Dive Date";
         _diveDateTxt.keyboardType = UIKeyboardTypeNamePhonePad;
         _diveDateTxt.returnKeyType = UIReturnKeyNext;
         _diveDateTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
@@ -205,6 +210,7 @@ static int kNumberOfSections = 3;
         [cell addSubview:_diveDateTxt];
 
         [[cell textLabel] setText:@"Dive Date"];
+        [cell.textLabel setBackgroundColor:[UIColor clearColor]];                                            
         if(![_dive diveDate]) {
             _dive.diveDate = [[NSDate alloc] init];
         }
@@ -218,11 +224,12 @@ static int kNumberOfSections = 3;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
         [[cell textLabel] setText:@"Dive Location"];
-        if(_dive.diveLocation.latitude == EmptyLocationCoordinate.latitude && _dive.diveLocation.longitude == EmptyLocationCoordinate.longitude) {
+        // Dive Location does not exist or is Equal to Empty Location
+        if((_dive.diveLocationX == nil || _dive.diveLocationY == nil) || ([_dive.diveLocationX floatValue] == kEmptyLocation  && [_dive.diveLocationY floatValue] == kEmptyLocation)) {
             [[cell detailTextLabel] setText:@"Pick a Location"];
         }
         else {
-            NSString *locationString = [NSString stringWithFormat:@"%f, %f", _dive.diveLocation.latitude, _dive.diveLocation.longitude];
+            NSString *locationString = [NSString stringWithFormat:@"%.2f, %.2f", _dive.diveLocation.latitude, _dive.diveLocation.longitude];
             [[cell detailTextLabel] setText:locationString];
         }
         [cell.textLabel setShadowColor:[UIColor whiteColor]];
@@ -257,7 +264,7 @@ static int kNumberOfSections = 3;
         
         [cell addSubview:_tankStartingPressureTxt];
         if ([_dive.tank startingPressure]) {
-            NSString *startingPressure = [NSString stringWithFormat:@"%f psi", [[_dive tank] startingPressure]];
+            NSString *startingPressure = [NSString stringWithFormat:@"%.2f psi", [_dive.tank.startingPressure floatValue]];
             [_tankStartingPressureTxt setText:startingPressure];
         }
         [cell.textLabel setShadowColor:[UIColor whiteColor]];
@@ -271,26 +278,26 @@ static int kNumberOfSections = 3;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
         [[cell textLabel] setText:@"Ending Pressure"];
-        UITextField *endingPressureTxt = [[UITextField alloc] initWithFrame:CGRectMake(170, 12, 135, 30)];
-        endingPressureTxt.adjustsFontSizeToFitWidth = NO;
-        endingPressureTxt.textColor = [self darkBlueTextColor];
+        _tankEndingPressureTxt = [[UITextField alloc] initWithFrame:CGRectMake(170, 12, 135, 30)];
+        _tankEndingPressureTxt.adjustsFontSizeToFitWidth = NO;
+        _tankEndingPressureTxt.textColor = [self darkBlueTextColor];
 //        endingPressureTxt.placeholder = @"Pressure in psi";
-        endingPressureTxt.keyboardType = UIKeyboardTypeNumberPad;
-        endingPressureTxt.returnKeyType = UIReturnKeyNext;
-        endingPressureTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-        endingPressureTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
-        endingPressureTxt.textAlignment = UITextAlignmentRight;
-        endingPressureTxt.tag = 2;
-        endingPressureTxt.delegate = self;
+        _tankEndingPressureTxt.keyboardType = UIKeyboardTypeNumberPad;
+        _tankEndingPressureTxt.returnKeyType = UIReturnKeyNext;
+        _tankEndingPressureTxt.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+        _tankEndingPressureTxt.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
+        _tankEndingPressureTxt.textAlignment = UITextAlignmentRight;
+        _tankEndingPressureTxt.tag = 2;
+        _tankEndingPressureTxt.delegate = self;
         
-        endingPressureTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-        [endingPressureTxt setEnabled: YES];
+        _tankEndingPressureTxt.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+        [_tankEndingPressureTxt setEnabled: YES];
         
-        [cell addSubview:endingPressureTxt];
+        [cell addSubview:_tankEndingPressureTxt];
         
         if ([[_dive tank] endingPressure]) {
-            NSString *endingPressure = [NSString stringWithFormat:@"%f psi", [[_dive tank] endingPressure]];
-            [endingPressureTxt setText:endingPressure];
+            NSString *endingPressure = [NSString stringWithFormat:@"%.2f psi", [_dive.tank.endingPressure floatValue]];
+            [_tankEndingPressureTxt setText:endingPressure];
         }
         [cell.textLabel setShadowColor:[UIColor whiteColor]];
         [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
@@ -365,12 +372,12 @@ static int kNumberOfSections = 3;
 #pragma mark - Event Handlers
 
 -(IBAction) saveButtonClicked:(id) sender {   
-    if([self validateAndSave]) {
-        if(_delegate) {
-            [_delegate didSaveDive:_dive];
-        }   
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    //if([self validateAndSave]) {
+    if(_delegate) {
+        [_delegate didSaveDive:_dive];
+    }   
+    [self.navigationController popViewControllerAnimated:YES];
+    //}
 }
 
 -(IBAction)cancelButtonClicked:(id)sender {
@@ -384,15 +391,69 @@ static int kNumberOfSections = 3;
     NSLog(@"%@", date);
 }
 
+#pragma mark - UITextFieldDelegate
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    if(textField == _diveNameTxt) {
+        if(![_diveNameTxt.text isEqualToString:@""]) {
+            [_dive setDiveName:_diveNameTxt.text];
+        }
+    }
+    else if(textField == _diveDateTxt) {
+        // Verify if it's a valid date
+        [_dive setDiveDate:[TYGenericUtils dateFromString:_diveDateTxt.text]];
+    }
+    else if(textField == _diveAirTempTxt) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_diveAirTempTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(isFloat) {
+            [_dive setAirTemperature:[NSNumber numberWithFloat:[_diveAirTempTxt.text floatValue]]];
+        }
+    }
+    else if(textField == _diveTimeTxt) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_diveTimeTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(isFloat) {
+            [_dive setDiveTime:[NSNumber numberWithFloat:[_diveTimeTxt.text floatValue]]];
+        }
+    }
+    else if(textField == _diveVisibilityTxt) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_diveVisibilityTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(isFloat) {
+            [_dive setVisibility:[NSNumber numberWithFloat:[_diveVisibilityTxt.text floatValue]]];
+        }
+    }
+    else if(textField == _diveWaterTempTxt) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_diveWaterTempTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(isFloat) {
+            [_dive setWaterTemperature:[NSNumber numberWithFloat:[_diveWaterTempTxt.text floatValue]]];
+        }
+    }
+    else if(textField == _tankAirCompositionTxt) {
+        [_dive.tank setAirComposition:_tankAirCompositionTxt.text];
+    }
+    else if(textField == _tankEndingPressureTxt) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_tankEndingPressureTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(isFloat) {
+            [_dive.tank setEndingPressure:[NSNumber numberWithFloat:[_tankEndingPressureTxt.text floatValue]]];
+        }
+    }
+    else if(textField == _tankStartingPressureTxt) {
+        NSScanner *intScanner = [NSScanner scannerWithString:[_tankStartingPressureTxt text]];
+        BOOL isFloat = [intScanner scanFloat:nil];
+        if(isFloat) {
+            [_dive.tank setStartingPressure:[NSNumber numberWithFloat:[_tankStartingPressureTxt.text floatValue]]];
+        }
+    }
+}
+
 #pragma mark - Helpers
 
 -(BOOL) validateAndSave {
-    if([_diveNameTxt.text isEqualToString:@""]) {
-        [TYGenericUtils displayErrorAlert:@"Dive Name Cannot be empty"];
-        return NO;
-    }
-    [_dive setDiveName:_diveNameTxt.text];
-    
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     NSDate *diveDate = [TYGenericUtils dateFromString:[_diveDateTxt text]];
     if(!diveDate && ![_diveDateTxt.text isEqualToString:@""]) {
         [TYGenericUtils displayErrorAlert:@"Dive Date doesn't look valid. Please check."];
@@ -407,6 +468,7 @@ static int kNumberOfSections = 3;
             [TYGenericUtils displayErrorAlert:@"Please enter a number for the dive visibility"];
             return NO;
         }
+        DebugLog(@"%f", [_diveVisibilityTxt.text floatValue]);
         [_dive setVisibility:[NSNumber numberWithFloat:[_diveVisibilityTxt.text floatValue]]];
     }
     
@@ -498,7 +560,7 @@ static int kNumberOfSections = 3;
     
     [cell addSubview:_diveVisibilityTxt];    
     if ([_dive visibility]) {
-        NSString *visibility = [NSString stringWithFormat:@"%f", [_dive visibility]];
+        NSString *visibility = [NSString stringWithFormat:@"%.2f", [_dive.visibility floatValue]];
         [_diveVisibilityTxt setText:visibility];
     }
     [cell.textLabel setShadowColor:[UIColor whiteColor]];
@@ -530,7 +592,7 @@ static int kNumberOfSections = 3;
     [cell addSubview:_diveAirTempTxt];
     
     if ([_dive airTemperature]) {
-        NSString *airTemperature = [NSString stringWithFormat:@"%f", [_dive airTemperature]];
+        NSString *airTemperature = [NSString stringWithFormat:@"%.2f", [_dive.airTemperature floatValue]];
         [_diveAirTempTxt setText:airTemperature];
     }
     [cell.textLabel setShadowColor:[UIColor whiteColor]];
@@ -561,7 +623,7 @@ static int kNumberOfSections = 3;
     [cell addSubview:_diveWaterTempTxt];
     
     if ([_dive waterTemperature]) {
-        NSString *waterTemperature = [NSString stringWithFormat:@"%f", [_dive waterTemperature]];
+        NSString *waterTemperature = [NSString stringWithFormat:@"%.2f", [_dive.waterTemperature floatValue]];
         [_diveWaterTempTxt setText:waterTemperature];
     }
     [cell.textLabel setShadowColor:[UIColor whiteColor]];
@@ -592,7 +654,7 @@ static int kNumberOfSections = 3;
     [cell addSubview:_diveTimeTxt];
     
     if ([_dive diveTime]) {
-        NSString *diveTime = [NSString stringWithFormat:@"%f", [_dive diveTime]];
+        NSString *diveTime = [NSString stringWithFormat:@"%.2f", [_dive.diveTime floatValue]];
         [_diveTimeTxt setText:diveTime];
     }
     [cell.textLabel setShadowColor:[UIColor whiteColor]];

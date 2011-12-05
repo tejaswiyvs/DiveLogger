@@ -15,6 +15,7 @@
 @interface Home (private)
 -(void) createBarButtons;
 -(void) createTempDives;
+-(void) sortDives;
 @end
 
 @implementation Home
@@ -48,16 +49,13 @@
     [self createBarButtons];
     [_divesList setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
     [_divesList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background_retinadisplay.png"]]];
-    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
-    if(!appDelegate.dives) {
-        appDelegate.dives = [[NSMutableArray alloc] init];
-    }
-    _dives = appDelegate.dives;
-    [_divesList reloadData];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+    _dives = [appDelegate reloadFromDB];
+    [self sortDives];
     [_divesList reloadData];
 }
 
@@ -81,10 +79,11 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    DebugLog(@"Number of dives : %d", [_dives count]);
     return [_dives count];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {    
     Dive *dive = [_dives objectAtIndex:indexPath.row];
     DiveDetails *diveDetails = [[DiveDetails alloc] initWithDive:dive];
     [diveDetails setDelegate:self];
@@ -109,38 +108,44 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        TYAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate deleteObject:[_dives objectAtIndex:indexPath.row]];
+        _dives = [appDelegate reloadFromDB];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView reloadData];
+    }
+}
+
+
 #pragma mark - Event Handlers
 
 -(void) addButtonClicked:(id) sender {
     DiveDetails *diveDetails = [[DiveDetails alloc] initWithDive:nil];
     [diveDetails setDelegate:self];
-//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:diveDetails];
-//    [SCAppUtils customizeNavigationController:navigationController];
     [self.navigationController pushViewController:diveDetails animated:YES];
-//    [self presentModalViewController:navigationController animated:YES];
 }
 
 #pragma mark - DiveDetailsDelegate
 
 -(void) didSaveDive:(Dive *) dive {
-    /* for(int i=0; i<[_dives count]; i++) {
-        Dive *temp = [_dives objectAtIndex:i];
-        if([temp.diveName isEqualToString:dive.diveName]) {
-            [_dives replaceObjectAtIndex:i withObject:dive];
-            return;
-        }
-    }
-    
-    [_dives addObject:dive]; */
+    DebugLog(@"A dive was edited / saved. Reloading data.");
     TYAppDelegate *delegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
     [delegate saveContext];
     [_divesList reloadData];
 }
 
 -(void) didDismissWithoutSaving {
-
+    DebugLog(@"The Add / edit dive screen was cancelled");
 }
 #pragma mark - Helpers
+
+-(void) sortDives {
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"diveDate" ascending:NO];
+    [_dives sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    [_divesList reloadData];
+}
 
 -(void) createBarButtons {
 //    UIBarButtonItem *addDive = [[UIBarButtonItem alloc] initWithTitle:@"Add Dive" style:UIBarButtonItemStylePlain target:self action:@selector(addButtonClicked:)];

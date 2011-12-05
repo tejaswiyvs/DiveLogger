@@ -50,16 +50,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     _appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
-    if(!_appDelegate.dives) {
-        _appDelegate.dives = [[NSMutableArray alloc] init];
-    }
-    _dives = _appDelegate.dives;
     [_profileTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
     [_profileTableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background_retinadisplay.png"]]];
     [_profileTableView reloadData];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
+    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+    _dives = [appDelegate reloadFromDB];
     [super viewDidAppear:animated];
     [self recalculateData];
     [_profileTableView reloadData];
