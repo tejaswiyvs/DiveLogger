@@ -18,10 +18,8 @@
 
 @implementation TYAppDelegate
 
-@synthesize window = _window, 
-            tabBar = _tabBar,
-            dives = _dives;
-
+@synthesize window = _window;
+@synthesize tabBar = _tabBar;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
@@ -92,6 +90,20 @@
     }
 }
 
+-(void) rollbackContext {
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    [managedObjectContext rollback];
+}
+
+-(void) deleteObject:(Dive *) dive {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    [context deleteObject:dive];
+    NSError *err = nil;
+    if(![context save:&err]) {
+        DebugLog(@"Couldn't save context after deleting: %@", [err userInfo]);
+    }
+}
+
 #pragma mark - Core Data stack
 
 - (NSManagedObjectContext *)managedObjectContext
@@ -145,7 +157,7 @@
     return __persistentStoreCoordinator;
 }
 
--(void) reloadFromDB {
+-(NSMutableArray *) reloadFromDB {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSEntityDescription *dive = [NSEntityDescription entityForName:@"Dive" 
                                             inManagedObjectContext:context];
@@ -158,11 +170,7 @@
         NSLog(@"%@", error);
     }
     NSMutableArray *mutableFetchResults = [NSMutableArray arrayWithArray:fetchResults];
-    [self setDives:mutableFetchResults];
-}
-
--(void) commitToDB {
-
+    return mutableFetchResults;
 }
 
 #pragma mark - Application's Documents directory
