@@ -9,7 +9,7 @@
 #import "Dive.h"
 
 @protocol TYDiveDetailsDelegate;
-@interface DiveDetails : UITableViewController<UITextFieldDelegate> {
+@interface DiveDetails : UIViewController<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
     __unsafe_unretained id<TYDiveDetailsDelegate> _delegate; // ?? TODO - Figure out later. Some ARC issue.
     Dive *_dive;
     NSMutableArray *_tableHeaders;
