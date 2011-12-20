@@ -16,16 +16,17 @@
 -(void) createBarButtons;
 -(void) createTempDives;
 -(void) sortDives;
+-(void) refreshBg;
 @end
 
 @implementation Home
 
-@synthesize dives = _dives, divesList = _divesList;
+@synthesize divesList = _divesList, fetchedResultsController;
 
 - (id) init {
     self = [super initWithNibName:@"Home" bundle:nil];
     [self setTitle:@"Dives"];
-    [self.tabBarItem setImage:[UIImage imageNamed:@"shoebox.png"]];
+    [self.tabBarItem setImage:[UIImage imageNamed:@"home-icon.png"]];
     if(self) {
         // Load 
     }
@@ -48,15 +49,22 @@
     // Do any additional setup after loading the view from its nib.
     [self createBarButtons];
     [_divesList setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
-    [_divesList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background_retinadisplay.png"]]];
+//    [self.view setBackgroundColor:[UIColor colorWithRed:227.0/255.0 green:227.0/255.0 blue:226.0/255.0 alpha:1.0]];
+    NSError *error;
+	if (![[self fetchedResultsController] performFetch:&error]) {
+		// Update to handle the error appropriately.
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		exit(-1);  // Fail
+	}
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
-    _dives = [appDelegate reloadFromDB];
-    [self sortDives];
-    [_divesList reloadData];
+//    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+//    _dives = [appDelegate reloadFromDB];
+//    [self sortDives];
+    [self refreshBg];
+//    [_divesList reloadData];
 }
 
 - (void)viewDidUnload
@@ -78,16 +86,22 @@
     return 90.0;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    DebugLog(@"Number of dives : %d", [_dives count]);
-    return [_dives count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [[fetchedResultsController sections] count];
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+	return [sectionInfo numberOfObjects];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {    
-    Dive *dive = [_dives objectAtIndex:indexPath.row];
+    Dive *dive = [fetchedResultsController objectAtIndexPath:indexPath];
     DiveDetails *diveDetails = [[DiveDetails alloc] initWithDive:dive];
     [diveDetails setDelegate:self];
     [self.navigationController pushViewController:diveDetails animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,21 +114,31 @@
 				cell = (HomeCell *) oneObject;
 		}
     }
-    
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCellBG.png"]];
-    Dive *dive = [_dives objectAtIndex:indexPath.row];
-    [cell.diveName setText:dive.diveName];
-    [cell.diveDate setText:[TYGenericUtils stringFromDate:dive.diveDate]];
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
+- (void)configureCell:(HomeCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCellBG.png"]];
+    Dive *dive = [fetchedResultsController objectAtIndexPath:indexPath];
+    [cell.diveName setText:dive.diveName];
+    [cell.diveDate setText:[TYGenericUtils stringFromDate:dive.diveDate]];
+}
+
+
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        TYAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate deleteObject:[_dives objectAtIndex:indexPath.row]];
-        _dives = [appDelegate reloadFromDB];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [tableView reloadData];
+		// Delete the managed object.
+		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+		[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
+		
+		NSError *error;
+		if (![context save:&error]) {
+			// Update to handle the error appropriately.
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			exit(-1);  // Fail
+		}
+        [self refreshBg];
     }
 }
 
@@ -129,52 +153,149 @@
 
 #pragma mark - DiveDetailsDelegate
 
--(void) didSaveDive:(Dive *) dive {
-    DebugLog(@"A dive was edited / saved. Reloading data.");
-    TYAppDelegate *delegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
-    [delegate saveContext];
+-(void) didSaveDive:(Dive *) dive inContext:(NSManagedObjectContext *) managedObjectContext {
+    DebugLog(@"A dive was edited / saved. Reloading data. %@", dive.diveName);
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc addObserver:self selector:@selector(addControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
+    
+    NSError *error;
+    if (![managedObjectContext save:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+    [dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
+    /*NSError *error;
+    if (![managedObjectContext save:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+    _dives = [appDelegate reloadFromDB];*/
+//    [self sortDives];
     [_divesList reloadData];
 }
 
 -(void) didDismissWithoutSaving {
+    /* TYAppDelegate *delegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [delegate.managedObjectContext reset];
+    [_divesList reloadData]; */
     DebugLog(@"The Add / edit dive screen was cancelled");
 }
+
+- (void)addControllerContextDidSave:(NSNotification*)saveNotification {
+	TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *context = [appDelegate managedObjectContext];
+	// Merging changes causes the fetched results controller to update its results
+	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
+}
+
+#pragma mark -
+#pragma mark Fetched results controller
+
+/**
+ Returns the fetched results controller. Creates and configures the controller if necessary.
+ */
+- (NSFetchedResultsController *)fetchedResultsController {
+    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
+    if (fetchedResultsController != nil) {
+        return fetchedResultsController;
+    }
+    
+	// Create and configure a fetch request with the Book entity.
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setReturnsObjectsAsFaults:NO];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dive" inManagedObjectContext:appDelegate.managedObjectContext];
+	[fetchRequest setEntity:entity];
+	
+	// Create the sort descriptors array.
+	NSSortDescriptor *diveDateDescriptor = [[NSSortDescriptor alloc] initWithKey:@"diveDate" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:diveDateDescriptor, nil];
+	[fetchRequest setSortDescriptors:sortDescriptors];
+	
+	// Create and initialize the fetch results controller.
+	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:nil cacheName:@"DiveListCache"];
+	self.fetchedResultsController = aFetchedResultsController;
+	fetchedResultsController.delegate = self;
+	return fetchedResultsController;
+}    
+
+
+/**
+ Delegate methods of NSFetchedResultsController to respond to additions, removals and so on.
+ */
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+	// The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+	[_divesList beginUpdates];
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+	
+	UITableView *tableView = _divesList;
+    
+	switch(type) {
+			
+		case NSFetchedResultsChangeInsert:
+			[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+			
+		case NSFetchedResultsChangeDelete:
+			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+			
+		case NSFetchedResultsChangeUpdate:
+			[self configureCell:((HomeCell *) [tableView cellForRowAtIndexPath:indexPath]) atIndexPath:indexPath];
+			break;
+			
+		case NSFetchedResultsChangeMove:
+			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+	}
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+	
+	switch(type) {
+			
+		case NSFetchedResultsChangeInsert:
+			[_divesList insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+			
+		case NSFetchedResultsChangeDelete:
+			[_divesList deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+	}
+}
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+	[_divesList endUpdates];
+}
+
+
 #pragma mark - Helpers
 
--(void) sortDives {
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"diveDate" ascending:NO];
-    [_dives sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    [_divesList reloadData];
+-(void) refreshBg {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:0];
+	int count = [sectionInfo numberOfObjects];
+
+    if(!fetchedResultsController || count == 0) {
+        [_divesList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"EmptyBG.png"]]];
+    }
+    else {
+        [_divesList setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]];
+    }
 }
 
 -(void) createBarButtons {
 //    UIBarButtonItem *addDive = [[UIBarButtonItem alloc] initWithTitle:@"Add Dive" style:UIBarButtonItemStylePlain target:self action:@selector(addButtonClicked:)];
     UIBarButtonItem * addDive = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
     [[self navigationItem] setRightBarButtonItem:addDive];
-}
-
--(void) createTempDives {
-    /* Dive *dive1 = [[Dive alloc] init];
-    dive1.diveName = @"Test Dive 1";
-    dive1.diveDate = [[NSDate alloc] init];
-    dive1.tank.startingPressure = 3000;
-    dive1.tank.endingPressure = 1000;
-    dive1.visibility = 200;
-    dive1.airTemperature = 85;
-    dive1.waterTemperature = 83;
-    dive1.diveTime = 30;
-    [_dives addObject:dive1];
-    
-    Dive *dive2 = [[Dive alloc] init];
-    dive2.diveName = @"Test Dive 2";
-    dive2.diveDate = [[NSDate alloc] init];
-    dive2.tank.startingPressure = 2500;
-    dive2.tank.endingPressure = 750;
-    dive2.visibility = 80;
-    dive2.airTemperature = 72;
-    dive2.waterTemperature = 67;
-    dive2.diveTime = 30;
-    [_dives addObject:dive2]; */
 }
 
 @end

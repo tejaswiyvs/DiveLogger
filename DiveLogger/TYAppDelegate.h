@@ -10,14 +10,18 @@
 #import <CoreData/CoreData.h>
 #import "TYUITabBarController.h"
 #import "Dive.h"
+#import "Facebook.h"
 
-@interface TYAppDelegate : UIResponder <UIApplicationDelegate>
+@interface TYAppDelegate : UIResponder <UIApplicationDelegate, FBSessionDelegate>
 {
     TYUITabBarController *_tabBar;
+    Facebook *_facebook;
 }
 
 @property (nonatomic, retain) TYUITabBarController *tabBar;
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, retain) Facebook *facebook;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

@@ -14,14 +14,14 @@
     
     if ([navBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
     {
-        [navBar setBackgroundImage:[UIImage imageNamed:@"CustomUINavBar.png"] forBarMetrics:UIBarMetricsDefault];
+        [navBar setBackgroundImage:[UIImage imageNamed:@"CustomUINavBar_Blue.png"] forBarMetrics:UIBarMetricsDefault];
     }
     else
     {
         UIImageView *imageView = (UIImageView *)[navBar viewWithTag:kSCNavigationBarBackgroundImageTag];
         if (imageView == nil)
         {
-            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CustomUINavBar.png"]];
+            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CustomUINavBar_Blue.png"]];
             [imageView setTag:kSCNavigationBarBackgroundImageTag];
             [navBar insertSubview:imageView atIndex:0];
         }

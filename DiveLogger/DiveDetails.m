@@ -18,6 +18,7 @@
 -(BOOL) validateAndSave;
 -(UIColor *) darkBlueTextColor;
 -(UITextField *) makeTxtField;
+-(UITableViewCell *) makeNewCell;
 -(UITableViewCell *) makeVisibilityCell;
 -(UITableViewCell *) makeAirTemperatureCell;
 -(UITableViewCell *) makeWaterTemperatureCell;
@@ -31,6 +32,7 @@
 @synthesize newDive = _newDive;
 @synthesize tableHeaders = _tableHeaders;
 @synthesize tableView = _tableView;
+@synthesize diveDetailsContext = _diveDetailsContext;
 
 @synthesize diveAirTempTxt = _diveAirTempTxt, diveDateTxt = _diveDateTxt, diveLocTxt = _diveLocTxt, diveNameTxt = _diveNameTxt, diveTimeTxt = _diveTimeTxt, diveVisibilityTxt = _diveVisibilityTxt, diveWaterTempTxt = _diveWaterTempTxt;
 
@@ -47,9 +49,17 @@ static float kEmptyLocation = -1000;
             _newDive = YES;
 
             TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
-            NSManagedObjectContext *managedObjectContext = appDelegate.managedObjectContext;
-            dive = (Dive *) [NSEntityDescription insertNewObjectForEntityForName:@"Dive" inManagedObjectContext:[appDelegate managedObjectContext]];
-            Tank *tank = (Tank *) [NSEntityDescription insertNewObjectForEntityForName:@"Tank" inManagedObjectContext:[appDelegate managedObjectContext]];
+            // Creating a new managed object context with the same persistent store coordinator.
+            // This context is used as a scratchpad for all the changes and the context itself
+            // is discarded if user clicks cancel. If the user clicks save however, the changes
+            // are saved to the same persistent store and in the delegate methods of the home screen,
+            // we just reload the data from the disk.
+            _diveDetailsContext = [[NSManagedObjectContext alloc] init];
+            _diveDetailsContext.persistentStoreCoordinator = appDelegate.managedObjectContext.persistentStoreCoordinator;
+            NSEntityDescription *diveEntity = [NSEntityDescription entityForName:@"Dive" inManagedObjectContext:_diveDetailsContext];
+            NSEntityDescription *tankEntity = [NSEntityDescription entityForName:@"Tank" inManagedObjectContext:_diveDetailsContext];
+            dive = (Dive *) [[NSManagedObject alloc] initWithEntity:diveEntity insertIntoManagedObjectContext:_diveDetailsContext];
+            Tank *tank = (Tank *) [[NSManagedObject alloc] initWithEntity:tankEntity insertIntoManagedObjectContext:_diveDetailsContext];
             tank.airComposition = @"";
             tank.airCompositionNotes = @"";
             tank.dive = dive;
@@ -162,23 +172,15 @@ static float kEmptyLocation = -1000;
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Dive Name
     if(indexPath.section == 0 && indexPath.row == 0) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+        UITableViewCell *cell = [self makeNewCell];
+        [[cell textLabel] setText:@"Dive Name"];
         _diveNameTxt = [self makeTxtField];
         _diveNameTxt.placeholder = @"Dive Name";
         _diveNameTxt.keyboardType = UIKeyboardTypeNamePhonePad;        
         [cell addSubview:_diveNameTxt];
-        [[cell textLabel] setText:@"Dive Name"];
-        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
-        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
-        [cell.textLabel setShadowColor:[UIColor whiteColor]];
-        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-        
         if ([_dive diveName] && ![[_dive diveName] isEqualToString:@""]) {
             [_diveNameTxt setText:[_dive diveName]];
         }
-        
         if(!_newDive) {
             [_diveNameTxt setEnabled:NO];
         }
@@ -186,14 +188,12 @@ static float kEmptyLocation = -1000;
     }
     // Dive Date
     else if(indexPath.section == 0 && indexPath.row == 1) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+        UITableViewCell *cell = [self makeNewCell];
+        [[cell textLabel] setText:@"Dive Date"];
         _diveDateTxt = [self makeTxtField];
         _diveDateTxt.placeholder = @"Dive Date";
         _diveDateTxt.keyboardType = UIKeyboardTypeNamePhonePad;        
         [cell addSubview:_diveDateTxt];
-        [[cell textLabel] setText:@"Dive Date"];
         [cell.textLabel setBackgroundColor:[UIColor clearColor]];                                            
         if(![_dive diveDate]) {
             _dive.diveDate = [[NSDate alloc] init];
@@ -203,10 +203,7 @@ static float kEmptyLocation = -1000;
     }
     // Dive Location
     else if(indexPath.section == 0 && indexPath.row == 2) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+        UITableViewCell *cell = [self makeNewCell];
         [[cell textLabel] setText:@"Dive Location"];
         // Dive Location does not exist or is Equal to Empty Location
         if((_dive.diveLocationX == nil || _dive.diveLocationY == nil) || ([_dive.diveLocationX floatValue] == kEmptyLocation  && [_dive.diveLocationY floatValue] == kEmptyLocation)) {
@@ -216,68 +213,46 @@ static float kEmptyLocation = -1000;
             NSString *locationString = [NSString stringWithFormat:@"%.2f, %.2f", _dive.diveLocation.latitude, _dive.diveLocation.longitude];
             [[cell detailTextLabel] setText:locationString];
         }
-        [cell.textLabel setShadowColor:[UIColor whiteColor]];
-        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
-        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         return cell;
     }
     else if(indexPath.section == 0 && indexPath.row == 3) {
         return [self makeDiveTimeCell];
     }
     else if(indexPath.section == 1 && indexPath.row == 0) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+        UITableViewCell *cell = [self makeNewCell];
         [[cell textLabel] setText:@"Starting Pressure"];
         _tankStartingPressureTxt = [self makeTxtField];
         _tankStartingPressureTxt.placeholder = @"Dive Date";
         _tankStartingPressureTxt.keyboardType = UIKeyboardTypeNumberPad;        
         [cell addSubview:_tankStartingPressureTxt];
-
         if ([_dive.tank startingPressure]) {
             NSString *startingPressure = [NSString stringWithFormat:@"%.2f psi", [_dive.tank.startingPressure floatValue]];
             [_tankStartingPressureTxt setText:startingPressure];
         }
-        [cell.textLabel setShadowColor:[UIColor whiteColor]];
-        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
-        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         return cell;
     }
     else if(indexPath.section == 1 && indexPath.row == 1) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+        UITableViewCell *cell = [self makeNewCell];
+        [cell.textLabel setText:@"Ending Pressure"];
         _tankEndingPressureTxt = [self makeTxtField];
         _tankEndingPressureTxt.placeholder = @"Ending Pressure";
         _tankEndingPressureTxt.keyboardType = UIKeyboardTypeNumberPad;        
-        [cell addSubview:_tankEndingPressureTxt];        
+        [cell addSubview:_tankEndingPressureTxt];
         if ([[_dive tank] endingPressure]) {
             NSString *endingPressure = [NSString stringWithFormat:@"%.2f psi", [_dive.tank.endingPressure floatValue]];
             [_tankEndingPressureTxt setText:endingPressure];
         }
-        [cell.textLabel setShadowColor:[UIColor whiteColor]];
-        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
-        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         return cell;
     }
     else if(indexPath.section == 1 && indexPath.row == 2) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+        UITableViewCell *cell = [self makeNewCell];
         [[cell textLabel] setText:@"Air Composition"];
         _tankAirCompositionTxt = [self makeTxtField];
         _tankAirCompositionTxt.keyboardType = UIKeyboardTypeNamePhonePad;        
         [cell addSubview:_tankAirCompositionTxt];        
-        
         if([_dive.tank airComposition]) {
             [_tankAirCompositionTxt setText:_dive.tank.airComposition];
         }
-        [cell.textLabel setShadowColor:[UIColor whiteColor]];
-        [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
         return cell;
     }
     else if(indexPath.section == 2 && indexPath.row == 0) {
@@ -315,15 +290,19 @@ static float kEmptyLocation = -1000;
 #pragma mark - Event Handlers
 
 -(IBAction) saveButtonClicked:(id) sender {   
-    //if([self validateAndSave]) {
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     if(_delegate) {
-        [_delegate didSaveDive:_dive];
+        if(_newDive) {
+            [_delegate didSaveDive:_dive inContext:_diveDetailsContext];
+        }
+        else {
+            [_delegate didSaveDive:_dive inContext:_dive.managedObjectContext];
+        }
     }   
     [self.navigationController popViewControllerAnimated:YES];
-    //}
 }
 
--(IBAction)cancelButtonClicked:(id)sender {
+-(IBAction)cancelButtonClicked:(id)sender {    
     if(_delegate) {
         [_delegate didDismissWithoutSaving];
     }
@@ -411,7 +390,6 @@ static float kEmptyLocation = -1000;
 }
 
 -(BOOL) validateAndSave {
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     NSDate *diveDate = [TYGenericUtils dateFromString:[_diveDateTxt text]];
     if(!diveDate && ![_diveDateTxt.text isEqualToString:@""]) {
         [TYGenericUtils displayErrorAlert:@"Dive Date doesn't look valid. Please check."];
@@ -498,9 +476,7 @@ static float kEmptyLocation = -1000;
 }
 
 -(UITableViewCell *) makeVisibilityCell {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+    UITableViewCell *cell = [self makeNewCell];
     [[cell textLabel] setText:@"Visibility (ft)"];
     _diveVisibilityTxt = [self makeTxtField];
     _diveVisibilityTxt.keyboardType = UIKeyboardTypeNumberPad;        
@@ -509,21 +485,12 @@ static float kEmptyLocation = -1000;
         NSString *visibility = [NSString stringWithFormat:@"%.2f", [_dive.visibility floatValue]];
         [_diveVisibilityTxt setText:visibility];
     }
-    [cell.textLabel setShadowColor:[UIColor whiteColor]];
-    [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-    [cell.textLabel setBackgroundColor:[UIColor clearColor]];
-    [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
     return cell;
 }
 
 -(UITableViewCell *) makeAirTemperatureCell {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+    UITableViewCell *cell = [self makeNewCell];
     [[cell textLabel] setText:@"Air Temperature (°F)"];
-    [cell.textLabel setShadowColor:[UIColor whiteColor]];
-    [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-    [cell.textLabel setBackgroundColor:[UIColor clearColor]];
     _diveAirTempTxt = [self makeTxtField];
     _diveAirTempTxt.keyboardType = UIKeyboardTypeNumberPad;        
     [cell addSubview:_diveAirTempTxt];        
@@ -531,18 +498,12 @@ static float kEmptyLocation = -1000;
         NSString *airTemperature = [NSString stringWithFormat:@"%.2f", [_dive.airTemperature floatValue]];
         [_diveAirTempTxt setText:airTemperature];
     }
-    [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
     return cell;
 }
 
 -(UITableViewCell *) makeWaterTemperatureCell {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+    UITableViewCell *cell = [self makeNewCell];
     [[cell textLabel] setText:@"Water temperature (°F)"];
-    [cell.textLabel setShadowColor:[UIColor whiteColor]];
-    [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-    [cell.textLabel setBackgroundColor:[UIColor clearColor]];
     _diveWaterTempTxt = [self makeTxtField];
     _diveWaterTempTxt.keyboardType = UIKeyboardTypeNumberPad;        
     [cell addSubview:_diveWaterTempTxt];        
@@ -550,14 +511,11 @@ static float kEmptyLocation = -1000;
         NSString *waterTemperature = [NSString stringWithFormat:@"%.2f", [_dive.waterTemperature floatValue]];
         [_diveWaterTempTxt setText:waterTemperature];
     }
-    [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
     return cell;
 }
 
 -(UITableViewCell *) makeDiveTimeCell {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
+    UITableViewCell *cell = [self makeNewCell];
     [[cell textLabel] setText:@"Dive Time"];
     _diveTimeTxt = [self makeTxtField];
     _diveTimeTxt.keyboardType = UIKeyboardTypeNumberPad;        
@@ -566,6 +524,13 @@ static float kEmptyLocation = -1000;
         NSString *diveTime = [NSString stringWithFormat:@"%.2f", [_dive.diveTime floatValue]];
         [_diveTimeTxt setText:diveTime];
     }
+    return cell;
+}
+
+-(UITableViewCell *) makeNewCell {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITableViewCell Default.png"]];
     [cell.textLabel setShadowColor:[UIColor whiteColor]];
     [cell.textLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
     [cell.textLabel setBackgroundColor:[UIColor clearColor]];

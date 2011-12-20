@@ -28,7 +28,7 @@
 - (id) init {
     self = [super initWithNibName:@"Profile" bundle:nil];
     [self setTitle:@"Profile"];
-    [self.tabBarItem setImage:[UIImage imageNamed:@"user.png"]];
+    [self.tabBarItem setImage:[UIImage imageNamed:@"profile-icon.png"]];
     if(self) {
         // Load 
     }
@@ -51,7 +51,9 @@
     // Do any additional setup after loading the view from its nib.
     _appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
     [_profileTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
-    [_profileTableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background_retinadisplay.png"]]];
+//    [_profileTableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background_retinadisplay.png"]]];
+//    [_profileTableView setBackgroundColor:[UIColor colorWithRed:226.0/255.0 green:226.0/255.0 blue:226.0/255.0 alpha:1.0]];
+
     [_profileTableView reloadData];
 }
 

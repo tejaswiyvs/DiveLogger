@@ -29,5 +29,19 @@
          startingLineNumber = "3"
          endingLineNumber = "3">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "DiveLogger/DiveDetails.m"
+         timestampString = "345764366.251455"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "432"
+         endingLineNumber = "432"
+         landmarkName = "-validateAndSave"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

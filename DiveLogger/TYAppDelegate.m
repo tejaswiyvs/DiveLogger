@@ -11,6 +11,7 @@
 #import "DiveMap.h"
 #import "SCAppUtils.h"
 #import "Profile.h"
+#import "Settings.h"
 
 @interface TYAppDelegate (private)
 -(TYUITabBarController *) createTabBar;
@@ -23,6 +24,7 @@
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+@synthesize facebook = _facebook;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -30,7 +32,16 @@
     self.tabBar = [self createTabBar];
     [self.window addSubview:self.tabBar.view];
     [self.window makeKeyAndVisible];
-    [self reloadFromDB];    
+    
+    // Setup Facebook
+    _facebook = [[Facebook alloc] initWithAppId:@"250994151631017" andDelegate:self];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults objectForKey:@"FBAccessTokenKey"] 
+            && [defaults objectForKey:@"FBExpirationDateKey"]) {
+        _facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+        _facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+    }
+//    [self reloadFromDB];    
     return YES;
 }
 
@@ -68,8 +79,10 @@
     [SCAppUtils customizeNavigationController:navigationController];
     DiveMap *map = [[DiveMap alloc] init];
     Profile *profile = [[Profile alloc] init];
-    NSArray *viewControllers = [NSArray arrayWithObjects:navigationController, map, profile, nil];
+    Settings *settings = [[Settings alloc] init];
+    NSArray *viewControllers = [NSArray arrayWithObjects:navigationController, map, profile, settings, nil];
     TYUITabBarController *tabBar = [[TYUITabBarController alloc] init];
+    // UITabBarController *tabBar = [[UITabBarController alloc] init];
     [tabBar setViewControllers:viewControllers];
     return tabBar;
 }
@@ -118,6 +131,8 @@
     {
         __managedObjectContext = [[NSManagedObjectContext alloc] init];
         [__managedObjectContext setPersistentStoreCoordinator:coordinator];
+        NSUndoManager *undoManager = [[NSUndoManager alloc] init];
+        [__managedObjectContext setUndoManager:undoManager];
     }
     return __managedObjectContext;
 }
@@ -180,4 +195,27 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+#pragma mark - Facebook Delegate
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [_facebook handleOpenURL:url]; 
+}
+
+// For 4.2+ support
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [_facebook handleOpenURL:url]; 
+}
+
+- (void)fbDidLogin {
+    [TYGenericUtils displayAttentionAlert:@"Succesfully connected to Facebook!"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[_facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[_facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults synchronize]; 
+}
+
+-(void)fbDidNotLogin:(BOOL)cancelled {
+    [TYGenericUtils displayAttentionAlert:@"Could not add your Facebook account. Please try again later"];
+}
 @end

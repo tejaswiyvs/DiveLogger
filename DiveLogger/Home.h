@@ -6,16 +6,17 @@
 //  Copyright (c) 2011 Tejaswi Yerukalapudi. All rights reserved.
 //
 #import "DiveDetails.h"
+#import "HomeCell.h"
 
-@interface Home : UIViewController<UITableViewDelegate, UITableViewDataSource, TYDiveDetailsDelegate>
+@interface Home : UIViewController<NSFetchedResultsControllerDelegate, TYDiveDetailsDelegate>
 {
-    NSMutableArray *_dives; // Holds a list of all the dives.
     UITableView *_divesList;
+    NSFetchedResultsController *fetchedResultsController;
 }
 
-@property (nonatomic, retain) NSMutableArray *dives;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) IBOutlet UITableView *divesList;
 
 - (id) init;
-
+- (void)configureCell:(HomeCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end

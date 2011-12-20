@@ -46,5 +46,14 @@
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb250994151631017</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
