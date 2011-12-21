@@ -12,10 +12,12 @@
 {
     UITableView *_divesList;
     NSFetchedResultsController *fetchedResultsController;
+    UILabel *_emptyLabel;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) IBOutlet UITableView *divesList;
+@property (nonatomic, retain) UILabel *emptyLabel;
 
 - (id) init;
 - (void)configureCell:(HomeCell *)cell atIndexPath:(NSIndexPath *)indexPath;

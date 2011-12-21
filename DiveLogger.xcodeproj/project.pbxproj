@@ -28,6 +28,10 @@
 		B7136C411468657B005CE555 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C401468657B005CE555 /* CoreLocation.framework */; };
 		B71AEB65146CE30000646545 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = B71AEB64146CE30000646545 /* clock.png */; };
 		B71AEB68146CE37E00646545 /* line-chart.png in Resources */ = {isa = PBXBuildFile; fileRef = B71AEB67146CE37E00646545 /* line-chart.png */; };
+		B71EE50014A2323200083B0E /* bg_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71EE4FF14A2323200083B0E /* bg_empty@2x.png */; };
+		B71EE50214A2332900083B0E /* bg_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71EE50114A2332900083B0E /* bg_active@2x.png */; };
+		B71EE50514A2342B00083B0E /* bg_active.png in Resources */ = {isa = PBXBuildFile; fileRef = B71EE50314A2342B00083B0E /* bg_active.png */; };
+		B71EE50614A2342B00083B0E /* bg_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = B71EE50414A2342B00083B0E /* bg_empty.png */; };
 		B73358C6148D5AFA003BE6CA /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = B73358AF148D5AFA003BE6CA /* Facebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B73358C7148D5AFA003BE6CA /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B73358B1148D5AFA003BE6CA /* FBDialog.bundle */; };
 		B73358C8148D5AFA003BE6CA /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = B73358B3148D5AFA003BE6CA /* FBDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -122,6 +126,10 @@
 		B7136C401468657B005CE555 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B71AEB64146CE30000646545 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		B71AEB67146CE37E00646545 /* line-chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line-chart.png"; sourceTree = "<group>"; };
+		B71EE4FF14A2323200083B0E /* bg_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_empty@2x.png"; sourceTree = "<group>"; };
+		B71EE50114A2332900083B0E /* bg_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_active@2x.png"; sourceTree = "<group>"; };
+		B71EE50314A2342B00083B0E /* bg_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_active.png; sourceTree = "<group>"; };
+		B71EE50414A2342B00083B0E /* bg_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_empty.png; sourceTree = "<group>"; };
 		B73358AD148D5AFA003BE6CA /* facebook_ios_sdk_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = facebook_ios_sdk_Prefix.pch; path = "facebook-ios-sdk/src/facebook_ios_sdk_Prefix.pch"; sourceTree = "<group>"; };
 		B73358AE148D5AFA003BE6CA /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = "facebook-ios-sdk/src/Facebook.h"; sourceTree = "<group>"; };
 		B73358AF148D5AFA003BE6CA /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Facebook.m; path = "facebook-ios-sdk/src/Facebook.m"; sourceTree = "<group>"; };
@@ -235,6 +243,10 @@
 		B70E61A41468977400FABBA9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B71EE50314A2342B00083B0E /* bg_active.png */,
+				B71EE50414A2342B00083B0E /* bg_empty.png */,
+				B71EE50114A2332900083B0E /* bg_active@2x.png */,
+				B71EE4FF14A2323200083B0E /* bg_empty@2x.png */,
 				B7D87CC11498FEEE00A1BA01 /* EmptyBG.png */,
 				B7CA334C1492B39200E01ED6 /* UITableViewHeader.png */,
 				B7CA33411492ABE400E01ED6 /* UITableViewCell Default.png */,
@@ -561,6 +573,10 @@
 				B749E09B149BF5F9004186A9 /* home-icon@2x.png in Resources */,
 				B749E09F149BFC94004186A9 /* map-marker.png in Resources */,
 				B749E0A0149BFC94004186A9 /* map-marker@2x.png in Resources */,
+				B71EE50014A2323200083B0E /* bg_empty@2x.png in Resources */,
+				B71EE50214A2332900083B0E /* bg_active@2x.png in Resources */,
+				B71EE50514A2342B00083B0E /* bg_active.png in Resources */,
+				B71EE50614A2342B00083B0E /* bg_empty.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

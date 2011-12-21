@@ -51,9 +51,7 @@
     // Do any additional setup after loading the view from its nib.
     _appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
     [_profileTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
-//    [_profileTableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background_retinadisplay.png"]]];
-//    [_profileTableView setBackgroundColor:[UIColor colorWithRed:226.0/255.0 green:226.0/255.0 blue:226.0/255.0 alpha:1.0]];
-
+    [_profileTableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_active.png"]]];
     [_profileTableView reloadData];
 }
 
@@ -68,8 +66,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

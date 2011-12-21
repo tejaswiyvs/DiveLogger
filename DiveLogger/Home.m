@@ -21,7 +21,7 @@
 
 @implementation Home
 
-@synthesize divesList = _divesList, fetchedResultsController;
+@synthesize divesList = _divesList, fetchedResultsController, emptyLabel = _emptyLabel;
 
 - (id) init {
     self = [super initWithNibName:@"Home" bundle:nil];
@@ -46,32 +46,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
     [self createBarButtons];
     [_divesList setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
-//    [self.view setBackgroundColor:[UIColor colorWithRed:227.0/255.0 green:227.0/255.0 blue:226.0/255.0 alpha:1.0]];
+    [_divesList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_active.png"]]];
+
+    // Empty label text if the table is empty.
+    _emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 50.0, 320.0, 100.0)];
+    [_emptyLabel setHidden:YES];
+    [_emptyLabel setBackgroundColor:[UIColor clearColor]];
+    [_emptyLabel setNumberOfLines:0];
+    [_emptyLabel setTextAlignment:UITextAlignmentCenter];
+    [_emptyLabel setShadowColor:[UIColor whiteColor]];
+    [_emptyLabel setShadowOffset:CGSizeMake(0.0, -1.0)];
+    [_emptyLabel setText:@"Hit the '+' button on the top right to get started."];
+    [[self view] addSubview:_emptyLabel];
+
+    // Fetch
     NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
-		// Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		exit(-1);  // Fail
+        [TYGenericUtils displayErrorAlert:@"Oh no! Something went horribly wrong. Please kill & restart the application"];
 	}
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
-//    _dives = [appDelegate reloadFromDB];
-//    [self sortDives];
     [self refreshBg];
-//    [_divesList reloadData];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -285,15 +290,19 @@
 	int count = [sectionInfo numberOfObjects];
 
     if(!fetchedResultsController || count == 0) {
-        [_divesList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"EmptyBG.png"]]];
+//        [_emptyLabel setHidden:NO];
+        [_divesList setHidden:YES];
+        [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_empty.png"]]];
     }
     else {
-        [_divesList setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]];
+//        [self.view setBackgroundColor:[UIColor whiteColor]];
+        [_emptyLabel setHidden:YES];
+        [_divesList setHidden:NO];
+//        [_divesList setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]];
     }
 }
 
 -(void) createBarButtons {
-//    UIBarButtonItem *addDive = [[UIBarButtonItem alloc] initWithTitle:@"Add Dive" style:UIBarButtonItemStylePlain target:self action:@selector(addButtonClicked:)];
     UIBarButtonItem * addDive = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
     [[self navigationItem] setRightBarButtonItem:addDive];
 }
