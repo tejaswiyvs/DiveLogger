@@ -13,7 +13,6 @@
     __unsafe_unretained id<TYDiveDetailsDelegate> _delegate; // ?? TODO - Figure out later. Some ARC issue.
     NSManagedObjectContext *_diveDetailsContext;
     Dive *_dive;
-    NSMutableArray *_tableHeaders;
     BOOL _newDive;
     UITableView *_tableView;
     
@@ -33,7 +32,6 @@
 
 @property (nonatomic, retain) Dive *dive;
 @property (nonatomic, assign) id<TYDiveDetailsDelegate> delegate;
-@property (nonatomic, retain) NSMutableArray *tableHeaders;
 @property (nonatomic, assign) BOOL newDive;
 @property (nonatomic, retain) NSManagedObjectContext *diveDetailsContext;
 

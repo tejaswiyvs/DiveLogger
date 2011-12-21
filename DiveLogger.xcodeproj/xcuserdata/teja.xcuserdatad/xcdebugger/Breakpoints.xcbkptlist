@@ -30,7 +30,7 @@
          endingLineNumber = "3">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
@@ -40,6 +40,20 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "432"
          endingLineNumber = "432"
+         landmarkName = "-validateAndSave"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "DiveLogger/DiveDetails.m"
+         timestampString = "346176458.604324"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "409"
+         endingLineNumber = "409"
          landmarkName = "-validateAndSave"
          landmarkType = "5">
       </FileBreakpoint>

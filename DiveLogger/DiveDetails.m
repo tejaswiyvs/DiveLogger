@@ -30,7 +30,6 @@
 @synthesize dive = _dive;
 @synthesize delegate = _delegate;
 @synthesize newDive = _newDive;
-@synthesize tableHeaders = _tableHeaders;
 @synthesize tableView = _tableView;
 @synthesize diveDetailsContext = _diveDetailsContext;
 
@@ -95,12 +94,6 @@ static float kEmptyLocation = -1000;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _tableHeaders = [[NSMutableArray alloc] init];
-    [_tableHeaders addObject:@"Dive Info"];
-    [_tableHeaders addObject:@"Tank Info"];
-    [_tableHeaders addObject:@"Conditions"];
-    
     [self createNavBarButtons];
 }
 
@@ -155,20 +148,6 @@ static float kEmptyLocation = -1000;
     return @"";
 }
 
-/* - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    CGRect frame = CGRectMake(0.0, 0.0, 320.0, 30.0);
-    UIView *view = [[UIView alloc] initWithFrame:frame];
-    [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"UITableViewHeader.png"]]];
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(3.0, 0.0, 320.0, 30.0)];
-    [headerLabel setText:[_tableHeaders objectAtIndex:section]];
-    [headerLabel setTextColor:[UIColor whiteColor]];
-    [headerLabel setShadowColor:[UIColor blackColor]];
-    [headerLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-    [headerLabel setBackgroundColor:[UIColor clearColor]];
-    [view addSubview:headerLabel];
-    return view;
-} */
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Dive Name
     if(indexPath.section == 0 && indexPath.row == 0) {
@@ -222,7 +201,7 @@ static float kEmptyLocation = -1000;
         UITableViewCell *cell = [self makeNewCell];
         [[cell textLabel] setText:@"Starting Pressure"];
         _tankStartingPressureTxt = [self makeTxtField];
-        _tankStartingPressureTxt.placeholder = @"Dive Date";
+        _tankStartingPressureTxt.placeholder = @"Starting Pressure";
         _tankStartingPressureTxt.keyboardType = UIKeyboardTypeNumberPad;        
         [cell addSubview:_tankStartingPressureTxt];
         if ([_dive.tank startingPressure]) {
@@ -249,6 +228,7 @@ static float kEmptyLocation = -1000;
         [[cell textLabel] setText:@"Air Composition"];
         _tankAirCompositionTxt = [self makeTxtField];
         _tankAirCompositionTxt.keyboardType = UIKeyboardTypeNamePhonePad;        
+        [_tankAirCompositionTxt setPlaceholder:@"Any details about the air mix you were using"];
         [cell addSubview:_tankAirCompositionTxt];        
         if([_dive.tank airComposition]) {
             [_tankAirCompositionTxt setText:_dive.tank.airComposition];
@@ -268,23 +248,11 @@ static float kEmptyLocation = -1000;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Date of dive picke4
-    /* if(indexPath.section == 0 && indexPath.row == 1) {
-        UIDatePicker *pickerView = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 164.0, 320, 216)];
-        [pickerView setDatePickerMode:UIDatePickerModeDate];
-        [pickerView setMaximumDate:[[NSDate alloc] init]];
-        [pickerView setDate:[[NSDate alloc] init]];
-        [self.view addSubview:pickerView];
-    } */
     // Location Picker
     if(indexPath.section == 0 && indexPath.row == 2) {
         DiveLocationPicker *locationPicker = [[DiveLocationPicker alloc] initWithDive:_dive];
         [[self navigationController] pushViewController:locationPicker animated:YES];
     }
-    // Air Composition Picker
-    /* else if(indexPath.section == 1 && indexPath.row == 2) {
-        [_airCompositionPicker setHidden:NO];
-    } */
 }
 
 #pragma mark - Event Handlers
@@ -307,10 +275,6 @@ static float kEmptyLocation = -1000;
         [_delegate didDismissWithoutSaving];
     }
     [self.navigationController popViewControllerAnimated:YES];
-}
-
--(void) datePicked:(NSDate *) date {
-    NSLog(@"%@", date);
 }
 
 #pragma mark - UITextFieldDelegate

@@ -40,15 +40,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    // [TYGenericUtils displayAttentionAlert:@"Coming Soon!"];
+    [super viewDidAppear:animated];
     TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
     _dives = [appDelegate reloadFromDB];
     [self dropPins];
-    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -58,7 +56,6 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -69,23 +66,7 @@
     for (int i=0; i<[_dives count]; i++) {
         DiveAnnotation *annotation = [[DiveAnnotation alloc] initWithDive:[_dives objectAtIndex:i]];
         [_map addAnnotation:annotation];
-        [_map setShowsUserLocation:YES];
     }
-}
-
--(void) populateTempData {
-    /* _dives = [[NSMutableArray alloc] init];
-    Dive *dive1 = [[Dive alloc] init];
-    [dive1 setDiveName:@"Some dive"];
-    CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake(27.882177,-81.118927);
-    [dive1 setDiveLocation:coordinates];
-    [_dives addObject:dive1];
-        
-    Dive *dive2 = [[Dive alloc] init];
-    [dive2 setDiveName:@"Some other dive"];
-    CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(29.88, -81.11);
-    [dive2 setDiveLocation:coordinate2];
-    [_dives addObject:dive2]; */
 }
 
 @end
