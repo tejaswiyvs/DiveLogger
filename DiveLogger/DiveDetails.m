@@ -239,7 +239,7 @@ static float kEmptyLocation = -1000;
         [[cell textLabel] setText:@"Air Composition"];
         _tankAirCompositionTxt = [self makeTxtField];
         _tankAirCompositionTxt.keyboardType = UIKeyboardTypeNamePhonePad;        
-        [_tankAirCompositionTxt setPlaceholder:@"Any details about the air mix you were using"];
+        [_tankAirCompositionTxt setPlaceholder:@"Nitrox? Trimix? O2?"];
         [cell addSubview:_tankAirCompositionTxt];        
         if([_dive.tank airComposition]) {
             [_tankAirCompositionTxt setText:_dive.tank.airComposition];

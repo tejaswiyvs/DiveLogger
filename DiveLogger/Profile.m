@@ -77,18 +77,18 @@
 #pragma mark - UITableView
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30.0;
+    return 25.0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    CGRect frame = CGRectMake(0.0, 0.0, 320.0, 30.0);
+    CGRect frame = CGRectMake(0.0, 0.0, 320.0, 25.0);
     UIView *view = [[UIView alloc] initWithFrame:frame];
-    [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"UITableViewHeader.png"]]];
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(3.0, 0.0, 320.0, 30.0)];
+    [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableview_blue_header.png"]]];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(3.0, 0.0, 320.0, 25.0)];
     [headerLabel setText:@"Your Profile"];
     [headerLabel setTextColor:[UIColor whiteColor]];
     [headerLabel setShadowColor:[UIColor blackColor]];
-    [headerLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
+    [headerLabel setShadowOffset:CGSizeMake(0.0, -1.0)];
     [headerLabel setBackgroundColor:[UIColor clearColor]];
     [view addSubview:headerLabel];
     return view;
