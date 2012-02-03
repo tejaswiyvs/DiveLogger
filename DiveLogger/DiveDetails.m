@@ -13,6 +13,7 @@
 
 @interface DiveDetails (private)
 -(void) createNavBarButtons;
+-(void) createPostToFBButton;
 -(void) dismissKeyboard;
 -(void) validateDive;
 -(BOOL) validateAndSave;
@@ -31,7 +32,12 @@
 @synthesize delegate = _delegate;
 @synthesize newDive = _newDive;
 @synthesize tableView = _tableView;
+@synthesize datePicker = _datePicker;
 @synthesize diveDetailsContext = _diveDetailsContext;
+@synthesize appDelegate = _appDelegate;
+@synthesize doneButton = _doneButton;
+@synthesize cancelButton = _cancelButton;
+@synthesize saveButton = _saveButton;
 
 @synthesize diveAirTempTxt = _diveAirTempTxt, diveDateTxt = _diveDateTxt, diveLocTxt = _diveLocTxt, diveNameTxt = _diveNameTxt, diveTimeTxt = _diveTimeTxt, diveVisibilityTxt = _diveVisibilityTxt, diveWaterTempTxt = _diveWaterTempTxt;
 
@@ -94,7 +100,10 @@ static float kEmptyLocation = -1000;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_active.png"]]];
     [self createNavBarButtons];
+    [self createPostToFBButton];
+    _appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
 }
 
 -(void) viewDidAppear:(BOOL) animated {
@@ -156,6 +165,7 @@ static float kEmptyLocation = -1000;
         _diveNameTxt = [self makeTxtField];
         _diveNameTxt.placeholder = @"Dive Name";
         _diveNameTxt.keyboardType = UIKeyboardTypeNamePhonePad;        
+        _diveNameTxt.autocapitalizationType = UITextAutocapitalizationTypeWords;
         [cell addSubview:_diveNameTxt];
         if ([_dive diveName] && ![[_dive diveName] isEqualToString:@""]) {
             [_diveNameTxt setText:[_dive diveName]];
@@ -178,6 +188,7 @@ static float kEmptyLocation = -1000;
             _dive.diveDate = [[NSDate alloc] init];
         }
         [_diveDateTxt setText:[TYGenericUtils stringFromDate:_dive.diveDate]];
+        [_diveDateTxt setEnabled:NO];
         return cell;    
     }
     // Dive Location
@@ -252,10 +263,34 @@ static float kEmptyLocation = -1000;
     if(indexPath.section == 0 && indexPath.row == 2) {
         DiveLocationPicker *locationPicker = [[DiveLocationPicker alloc] initWithDive:_dive];
         [[self navigationController] pushViewController:locationPicker animated:YES];
+        [self animateDatePickerOut];
+    }
+    // Dive Date
+    else if(indexPath.section == 0 && indexPath.row == 1) {
+        // If the keyboard is being shown, remove it.
+        [self resignFirstResponderForSubviewsOfView:self.view];
+        
+        // If the date picker hasn't been added already, animate it in.
+        if(self.datePicker.superview == nil) {
+            [self animateDatePickerIn];
+        }
+    }
+    else {
+        [self resignFirstResponderForSubviewsOfView:self.view];
     }
 }
 
 #pragma mark - Event Handlers
+
+-(void) doneButtonClicked:(id) sender {
+    NSDate *diveDate = [_datePicker date];
+    [_dive setDiveDate:diveDate];
+    NSIndexPath *dateIndexPath = [NSIndexPath indexPathForRow:1
+                                                    inSection:0];
+    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:dateIndexPath]
+                      withRowAnimation:UITableViewRowAnimationFade];
+    [self animateDatePickerOut];
+}
 
 -(IBAction) saveButtonClicked:(id) sender {   
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
@@ -271,10 +306,47 @@ static float kEmptyLocation = -1000;
 }
 
 -(IBAction)cancelButtonClicked:(id)sender {    
+    [self animateDatePickerOut];
     if(_delegate) {
         [_delegate didDismissWithoutSaving];
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) postToFBClicked:(id) sender {
+    DebugLog(@"Clicked post to Facebook");
+
+    Facebook *facebook = _appDelegate.facebook;
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:@"I've been diving!" forKey:@"name"];
+    
+    if(facebook.isSessionValid) {
+        [facebook authorize:nil];
+    }
+    
+    // Create a dive description
+    // I've just finished my dive: %@. Dive time: %@, Gas: %@
+    NSString *diveDescription = [NSString stringWithFormat:@"I've just finished my dive: %@.", _dive.diveName];
+    if(_dive.diveTime) {
+        [diveDescription stringByAppendingFormat:@" Dive Time: %@.", [_dive.diveTime stringValue]];
+    }
+    if(_dive.tank.airComposition) {
+        [diveDescription stringByAppendingFormat:@" Air Composition: %@", _dive.tank.airComposition];
+    }
+    [params setObject:diveDescription forKey:@"description"];
+    // [params setObject:@"Icon@2x.png" forKey:@"picture"];
+    
+    // Verify if the dive has a valid location & link to the maps url of that location
+    if(_dive.diveLocationX != nil && _dive.diveLocationY != nil && [_dive.diveLocationX floatValue] != kEmptyLocation  && [_dive.diveLocationY floatValue] != kEmptyLocation) {
+        NSString *diveLatitude = [_dive.diveLocationX stringValue];
+        NSString *diveLongitude = [_dive.diveLocationY stringValue];
+        NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/?q=%@,%@", diveLatitude, diveLongitude];
+        [params setObject:urlString forKey:@"link"];
+    }
+    
+    [facebook dialog:@"feed" 
+           andParams:params 
+         andDelegate:self];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -337,6 +409,68 @@ static float kEmptyLocation = -1000;
 }
 
 #pragma mark - Helpers
+
+-(void) animateDatePickerOut {
+    // Animate out the datepicker
+    CGRect datePickerFrame = _datePicker.frame;
+    datePickerFrame.origin.y = self.view.window.bounds.size.height;
+    
+    // Slide up the tableView to make space
+    CGRect newFrame = self.tableView.frame;
+    newFrame.size.height += _datePicker.frame.size.height;
+    
+    [UIView animateWithDuration:0.25 
+                          delay:0.0 
+                        options:UIViewAnimationCurveEaseIn 
+                     animations:^{
+                         _datePicker.frame = datePickerFrame;
+                         _tableView.frame = newFrame;
+                     }
+                     completion:^(BOOL finished) {
+                         if(finished) {
+                             [_datePicker removeFromSuperview];
+                         }
+                     }];
+    [self.navigationItem setRightBarButtonItem:_saveButton];
+}
+
+-(void) animateDatePickerIn {
+    CGSize pickerSize = [_datePicker sizeThatFits:CGSizeZero];
+    _datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0.0, self.view.window.bounds.size.height, pickerSize.width, pickerSize.height)];
+    [_datePicker setDatePickerMode:UIDatePickerModeDate];
+    [_datePicker setDate:[[NSDate alloc] init]];
+    [self.view.window addSubview:_datePicker];
+    // Animate in the datepicker
+    CGRect pickerRect = CGRectMake(0.0,
+                                   self.view.window.bounds.size.height - _datePicker.frame.size.height,
+                                   _datePicker.frame.size.width,
+                                   _datePicker.frame.size.height);
+    // Slide up the tableView to make space
+    CGRect tableViewFrame = self.tableView.frame;
+    tableViewFrame.size.height -= _datePicker.frame.size.height;
+    tableViewFrame.size.height += self.tabBarController.tabBar.frame.size.height;
+    
+    [UIView animateWithDuration:0.25
+                          delay:0.0 
+                        options:UIViewAnimationCurveEaseIn 
+                     animations:^{
+                         _datePicker.frame = pickerRect;
+                         _tableView.frame = tableViewFrame;
+                     }
+                     completion:nil];
+    [self.navigationItem setRightBarButtonItem:_doneButton];
+}
+
+-(void)resignFirstResponderForSubviewsOfView:(UIView *)aView {
+    
+    for (UIView *subview in [aView subviews]) {
+        
+        if ([subview isKindOfClass:[UITextField class]] || [subview isKindOfClass:[UITextView class]])
+            [(id)subview resignFirstResponder];
+        
+        [self resignFirstResponderForSubviewsOfView:subview];
+    }
+}
 
 -(UITextField *) makeTxtField {
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(140, 12, 165, 30)];
@@ -428,11 +562,31 @@ static float kEmptyLocation = -1000;
 }
 
 -(void) createNavBarButtons {
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveButtonClicked:)];
-    [[self navigationItem] setRightBarButtonItem:saveButton];
+    _doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonClicked:)];
+    
+    _saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveButtonClicked:)];
+    [[self navigationItem] setRightBarButtonItem:_saveButton];
 
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked:)];
-    [[self navigationItem] setLeftBarButtonItem:cancelButton];
+    _cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked:)];
+    [[self navigationItem] setLeftBarButtonItem:_cancelButton];
+}
+
+-(void) createPostToFBButton {
+    UIView *holderView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 60.0)];
+    [holderView setBackgroundColor:[UIColor clearColor]];
+    
+    UIButton *postToFB = [UIButton buttonWithType:UIButtonTypeCustom];
+    [postToFB setFrame:CGRectMake(10.0, 7.0, 300.0, 45.0)];
+    [postToFB setBackgroundColor:[UIColor clearColor]];
+    [postToFB setBackgroundImage:[UIImage imageNamed:@"post_to_fb.png"] 
+                        forState:UIControlStateNormal];
+    
+    [postToFB addTarget:self 
+                 action:@selector(postToFBClicked:) 
+       forControlEvents:UIControlEventTouchUpInside];
+    
+    [holderView addSubview:postToFB];
+    [self.tableView setTableFooterView:holderView];
 }
 
 -(UIColor *) darkBlueTextColor {

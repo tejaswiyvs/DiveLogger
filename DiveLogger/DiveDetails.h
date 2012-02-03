@@ -7,14 +7,22 @@
 //
 
 #import "Dive.h"
+#import "TYAppDelegate.h"
+#import "Facebook.h"
 
 @protocol TYDiveDetailsDelegate;
-@interface DiveDetails : UITableViewController<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface DiveDetails : UITableViewController<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, FBDialogDelegate> {
     __unsafe_unretained id<TYDiveDetailsDelegate> _delegate; // ?? TODO - Figure out later. Some ARC issue.
     NSManagedObjectContext *_diveDetailsContext;
     Dive *_dive;
     BOOL _newDive;
+    TYAppDelegate *_appDelegate;
+    
     UITableView *_tableView;
+    UIDatePicker *_datePicker;
+    UIBarButtonItem *_doneButton;
+    UIBarButtonItem *_saveButton;
+    UIBarButtonItem *_cancelButton;
     
     // TextFields
     UITextField *_diveNameTxt;
@@ -34,8 +42,13 @@
 @property (nonatomic, assign) id<TYDiveDetailsDelegate> delegate;
 @property (nonatomic, assign) BOOL newDive;
 @property (nonatomic, retain) NSManagedObjectContext *diveDetailsContext;
+@property (nonatomic, retain) TYAppDelegate *appDelegate;
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) UIBarButtonItem *doneButton;
+@property (nonatomic, retain) UIBarButtonItem *saveButton;
+@property (nonatomic, retain) UIBarButtonItem *cancelButton;
+@property (nonatomic, retain) UIDatePicker *datePicker;
 @property (nonatomic, retain) UITextField *diveNameTxt;
 @property (nonatomic, retain) UITextField *diveDateTxt;
 @property (nonatomic, retain) UITextField *diveLocTxt;
@@ -50,6 +63,11 @@
 -(id) initWithDive:(Dive *) dive;
 -(IBAction)cancelButtonClicked:(id)sender;
 -(IBAction)saveButtonClicked:(id)sender;
+-(void) doneButtonClicked:(id) sender;
+-(void) postToFBClicked:(id) sender;
+- (void)resignFirstResponderForSubviewsOfView:(UIView *)aView;
+-(void) animateDatePickerOut;
+-(void) animateDatePickerIn;
 @end
 
 @protocol TYDiveDetailsDelegate <NSObject>
