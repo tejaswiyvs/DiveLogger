@@ -24,10 +24,7 @@
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -36,10 +33,10 @@
 {
     [super viewDidLoad];
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_active.png"]]];
-//    [self.view setBackgroundColor:[UIColor colorWithRed:226.0/255.0 green:226.0/255.0 blue:226.0/255.0 alpha:1.0]];
 }
 
 -(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     TYAppDelegate *appDelegate = (TYAppDelegate *) [UIApplication sharedApplication].delegate;
     if([appDelegate.facebook isSessionValid]) {
         [connectToFacebookBtn setEnabled:NO];

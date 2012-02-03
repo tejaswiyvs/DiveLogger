@@ -35,12 +35,9 @@
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
-
+            
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -139,9 +136,7 @@
 		
 		NSError *error;
 		if (![context save:&error]) {
-			// Update to handle the error appropriately.
-			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-			exit(-1);  // Fail
+            [TYGenericUtils displayAttentionAlert:@"Couldn't save dive. Please restart the app."];
 		}
         [self refreshBg];
     }
@@ -166,25 +161,13 @@
     NSError *error;
     if (![managedObjectContext save:&error]) {
         // Update to handle the error appropriately.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        exit(-1);  // Fail
+        [TYGenericUtils displayAttentionAlert:@"Couldn't save dive. Please restart the app."];
     }
     [dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
-    /*NSError *error;
-    if (![managedObjectContext save:&error]) {
-        // Update to handle the error appropriately.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        exit(-1);  // Fail
-    }
-    _dives = [appDelegate reloadFromDB];*/
-//    [self sortDives];
     [_divesList reloadData];
 }
 
 -(void) didDismissWithoutSaving {
-    /* TYAppDelegate *delegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
-    [delegate.managedObjectContext reset];
-    [_divesList reloadData]; */
     DebugLog(@"The Add / edit dive screen was cancelled");
 }
 
@@ -214,7 +197,7 @@
 	[fetchRequest setEntity:entity];
 	
 	// Create the sort descriptors array.
-	NSSortDescriptor *diveDateDescriptor = [[NSSortDescriptor alloc] initWithKey:@"diveDate" ascending:YES];
+	NSSortDescriptor *diveDateDescriptor = [[NSSortDescriptor alloc] initWithKey:@"diveDate" ascending:NO];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:diveDateDescriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	
@@ -224,7 +207,6 @@
 	fetchedResultsController.delegate = self;
 	return fetchedResultsController;
 }    
-
 
 /**
  Delegate methods of NSFetchedResultsController to respond to additions, removals and so on.
@@ -290,15 +272,12 @@
 	int count = [sectionInfo numberOfObjects];
 
     if(!fetchedResultsController || count == 0) {
-//        [_emptyLabel setHidden:NO];
         [_divesList setHidden:YES];
         [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_empty.png"]]];
     }
     else {
-//        [self.view setBackgroundColor:[UIColor whiteColor]];
         [_emptyLabel setHidden:YES];
         [_divesList setHidden:NO];
-//        [_divesList setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]];
     }
 }
 

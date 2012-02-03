@@ -41,7 +41,6 @@
         _facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
         _facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
     }
-//    [self reloadFromDB];    
     return YES;
 }
 
@@ -62,7 +61,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -79,8 +78,8 @@
     [SCAppUtils customizeNavigationController:navigationController];
     DiveMap *map = [[DiveMap alloc] init];
     Profile *profile = [[Profile alloc] init];
-    Settings *settings = [[Settings alloc] init];
-    NSArray *viewControllers = [NSArray arrayWithObjects:navigationController, map, profile, settings, nil];
+//    Settings *settings = [[Settings alloc] init];
+    NSArray *viewControllers = [NSArray arrayWithObjects:navigationController, map, profile, nil];
     TYUITabBarController *tabBar = [[TYUITabBarController alloc] init];
     // UITabBarController *tabBar = [[UITabBarController alloc] init];
     [tabBar setViewControllers:viewControllers];
