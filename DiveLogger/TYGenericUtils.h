@@ -19,5 +19,6 @@
 + (NSString *)stringFromDate:(NSDate *)date;
 + (NSDate *)dateFromString:(NSString *)dateString;
 + (void)customizeNavigationController:(UINavigationController *)navController;
++ (void)trackEvent:(NSString *)eventName properties:(NSDictionary *)properties;
 
 @end

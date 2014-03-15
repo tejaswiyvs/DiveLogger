@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B7136C0314686123005CE555"
                BuildableName = "DiveLogger.app"
-               BlueprintName = "DiveLogger"
+               BlueprintName = "DiveLoggr"
                ReferencedContainer = "container:DiveLogger.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B7136C0314686123005CE555"
             BuildableName = "DiveLogger.app"
-            BlueprintName = "DiveLogger"
+            BlueprintName = "DiveLoggr"
             ReferencedContainer = "container:DiveLogger.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B7136C0314686123005CE555"
             BuildableName = "DiveLogger.app"
-            BlueprintName = "DiveLogger"
+            BlueprintName = "DiveLoggr"
             ReferencedContainer = "container:DiveLogger.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B7136C0314686123005CE555"
             BuildableName = "DiveLogger.app"
-            BlueprintName = "DiveLogger"
+            BlueprintName = "DiveLoggr"
             ReferencedContainer = "container:DiveLogger.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

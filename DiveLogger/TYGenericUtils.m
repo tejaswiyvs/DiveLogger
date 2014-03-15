@@ -7,8 +7,19 @@
 //
 
 #import "TYGenericUtils.h"
+#import "Mixpanel.h"
 
 @implementation TYGenericUtils
+
++ (void)trackEvent:(NSString *)eventName properties:(NSDictionary *)properties {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    if (!properties) {
+        [mixpanel track:eventName];
+    }
+    else {
+        [mixpanel track:eventName properties:properties];
+    }
+}
 
 + (void)displayAttentionAlert:(NSString *)message {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Attention" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

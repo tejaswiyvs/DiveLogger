@@ -143,11 +143,13 @@
 	DiveDetails *diveDetails = [[DiveDetails alloc] initWithDive:nil];
 	[diveDetails setDelegate:self];
 	[self.navigationController pushViewController:diveDetails animated:YES];
+    [TYGenericUtils trackEvent:@"AddButtonClicked" properties:nil];
 }
 
 #pragma mark - DiveDetailsDelegate
 
 - (void)didSaveDive:(Dive *)dive inContext:(NSManagedObjectContext *)managedObjectContext {
+    [TYGenericUtils trackEvent:@"DiveSaved" properties:nil];
 	DDLogInfo(@"A dive was edited / saved. Reloading data. %@", dive.diveName);
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc addObserver:self selector:@selector(addControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
@@ -162,6 +164,7 @@
 }
 
 - (void)didDismissWithoutSaving {
+    [TYGenericUtils trackEvent:@"DiveNotSaved" properties:nil];
 	DDLogInfo(@"The Add / edit dive screen was cancelled");
 }
 

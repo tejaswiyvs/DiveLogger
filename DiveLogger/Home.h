@@ -9,11 +9,6 @@
 #import "HomeCell.h"
 
 @interface Home : UIViewController <NSFetchedResultsControllerDelegate, TYDiveDetailsDelegate>
-{
-	UITableView *_divesList;
-	NSFetchedResultsController *fetchedResultsController;
-	UILabel *_emptyLabel;
-}
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) IBOutlet UITableView *divesList;
@@ -21,4 +16,5 @@
 
 - (id)init;
 - (void)configureCell:(HomeCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
 @end

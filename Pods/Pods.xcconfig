@@ -1,5 +1,5 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/CocoaLumberjack" "${PODS_ROOT}/Headers/ObjectiveSugar" "${PODS_ROOT}/Headers/SVProgressHUD"
-OTHER_CFLAGS = $(inherited) "-isystem${PODS_ROOT}/Headers" "-isystem${PODS_ROOT}/Headers/CocoaLumberjack" "-isystem${PODS_ROOT}/Headers/ObjectiveSugar" "-isystem${PODS_ROOT}/Headers/SVProgressHUD"
-OTHER_LDFLAGS = -ObjC -framework QuartzCore
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/Appirater" "${PODS_ROOT}/Headers/CocoaLumberjack" "${PODS_ROOT}/Headers/FXForms" "${PODS_ROOT}/Headers/Mixpanel" "${PODS_ROOT}/Headers/ObjectiveSugar" "${PODS_ROOT}/Headers/SVProgressHUD"
+OTHER_CFLAGS = $(inherited) "-isystem${PODS_ROOT}/Headers" "-isystem${PODS_ROOT}/Headers/Appirater" "-isystem${PODS_ROOT}/Headers/CocoaLumberjack" "-isystem${PODS_ROOT}/Headers/FXForms" "-isystem${PODS_ROOT}/Headers/Mixpanel" "-isystem${PODS_ROOT}/Headers/ObjectiveSugar" "-isystem${PODS_ROOT}/Headers/SVProgressHUD"
+OTHER_LDFLAGS = -ObjC -framework Accelerate -framework CFNetwork -framework CoreGraphics -framework CoreTelephony -framework Foundation -framework QuartzCore -framework SystemConfiguration -framework UIKit -weak_framework StoreKit
 PODS_ROOT = ${SRCROOT}/Pods

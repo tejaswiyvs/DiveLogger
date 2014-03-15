@@ -1,19 +1,28 @@
 PODS:
+  - Appirater (2.0.2)
   - CocoaLumberjack (1.8.1):
     - CocoaLumberjack/Extensions
   - CocoaLumberjack/Core (1.8.1)
   - CocoaLumberjack/Extensions (1.8.1):
     - CocoaLumberjack/Core
+  - FXForms (1.0.2)
+  - Mixpanel (2.3.2)
   - ObjectiveSugar (1.1.0)
   - SVProgressHUD (1.0)
 
 DEPENDENCIES:
+  - Appirater
   - CocoaLumberjack
+  - FXForms
+  - Mixpanel
   - ObjectiveSugar
   - SVProgressHUD
 
 SPEC CHECKSUMS:
+  Appirater: 32fb9089615b5e542c7ad7b5749741a8aed55290
   CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
+  FXForms: dc989f8d90d66751e7ee79cf8e36ae50aed23051
+  Mixpanel: ddd79df92245a14d2b3064544d1e9ff037d8ac3a
   ObjectiveSugar: fed588577bcf9733546aeaa089de444e4bab9a52
   SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
 

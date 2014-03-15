@@ -4,3 +4,6 @@ platform :ios, "7.0"
 pod 'SVProgressHUD'
 pod 'ObjectiveSugar'
 pod 'CocoaLumberjack'
+pod 'Appirater'
+pod 'FXForms'
+pod 'Mixpanel'

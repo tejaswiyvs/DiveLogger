@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "Dive.h"
+#import "Appirater.h"
 
-@interface TYAppDelegate : UIResponder <UIApplicationDelegate>
+@interface TYAppDelegate : UIResponder <UIApplicationDelegate, AppiraterDelegate>
 
 @property (nonatomic, retain) UITabBarController *tabBar;
 @property (strong, nonatomic) UIWindow *window;

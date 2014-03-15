@@ -18,9 +18,6 @@
 
 @implementation DiveMap
 
-@synthesize dives = _dives;
-@synthesize map = _map;
-
 - (id)init {
 	self = [super initWithNibName:@"DiveMap" bundle:nil];
 	if (self) {

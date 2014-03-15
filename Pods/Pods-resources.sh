@@ -41,7 +41,22 @@ install_resource()
       ;;
   esac
 }
+install_resource "Mixpanel/Mixpanel/MPArrowLeft.png"
+install_resource "Mixpanel/Mixpanel/MPArrowLeft@2x.png"
+install_resource "Mixpanel/Mixpanel/MPArrowRight.png"
+install_resource "Mixpanel/Mixpanel/MPArrowRight@2x.png"
+install_resource "Mixpanel/Mixpanel/MPCheckmark.png"
+install_resource "Mixpanel/Mixpanel/MPCheckmark@2x.png"
+install_resource "Mixpanel/Mixpanel/MPCloseBtn.png"
+install_resource "Mixpanel/Mixpanel/MPCloseBtn@2x.png"
+install_resource "Mixpanel/Mixpanel/MPDismissKeyboard.png"
+install_resource "Mixpanel/Mixpanel/MPDismissKeyboard@2x.png"
+install_resource "Mixpanel/Mixpanel/MPLogo.png"
+install_resource "Mixpanel/Mixpanel/MPLogo@2x.png"
+install_resource "Mixpanel/Mixpanel/MPNotification.storyboard"
+install_resource "Mixpanel/Mixpanel/MPSurvey.storyboard"
 install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
+install_resource "${BUILT_PRODUCTS_DIR}/Appirater.bundle"
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

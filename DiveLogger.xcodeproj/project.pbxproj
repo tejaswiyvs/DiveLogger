@@ -39,6 +39,7 @@
 		B737F3971793698D00FECD0D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F3961793698D00FECD0D /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B737F3991793699300FECD0D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F3981793699300FECD0D /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B737F39C179369DD00FECD0D /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B737F39A179369DD00FECD0D /* FacebookSDKResources.bundle */; };
+		B74295BF18D40C5A007A412F /* TYThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B74295BE18D40C5A007A412F /* TYThemeManager.m */; };
 		B749E08E149BF5B0004186A9 /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E08B149BF5B0004186A9 /* settings-icon.png */; };
 		B749E08F149BF5B0004186A9 /* settings-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E08C149BF5B0004186A9 /* settings-icon@2x.png */; };
 		B749E094149BF5C9004186A9 /* profile-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E091149BF5C9004186A9 /* profile-icon.png */; };
@@ -85,7 +86,7 @@
 		B70E61F41468E3F100FABBA9 /* DiveDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveDetails.h; sourceTree = "<group>"; };
 		B70E61F51468E3F100FABBA9 /* DiveDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveDetails.m; sourceTree = "<group>"; };
 		B70E61F61468E3F200FABBA9 /* DiveDetails.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiveDetails.xib; sourceTree = "<group>"; };
-		B7136C0414686123005CE555 /* DiveLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7136C0414686123005CE555 /* DiveLoggr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveLoggr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7136C0814686123005CE555 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B7136C0A14686123005CE555 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7136C0C14686123005CE555 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -118,6 +119,8 @@
 		B737F3961793698D00FECD0D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B737F3981793699300FECD0D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B737F39A179369DD00FECD0D /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "facebook-ios-sdk/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"; sourceTree = "<group>"; };
+		B74295BD18D40C5A007A412F /* TYThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYThemeManager.h; sourceTree = "<group>"; };
+		B74295BE18D40C5A007A412F /* TYThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYThemeManager.m; sourceTree = "<group>"; };
 		B749E08B149BF5B0004186A9 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
 		B749E08C149BF5B0004186A9 /* settings-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon@2x.png"; sourceTree = "<group>"; };
 		B749E091149BF5C9004186A9 /* profile-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-icon.png"; sourceTree = "<group>"; };
@@ -223,7 +226,7 @@
 		B7136C0514686123005CE555 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B7136C0414686123005CE555 /* DiveLogger.app */,
+				B7136C0414686123005CE555 /* DiveLoggr.app */,
 				B7136C1F14686123005CE555 /* DiveLoggerTests.octest */,
 			);
 			name = Products;
@@ -254,16 +257,13 @@
 		B7136C0E14686123005CE555 /* DiveLogger */ = {
 			isa = PBXGroup;
 			children = (
-				B79DA3A2146C26780078179C /* CustomUITableViewCell */,
-				B7D166671469AEFC00280846 /* Utils */,
+				B74295BB18D407EE007A412F /* Libraries */,
 				B70E61A41468977400FABBA9 /* Images */,
 				B7136C3C1468650D005CE555 /* Models */,
 				B737F39D1793723700FECD0D /* Views + Controllers */,
 				B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */,
 				B7136C1714686123005CE555 /* TYAppDelegate.h */,
 				B7136C1814686123005CE555 /* TYAppDelegate.m */,
-				B7FFF2D1146B0365000CC125 /* DiveAnnotation.h */,
-				B7FFF2D2146B0365000CC125 /* DiveAnnotation.m */,
 				B7136C0F14686123005CE555 /* Supporting Files */,
 			);
 			path = DiveLogger;
@@ -313,6 +313,7 @@
 		B737F39D1793723700FECD0D /* Views + Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B79DA3A2146C26780078179C /* CustomUITableViewCell */,
 				B7136C3714686309005CE555 /* Home.h */,
 				B7136C3814686309005CE555 /* Home.m */,
 				B7136C3914686309005CE555 /* Home.xib */,
@@ -322,6 +323,8 @@
 				B70E61F41468E3F100FABBA9 /* DiveDetails.h */,
 				B70E61F51468E3F100FABBA9 /* DiveDetails.m */,
 				B70E61F61468E3F200FABBA9 /* DiveDetails.xib */,
+				B7FFF2D1146B0365000CC125 /* DiveAnnotation.h */,
+				B7FFF2D2146B0365000CC125 /* DiveAnnotation.m */,
 				B7FFF2D6146B0973000CC125 /* DiveLocationPicker.h */,
 				B7FFF2D7146B0973000CC125 /* DiveLocationPicker.m */,
 				B7FFF2D8146B0973000CC125 /* DiveLocationPicker.xib */,
@@ -333,6 +336,24 @@
 				B73358D3148D5E6C003BE6CA /* Settings.xib */,
 			);
 			name = "Views + Controllers";
+			sourceTree = "<group>";
+		};
+		B74295BB18D407EE007A412F /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				B74295BC18D40C46007A412F /* TYThemeManager */,
+				B7D166671469AEFC00280846 /* Utils */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		B74295BC18D40C46007A412F /* TYThemeManager */ = {
+			isa = PBXGroup;
+			children = (
+				B74295BD18D40C5A007A412F /* TYThemeManager.h */,
+				B74295BE18D40C5A007A412F /* TYThemeManager.m */,
+			);
+			name = TYThemeManager;
 			sourceTree = "<group>";
 		};
 		B79DA3A2146C26780078179C /* CustomUITableViewCell */ = {
@@ -362,9 +383,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B7136C0314686123005CE555 /* DiveLogger */ = {
+		B7136C0314686123005CE555 /* DiveLoggr */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B7136C3114686123005CE555 /* Build configuration list for PBXNativeTarget "DiveLogger" */;
+			buildConfigurationList = B7136C3114686123005CE555 /* Build configuration list for PBXNativeTarget "DiveLoggr" */;
 			buildPhases = (
 				938AA5CC284244E8BE53526B /* Check Pods Manifest.lock */,
 				B7136C0014686123005CE555 /* Sources */,
@@ -376,9 +397,9 @@
 			);
 			dependencies = (
 			);
-			name = DiveLogger;
+			name = DiveLoggr;
 			productName = DiveLogger;
-			productReference = B7136C0414686123005CE555 /* DiveLogger.app */;
+			productReference = B7136C0414686123005CE555 /* DiveLoggr.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B7136C1E14686123005CE555 /* DiveLoggerTests */ = {
@@ -421,7 +442,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B7136C0314686123005CE555 /* DiveLogger */,
+				B7136C0314686123005CE555 /* DiveLoggr */,
 				B7136C1E14686123005CE555 /* DiveLoggerTests */,
 			);
 		};
@@ -532,6 +553,7 @@
 				B79DA3C3146C68E20078179C /* Profile.m in Sources */,
 				B79DA3D1146CAE5B0078179C /* ProfileCell.m in Sources */,
 				B7F85B4F14716754008EE873 /* DiveLogger.xcdatamodel in Sources */,
+				B74295BF18D40C5A007A412F /* TYThemeManager.m in Sources */,
 				B7F85B601471731A008EE873 /* Dive.m in Sources */,
 				B7F85B631471731B008EE873 /* Tank.m in Sources */,
 				B73358D4148D5E6C003BE6CA /* Settings.m in Sources */,
@@ -551,7 +573,7 @@
 /* Begin PBXTargetDependency section */
 		B7136C2514686123005CE555 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B7136C0314686123005CE555 /* DiveLogger */;
+			target = B7136C0314686123005CE555 /* DiveLoggr */;
 			targetProxy = B7136C2414686123005CE555 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -733,7 +755,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B7136C3114686123005CE555 /* Build configuration list for PBXNativeTarget "DiveLogger" */ = {
+		B7136C3114686123005CE555 /* Build configuration list for PBXNativeTarget "DiveLoggr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B7136C3214686123005CE555 /* Debug */,

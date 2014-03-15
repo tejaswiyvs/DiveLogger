@@ -11,6 +11,7 @@
 #import "DiveMap.h"
 #import "Profile.h"
 #import "Settings.h"
+#import "Mixpanel.h"
 
 @interface TYAppDelegate ()
 
@@ -20,20 +21,16 @@
 
 @implementation TYAppDelegate
 
+#define MIXPANEL_TOKEN @"YOUR_TOKEN"
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.tabBar = [self createTabBar];
 	[self.window addSubview:self.tabBar.view];
 	[self.window makeKeyAndVisible];
-    
-	// Setup Facebook
-    //    _facebook = [[Facebook alloc] initWithAppId:@"250994151631017" andDelegate:self];
-    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //    if([defaults objectForKey:@"FBAccessTokenKey"]
-    //            && [defaults objectForKey:@"FBExpirationDateKey"]) {
-    //        _facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-    //        _facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-    //    }
+    [self configureAppIRater];
+    [self configureMixpanel];
+    [TYGenericUtils trackEvent:@"AppLaunched" properties:nil];
 	return YES;
 }
 
@@ -44,9 +41,11 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -160,6 +159,39 @@
 
 - (NSURL *)applicationDocumentsDirectory {
 	return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - Helpers
+
+- (void)configureMixpanel {
+    [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
+}
+
+#pragma mark - Appirater
+
+- (void)configureAppIRater {
+    [Appirater setAppId:@"596726594"];
+    [Appirater setDaysUntilPrompt:7];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setDebug:NO];
+    [Appirater appLaunched:YES];
+    [Appirater setDelegate:self];
+}
+
+- (void)appiraterDidDeclineToRate:(Appirater *)appirater {
+    [TYGenericUtils trackEvent:@"AppiraterDeclinedToRate" properties:nil];
+}
+
+- (void)appiraterDidOptToRate:(Appirater *)appirater {
+    [TYGenericUtils trackEvent:@"AppiraterOptToRateApp" properties:nil];
+}
+
+- (void)appiraterDidOptToRemindLater:(Appirater *)appirater {
+    [TYGenericUtils trackEvent:@"AppiraterRemindLater" properties:nil];
+}
+
+- (void)appiraterDidDisplayAlert:(Appirater *)appirater {
+    [TYGenericUtils trackEvent:@"AppiraterDisplayed" properties:nil];
 }
 
 #pragma mark - Facebook Delegate
