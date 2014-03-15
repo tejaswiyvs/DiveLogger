@@ -19,11 +19,11 @@
 }
 
 + (UIColor *)themePrimaryTextColor {
-    return [UIColor colorFromHexString:@""];
+    return [UIColor colorFromHexString:@"#2B2B2B"];
 }
 
 + (UIColor *)themeSecondaryTextColor {
-    return [UIColor colorFromHexString:@""];
+    return [UIColor colorFromHexString:@"#8E8E93"];
 }
 
 + (UIColor *)colorFromHexString:(NSString *)hexString {

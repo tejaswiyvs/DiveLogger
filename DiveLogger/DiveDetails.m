@@ -11,37 +11,7 @@
 #import "TYAppDelegate.h"
 #import "Tank.h"
 
-@interface DiveDetails (private)
-- (void)createNavBarButtons;
-- (void)createPostToFBButton;
-- (void)dismissKeyboard;
-- (void)validateDive;
-- (BOOL)validateAndSave;
-- (UIColor *)darkBlueTextColor;
-- (UITextField *)makeTxtField;
-- (UITableViewCell *)makeNewCell;
-- (UITableViewCell *)makeVisibilityCell;
-- (UITableViewCell *)makeAirTemperatureCell;
-- (UITableViewCell *)makeWaterTemperatureCell;
-- (UITableViewCell *)makeDiveTimeCell;
-@end
-
 @implementation DiveDetails
-
-@synthesize dive = _dive;
-@synthesize delegate = _delegate;
-@synthesize newDive = _newDive;
-@synthesize tableView = _tableView;
-@synthesize datePicker = _datePicker;
-@synthesize diveDetailsContext = _diveDetailsContext;
-@synthesize appDelegate = _appDelegate;
-@synthesize doneButton = _doneButton;
-@synthesize cancelButton = _cancelButton;
-@synthesize saveButton = _saveButton;
-
-@synthesize diveAirTempTxt = _diveAirTempTxt, diveDateTxt = _diveDateTxt, diveLocTxt = _diveLocTxt, diveNameTxt = _diveNameTxt, diveTimeTxt = _diveTimeTxt, diveVisibilityTxt = _diveVisibilityTxt, diveWaterTempTxt = _diveWaterTempTxt;
-
-@synthesize tankAirCompositionTxt = _tankAirCompositionTxt, tankEndingPressureTxt = _tankEndingPressureTxt, tankStartingPressureTxt = _tankStartingPressureTxt;
 
 static int kNumberOfSections = 3;
 static float kEmptyLocation = -1000;
@@ -105,7 +75,7 @@ static float kEmptyLocation = -1000;
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	[_tableView reloadData];
+	[self.tableView reloadData];
 }
 
 - (void)viewDidUnload {
@@ -282,7 +252,7 @@ static float kEmptyLocation = -1000;
 	[_dive setDiveDate:diveDate];
 	NSIndexPath *dateIndexPath = [NSIndexPath indexPathForRow:1
 	                                                inSection:0];
-	[_tableView reloadRowsAtIndexPaths:@[dateIndexPath]
+	[self.tableView reloadRowsAtIndexPaths:@[dateIndexPath]
 	                  withRowAnimation:UITableViewRowAnimationFade];
 	[self animateDatePickerOut];
 }
@@ -309,39 +279,7 @@ static float kEmptyLocation = -1000;
 }
 
 - (void)postToFBClicked:(id)sender {
-	DDLogInfo(@"Clicked post to Facebook");
-    
-    //    Facebook *facebook = _appDelegate.facebook;
-    //    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    //    [params setObject:@"I've been diving!" forKey:@"name"];
-    
-    //    if(facebook.isSessionValid) {
-    //        [facebook authorize:nil];
-    //    }
-    
-	// Create a dive description
-	// I've just finished my dive: %@. Dive time: %@, Gas: %@
-    //    NSString *diveDescription = [NSString stringWithFormat:@"I've just finished my dive: %@.", _dive.diveName];
-    //    if(_dive.diveTime) {
-    //        [diveDescription stringByAppendingFormat:@" Dive Time: %@.", [_dive.diveTime stringValue]];
-    //    }
-    //    if(_dive.tank.airComposition) {
-    //        [diveDescription stringByAppendingFormat:@" Air Composition: %@", _dive.tank.airComposition];
-    //    }
-    //    [params setObject:diveDescription forKey:@"description"];
-	// [params setObject:@"Icon@2x.png" forKey:@"picture"];
-    
-	// Verify if the dive has a valid location & link to the maps url of that location
-    //    if(_dive.diveLocationX != nil && _dive.diveLocationY != nil && [_dive.diveLocationX floatValue] != kEmptyLocation  && [_dive.diveLocationY floatValue] != kEmptyLocation) {
-    //        NSString *diveLatitude = [_dive.diveLocationX stringValue];
-    //        NSString *diveLongitude = [_dive.diveLocationY stringValue];
-    //        NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/?q=%@,%@", diveLatitude, diveLongitude];
-    //        [params setObject:urlString forKey:@"link"];
-    //    }
-    
-    //    [facebook dialog:@"feed"
-    //           andParams:params
-    //         andDelegate:self];
+	DDLogInfo(@"Clicked post to Facebook");    
 }
 
 #pragma mark - UITextFieldDelegate
@@ -419,7 +357,7 @@ static float kEmptyLocation = -1000;
 	                    options:UIViewAnimationOptionCurveEaseIn
 	                 animations: ^{
                          _datePicker.frame = datePickerFrame;
-                         _tableView.frame = newFrame;
+                         self.tableView.frame = newFrame;
                      }
      
 	                 completion: ^(BOOL finished) {
@@ -451,7 +389,7 @@ static float kEmptyLocation = -1000;
 	                    options:UIViewAnimationOptionCurveEaseIn
 	                 animations: ^{
                          _datePicker.frame = pickerRect;
-                         _tableView.frame = tableViewFrame;
+                         self.tableView.frame = tableViewFrame;
                      }
      
 	                 completion:nil];

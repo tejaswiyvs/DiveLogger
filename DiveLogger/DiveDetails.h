@@ -10,54 +10,29 @@
 #import "TYAppDelegate.h"
 
 @protocol TYDiveDetailsDelegate;
-@interface DiveDetails : UITableViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
-	__unsafe_unretained id <TYDiveDetailsDelegate> _delegate; // ?? TODO - Figure out later. Some ARC issue.
-	NSManagedObjectContext *_diveDetailsContext;
-	Dive *_dive;
-	BOOL _newDive;
-	TYAppDelegate *_appDelegate;
-    
-	UITableView *_tableView;
-	UIDatePicker *_datePicker;
-	UIBarButtonItem *_doneButton;
-	UIBarButtonItem *_saveButton;
-	UIBarButtonItem *_cancelButton;
-    
-	// TextFields
-	UITextField *_diveNameTxt;
-	UITextField *_diveDateTxt;
-	UITextField *_diveLocTxt;
-	UITextField *_diveTimeTxt;
-	UITextField *_tankStartingPressureTxt;
-	UITextField *_tankEndingPressureTxt;
-	UITextField *_tankAirCompositionTxt;
-	UITextField *_diveVisibilityTxt;
-	UITextField *_diveAirTempTxt;
-	UITextField *_diveWaterTempTxt;
-	CLLocationCoordinate2D diveLocation;
-}
+@interface DiveDetails : UITableViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, retain) Dive *dive;
-@property (nonatomic, assign) id <TYDiveDetailsDelegate> delegate;
-@property (nonatomic, assign) BOOL newDive;
-@property (nonatomic, retain) NSManagedObjectContext *diveDetailsContext;
-@property (nonatomic, retain) TYAppDelegate *appDelegate;
+@property (nonatomic, strong) Dive *dive;
+@property (nonatomic) id <TYDiveDetailsDelegate> delegate;
+@property (nonatomic) BOOL newDive;
+@property (nonatomic, strong) NSManagedObjectContext *diveDetailsContext;
+@property (nonatomic, strong) TYAppDelegate *appDelegate;
 
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) UIBarButtonItem *doneButton;
-@property (nonatomic, retain) UIBarButtonItem *saveButton;
-@property (nonatomic, retain) UIBarButtonItem *cancelButton;
-@property (nonatomic, retain) UIDatePicker *datePicker;
-@property (nonatomic, retain) UITextField *diveNameTxt;
-@property (nonatomic, retain) UITextField *diveDateTxt;
-@property (nonatomic, retain) UITextField *diveLocTxt;
-@property (nonatomic, retain) UITextField *diveTimeTxt;
-@property (nonatomic, retain) UITextField *tankStartingPressureTxt;
-@property (nonatomic, retain) UITextField *tankEndingPressureTxt;
-@property (nonatomic, retain) UITextField *tankAirCompositionTxt;
-@property (nonatomic, retain) UITextField *diveVisibilityTxt;
-@property (nonatomic, retain) UITextField *diveAirTempTxt;
-@property (nonatomic, retain) UITextField *diveWaterTempTxt;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIBarButtonItem *doneButton;
+@property (nonatomic, strong) UIBarButtonItem *saveButton;
+@property (nonatomic, strong) UIBarButtonItem *cancelButton;
+@property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) UITextField *diveNameTxt;
+@property (nonatomic, strong) UITextField *diveDateTxt;
+@property (nonatomic, strong) UITextField *diveLocTxt;
+@property (nonatomic, strong) UITextField *diveTimeTxt;
+@property (nonatomic, strong) UITextField *tankStartingPressureTxt;
+@property (nonatomic, strong) UITextField *tankEndingPressureTxt;
+@property (nonatomic, strong) UITextField *tankAirCompositionTxt;
+@property (nonatomic, strong) UITextField *diveVisibilityTxt;
+@property (nonatomic, strong) UITextField *diveAirTempTxt;
+@property (nonatomic, strong) UITextField *diveWaterTempTxt;
 
 - (id)initWithDive:(Dive *)dive;
 - (IBAction)cancelButtonClicked:(id)sender;

@@ -31,7 +31,6 @@
 		B71AEB68146CE37E00646545 /* line-chart.png in Resources */ = {isa = PBXBuildFile; fileRef = B71AEB67146CE37E00646545 /* line-chart.png */; };
 		B73358D4148D5E6C003BE6CA /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B73358D2148D5E6C003BE6CA /* Settings.m */; };
 		B73358D5148D5E6C003BE6CA /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73358D3148D5E6C003BE6CA /* Settings.xib */; };
-		B737F38B1793680500FECD0D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B737F38A1793680500FECD0D /* Default-568h@2x.png */; };
 		B737F38F1793693800FECD0D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F38D1793693800FECD0D /* FacebookSDK.framework */; };
 		B737F3911793697900FECD0D /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F3901793697900FECD0D /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B737F3931793697D00FECD0D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F3921793697D00FECD0D /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -41,6 +40,7 @@
 		B737F39C179369DD00FECD0D /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B737F39A179369DD00FECD0D /* FacebookSDKResources.bundle */; };
 		B74295BF18D40C5A007A412F /* TYThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B74295BE18D40C5A007A412F /* TYThemeManager.m */; };
 		B74295C318D41316007A412F /* UIColor+ThemeColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B74295C218D41316007A412F /* UIColor+ThemeColors.m */; };
+		B74295C518D4170B007A412F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B74295C418D4170B007A412F /* Images.xcassets */; };
 		B749E08E149BF5B0004186A9 /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E08B149BF5B0004186A9 /* settings-icon.png */; };
 		B749E08F149BF5B0004186A9 /* settings-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E08C149BF5B0004186A9 /* settings-icon@2x.png */; };
 		B749E094149BF5C9004186A9 /* profile-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E091149BF5C9004186A9 /* profile-icon.png */; };
@@ -49,14 +49,12 @@
 		B749E09B149BF5F9004186A9 /* home-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E098149BF5F9004186A9 /* home-icon@2x.png */; };
 		B749E09F149BFC94004186A9 /* map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E09D149BFC93004186A9 /* map-marker.png */; };
 		B749E0A0149BFC94004186A9 /* map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E09E149BFC93004186A9 /* map-marker@2x.png */; };
-		B74BF3DA14DC43340033B268 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B74BF3D914DC43340033B268 /* Icon@2x.png */; };
 		B79DA3A4146C26960078179C /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3A3146C26960078179C /* HomeCell.xib */; };
 		B79DA3A7146C28710078179C /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3A6146C28710078179C /* HomeCell.m */; };
 		B79DA3C3146C68E20078179C /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3C1146C68E10078179C /* Profile.m */; };
 		B79DA3C4146C68E20078179C /* Profile.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3C2146C68E10078179C /* Profile.xib */; };
 		B79DA3CE146CAE3E0078179C /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3CD146CAE3E0078179C /* ProfileCell.xib */; };
 		B79DA3D1146CAE5B0078179C /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3D0146CAE5B0078179C /* ProfileCell.m */; };
-		B7A305BB1491C838005E9E97 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A305BA1491C838005E9E97 /* Default.png */; };
 		B7D1666B1469AF0C00280846 /* TYGenericUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D1666A1469AF0C00280846 /* TYGenericUtils.m */; };
 		B7F85B4F14716754008EE873 /* DiveLogger.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */; };
 		B7F85B601471731A008EE873 /* Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F85B5F1471731A008EE873 /* Dive.m */; };
@@ -112,7 +110,6 @@
 		B73358D1148D5E6C003BE6CA /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		B73358D2148D5E6C003BE6CA /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		B73358D3148D5E6C003BE6CA /* Settings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
-		B737F38A1793680500FECD0D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B737F38D1793693800FECD0D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "facebook-ios-sdk/build/FacebookSDK.framework"; sourceTree = "<group>"; };
 		B737F3901793697900FECD0D /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B737F3921793697D00FECD0D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -124,6 +121,7 @@
 		B74295BE18D40C5A007A412F /* TYThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYThemeManager.m; sourceTree = "<group>"; };
 		B74295C118D41316007A412F /* UIColor+ThemeColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ThemeColors.h"; sourceTree = "<group>"; };
 		B74295C218D41316007A412F /* UIColor+ThemeColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ThemeColors.m"; sourceTree = "<group>"; };
+		B74295C418D4170B007A412F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = DiveLoggr/Images.xcassets; sourceTree = "<group>"; };
 		B749E08B149BF5B0004186A9 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
 		B749E08C149BF5B0004186A9 /* settings-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon@2x.png"; sourceTree = "<group>"; };
 		B749E091149BF5C9004186A9 /* profile-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-icon.png"; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 		B749E098149BF5F9004186A9 /* home-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon@2x.png"; sourceTree = "<group>"; };
 		B749E09D149BFC93004186A9 /* map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker.png"; sourceTree = "<group>"; };
 		B749E09E149BFC93004186A9 /* map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker@2x.png"; sourceTree = "<group>"; };
-		B74BF3D914DC43340033B268 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		B79DA3A3146C26960078179C /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		B79DA3A5146C28710078179C /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
 		B79DA3A6146C28710078179C /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
@@ -142,7 +139,6 @@
 		B79DA3CD146CAE3E0078179C /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		B79DA3CF146CAE5B0078179C /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
 		B79DA3D0146CAE5B0078179C /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
-		B7A305BA1491C838005E9E97 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		B7D166691469AF0C00280846 /* TYGenericUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYGenericUtils.h; sourceTree = "<group>"; };
 		B7D1666A1469AF0C00280846 /* TYGenericUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYGenericUtils.m; sourceTree = "<group>"; };
 		B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiveLogger.xcdatamodel; sourceTree = "<group>"; };
@@ -198,8 +194,6 @@
 		B70E61A41468977400FABBA9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				B74BF3D914DC43340033B268 /* Icon@2x.png */,
-				B7A305BA1491C838005E9E97 /* Default.png */,
 				B749E08B149BF5B0004186A9 /* settings-icon.png */,
 				B749E08C149BF5B0004186A9 /* settings-icon@2x.png */,
 				B749E097149BF5F9004186A9 /* home-icon.png */,
@@ -217,7 +211,7 @@
 		B7136BF914686122005CE555 = {
 			isa = PBXGroup;
 			children = (
-				B737F38A1793680500FECD0D /* Default-568h@2x.png */,
+				B74295C418D4170B007A412F /* Images.xcassets */,
 				B7136C0E14686123005CE555 /* DiveLogger */,
 				B7136C2614686123005CE555 /* DiveLoggerTests */,
 				B7136C0714686123005CE555 /* Frameworks */,
@@ -467,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7136C1314686123005CE555 /* InfoPlist.strings in Resources */,
+				B74295C518D4170B007A412F /* Images.xcassets in Resources */,
 				B7136C3B14686309005CE555 /* Home.xib in Resources */,
 				B70E61AB1468993000FABBA9 /* DiveMap.xib in Resources */,
 				B70E61F81468E3F200FABBA9 /* DiveDetails.xib in Resources */,
@@ -477,7 +472,6 @@
 				B71AEB65146CE30000646545 /* clock.png in Resources */,
 				B71AEB68146CE37E00646545 /* line-chart.png in Resources */,
 				B73358D5148D5E6C003BE6CA /* Settings.xib in Resources */,
-				B7A305BB1491C838005E9E97 /* Default.png in Resources */,
 				B749E08E149BF5B0004186A9 /* settings-icon.png in Resources */,
 				B749E08F149BF5B0004186A9 /* settings-icon@2x.png in Resources */,
 				B749E094149BF5C9004186A9 /* profile-icon.png in Resources */,
@@ -486,8 +480,6 @@
 				B749E09B149BF5F9004186A9 /* home-icon@2x.png in Resources */,
 				B749E09F149BFC94004186A9 /* map-marker.png in Resources */,
 				B749E0A0149BFC94004186A9 /* map-marker@2x.png in Resources */,
-				B74BF3DA14DC43340033B268 /* Icon@2x.png in Resources */,
-				B737F38B1793680500FECD0D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,6 +677,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65A35A4EAFF145978466961E /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tejaswi Yerukalapudi (RDKM9UC3U5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tejaswi Yerukalapudi (RDKM9UC3U5)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -707,6 +701,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65A35A4EAFF145978466961E /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/facebook-ios-sdk/build\"",
