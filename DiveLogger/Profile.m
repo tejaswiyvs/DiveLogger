@@ -18,54 +18,32 @@
 
 @implementation Profile
 
-@synthesize dives = _dives,
-profileTableView = _profileTableView,
-appDelegate = _appDelegate,
-totalDives = _totalDives,
-totalMinutesSpentDiving = _totalMinutesSpentDiving;
-
 - (id)init {
 	self = [super initWithNibName:@"Profile" bundle:nil];
-	[self setTitle:@"Profile"];
-	[self.tabBarItem setImage:[UIImage imageNamed:@"profile-icon.png"]];
 	if (self) {
-		// Load
+        [self setTitle:@"Profile"];
+        [self.tabBarItem setImage:[UIImage imageNamed:@"profile-icon.png"]];
 	}
 	return self;
-}
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-	[super didReceiveMemoryWarning];
-    
-	// Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	// Do any additional setup after loading the view from its nib.
+
 	_appDelegate = (TYAppDelegate *)[[UIApplication sharedApplication] delegate];
 	[_profileTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 10.0)]];
 	[_profileTableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
 	TYAppDelegate *appDelegate = (TYAppDelegate *)[[UIApplication sharedApplication] delegate];
 	_dives = [appDelegate reloadFromDB];
-	[super viewDidAppear:animated];
 	[self recalculateData];
 	[_profileTableView reloadData];
-}
-
-- (void)viewDidUnload {
-	[super viewDidUnload];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - UITableView
@@ -79,7 +57,7 @@ totalMinutesSpentDiving = _totalMinutesSpentDiving;
 	UIView *view = [[UIView alloc] initWithFrame:frame];
 	UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(3.0, 0.0, 320.0, 25.0)];
 	[headerLabel setText:@"Your Profile"];
-	[headerLabel setTextColor:[UIColor whiteColor]];
+	[headerLabel setTextColor:[UIColor blackColor]];
 	[headerLabel setShadowColor:[UIColor blackColor]];
 	[headerLabel setShadowOffset:CGSizeMake(0.0, -1.0)];
 	[headerLabel setBackgroundColor:[UIColor clearColor]];

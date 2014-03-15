@@ -40,6 +40,7 @@
 		B737F3991793699300FECD0D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F3981793699300FECD0D /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B737F39C179369DD00FECD0D /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B737F39A179369DD00FECD0D /* FacebookSDKResources.bundle */; };
 		B74295BF18D40C5A007A412F /* TYThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B74295BE18D40C5A007A412F /* TYThemeManager.m */; };
+		B74295C318D41316007A412F /* UIColor+ThemeColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B74295C218D41316007A412F /* UIColor+ThemeColors.m */; };
 		B749E08E149BF5B0004186A9 /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E08B149BF5B0004186A9 /* settings-icon.png */; };
 		B749E08F149BF5B0004186A9 /* settings-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E08C149BF5B0004186A9 /* settings-icon@2x.png */; };
 		B749E094149BF5C9004186A9 /* profile-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E091149BF5C9004186A9 /* profile-icon.png */; };
@@ -121,6 +122,8 @@
 		B737F39A179369DD00FECD0D /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "facebook-ios-sdk/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"; sourceTree = "<group>"; };
 		B74295BD18D40C5A007A412F /* TYThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYThemeManager.h; sourceTree = "<group>"; };
 		B74295BE18D40C5A007A412F /* TYThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYThemeManager.m; sourceTree = "<group>"; };
+		B74295C118D41316007A412F /* UIColor+ThemeColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ThemeColors.h"; sourceTree = "<group>"; };
+		B74295C218D41316007A412F /* UIColor+ThemeColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ThemeColors.m"; sourceTree = "<group>"; };
 		B749E08B149BF5B0004186A9 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
 		B749E08C149BF5B0004186A9 /* settings-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon@2x.png"; sourceTree = "<group>"; };
 		B749E091149BF5C9004186A9 /* profile-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-icon.png"; sourceTree = "<group>"; };
@@ -341,6 +344,7 @@
 		B74295BB18D407EE007A412F /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B74295C018D411F1007A412F /* Categories */,
 				B74295BC18D40C46007A412F /* TYThemeManager */,
 				B7D166671469AEFC00280846 /* Utils */,
 			);
@@ -354,6 +358,15 @@
 				B74295BE18D40C5A007A412F /* TYThemeManager.m */,
 			);
 			name = TYThemeManager;
+			sourceTree = "<group>";
+		};
+		B74295C018D411F1007A412F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B74295C118D41316007A412F /* UIColor+ThemeColors.h */,
+				B74295C218D41316007A412F /* UIColor+ThemeColors.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		B79DA3A2146C26780078179C /* CustomUITableViewCell */ = {
@@ -551,6 +564,7 @@
 				B7FFF2DD146B1438000CC125 /* Constants.m in Sources */,
 				B79DA3A7146C28710078179C /* HomeCell.m in Sources */,
 				B79DA3C3146C68E20078179C /* Profile.m in Sources */,
+				B74295C318D41316007A412F /* UIColor+ThemeColors.m in Sources */,
 				B79DA3D1146CAE5B0078179C /* ProfileCell.m in Sources */,
 				B7F85B4F14716754008EE873 /* DiveLogger.xcdatamodel in Sources */,
 				B74295BF18D40C5A007A412F /* TYThemeManager.m in Sources */,

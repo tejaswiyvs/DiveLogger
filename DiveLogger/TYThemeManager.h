@@ -11,5 +11,6 @@
 @interface TYThemeManager : NSObject
 
 + (TYThemeManager *)sharedInstance;
+- (void)applyTheme;
 
 @end

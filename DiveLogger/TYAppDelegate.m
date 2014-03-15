@@ -12,6 +12,7 @@
 #import "Profile.h"
 #import "Settings.h"
 #import "Mixpanel.h"
+#import "TYThemeManager.h"
 
 @interface TYAppDelegate ()
 
@@ -30,6 +31,7 @@
 	[self.window makeKeyAndVisible];
     [self configureAppIRater];
     [self configureMixpanel];
+    [[TYThemeManager sharedInstance] applyTheme];
     [TYGenericUtils trackEvent:@"AppLaunched" properties:nil];
 	return YES;
 }

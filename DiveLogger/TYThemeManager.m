@@ -7,6 +7,7 @@
 //
 
 #import "TYThemeManager.h"
+#import "UIColor+ThemeColors.h"
 
 @implementation TYThemeManager
 
@@ -20,7 +21,13 @@
 }
 
 - (void)applyTheme {
-    [[UINavigationBar appearance] setBackgroundColor:[UIColor blueColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor themePrimaryColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor themeSecondaryColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{
+                                                           NSForegroundColorAttributeName: [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
+                                                           }];
+    [[UITabBar appearance] setTintColor:[UIColor themeSecondaryColor]];
+    [[UITabBar appearance] setTintColor:[UIColor themePrimaryColor]];
 }
 
 @end
