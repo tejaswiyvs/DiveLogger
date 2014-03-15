@@ -10,7 +10,7 @@
 
 @interface Settings : UIViewController
 
-@property (nonatomic, retain) IBOutlet UIButton *connectToFacebookBtn;
+@property (nonatomic, strong) IBOutlet UIButton *connectToFacebookBtn;
 
 - (id)init;
 - (IBAction)connectToFacebookClicked:(id)sender;

@@ -17,8 +17,8 @@
 	int _totalMinutesSpentDiving;
 }
 
-@property (nonatomic, retain) NSMutableArray *dives;
-@property (nonatomic, retain) IBOutlet UITableView *profileTableView;
+@property (nonatomic, strong) NSMutableArray *dives;
+@property (nonatomic, strong) IBOutlet UITableView *profileTableView;
 @property (nonatomic, assign) TYAppDelegate *appDelegate;
 @property (nonatomic, assign) int totalDives;
 @property (nonatomic, assign) int totalMinutesSpentDiving;

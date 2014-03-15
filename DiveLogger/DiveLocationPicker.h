@@ -16,8 +16,8 @@
 	Dive *_dive;
 }
 
-@property (nonatomic, retain) IBOutlet MKMapView *map;
-@property (nonatomic, retain) Dive *dive;
+@property (nonatomic, strong) IBOutlet MKMapView *map;
+@property (nonatomic, strong) Dive *dive;
 
 - (id)initWithDive:(Dive *)dive;
 

@@ -10,9 +10,9 @@
 
 @interface Home : UIViewController <NSFetchedResultsControllerDelegate, TYDiveDetailsDelegate>
 
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, retain) IBOutlet UITableView *divesList;
-@property (nonatomic, retain) UILabel *emptyLabel;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) IBOutlet UITableView *divesList;
+@property (nonatomic, strong) UILabel *emptyLabel;
 
 - (id)init;
 - (void)configureCell:(HomeCell *)cell atIndexPath:(NSIndexPath *)indexPath;

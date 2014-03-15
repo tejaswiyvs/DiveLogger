@@ -16,10 +16,6 @@
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Blue Grotto" lineBreakMode="tailTruncation" minimumFontSize="26" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3">
                         <rect key="frame" x="20" y="8" width="266" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="266" id="11"/>
-                            <constraint firstAttribute="height" constant="40" id="12"/>
-                        </constraints>
                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                         <color key="textColor" red="0.1960784314" green="0.20784313730000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -29,22 +25,22 @@
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="01/01/2001" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                         <rect key="frame" x="20" y="44" width="186" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="186" id="13"/>
-                            <constraint firstAttribute="height" constant="28" id="14"/>
-                        </constraints>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="3" firstAttribute="top" secondItem="bkT-td-xNY" secondAttribute="top" constant="8" id="2es-q4-mju"/>
+                    <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="1" id="AZ1-6Z-nxt"/>
+                    <constraint firstItem="4" firstAttribute="top" secondItem="bkT-td-xNY" secondAttribute="top" constant="44" id="CtY-gW-HN4"/>
+                    <constraint firstItem="3" firstAttribute="leading" secondItem="bkT-td-xNY" secondAttribute="leading" constant="20" id="HWO-I0-UZH"/>
+                    <constraint firstItem="4" firstAttribute="leading" secondItem="bkT-td-xNY" secondAttribute="leading" constant="20" id="Pmu-1U-Wfd"/>
+                    <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" constant="13" id="Usr-WX-0kC"/>
+                    <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" constant="81" id="crO-dk-mEf"/>
+                    <constraint firstAttribute="bottom" secondItem="3" secondAttribute="bottom" constant="37" id="gJX-mf-sFY"/>
+                </constraints>
             </tableViewCellContentView>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" constant="14" id="2Ii-f6-JNB"/>
-                <constraint firstItem="3" firstAttribute="top" secondItem="2" secondAttribute="top" constant="8" id="6T6-F1-l6o"/>
-                <constraint firstItem="3" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" id="AZK-wX-P0W"/>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" id="CIf-Um-bgK"/>
-            </constraints>
             <connections>
                 <outlet property="diveDate" destination="4" id="6"/>
                 <outlet property="diveName" destination="3" id="5"/>

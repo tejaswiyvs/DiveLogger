@@ -12,10 +12,10 @@
 @class Dive;
 @interface Tank : NSManagedObject
 
-@property (nonatomic, retain) NSNumber *startingPressure;
-@property (nonatomic, retain) NSNumber *endingPressure;
-@property (nonatomic, retain) NSString *airComposition;
-@property (nonatomic, retain) NSString *airCompositionNotes;
-@property (nonatomic, retain) Dive *dive;
+@property (nonatomic, strong) NSNumber *startingPressure;
+@property (nonatomic, strong) NSNumber *endingPressure;
+@property (nonatomic, strong) NSString *airComposition;
+@property (nonatomic, strong) NSString *airCompositionNotes;
+@property (nonatomic, strong) Dive *dive;
 
 @end

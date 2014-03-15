@@ -14,6 +14,6 @@
 	Dive *_dive;
 }
 
-@property (nonatomic, retain) Dive *dive;
+@property (nonatomic, strong) Dive *dive;
 - (id)initWithDive:(Dive *)dive;
 @end

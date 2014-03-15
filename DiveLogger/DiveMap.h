@@ -9,12 +9,8 @@
 #import <MapKit/MapKit.h>
 
 @interface DiveMap : UIViewController
-{
-	NSMutableArray *_dives;
-	MKMapView *_map;
-}
 
-@property (nonatomic, retain) NSMutableArray *dives;
-@property (nonatomic, retain) IBOutlet MKMapView *map;
+@property (nonatomic, strong) NSMutableArray *dives;
+@property (nonatomic, strong) IBOutlet MKMapView *map;
 
 @end

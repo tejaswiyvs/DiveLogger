@@ -10,7 +10,7 @@
 
 @interface HomeCell : UITableViewCell
 
-@property (nonatomic, retain) IBOutlet UILabel *diveName;
-@property (nonatomic, retain) IBOutlet UILabel *diveDate;
+@property (nonatomic, strong) IBOutlet UILabel *diveName;
+@property (nonatomic, strong) IBOutlet UILabel *diveDate;
 
 @end

@@ -57,7 +57,7 @@
 	UIView *view = [[UIView alloc] initWithFrame:frame];
 	UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(3.0, 0.0, 320.0, 25.0)];
 	[headerLabel setText:@"Your Profile"];
-	[headerLabel setTextColor:[UIColor themePrimaryTextColor]];
+	[headerLabel setTextColor:[UIColor themePrimaryColor]];
 	[headerLabel setBackgroundColor:[UIColor clearColor]];
 	[view addSubview:headerLabel];
 	return view;
@@ -87,19 +87,17 @@
 	if (indexPath.row == 0) {
 		[cell.img setImage:[UIImage imageNamed:@"line-chart.png"]];
 		[cell.categoryName setText:@"Total Dives"];
-		[[cell categoryName] setShadowColor:[UIColor whiteColor]];
-		[cell.categoryName setShadowOffset:CGSizeMake(0.0, 1.0)];
 		NSString *totalDives = [NSString stringWithFormat:@"%d", _totalDives];
 		[cell.categoryDetail setText:totalDives];
 	}
 	else if (indexPath.row == 1) {
 		[cell.img setImage:[UIImage imageNamed:@"clock.png"]];
 		[cell.categoryName setText:@"Total Minutes"];
-		[[cell categoryName] setShadowColor:[UIColor whiteColor]];
 		[cell.categoryName setShadowOffset:CGSizeMake(0.0, 1.0)];
 		NSString *totalMinutes = [NSString stringWithFormat:@"%d", _totalMinutesSpentDiving];
 		[cell.categoryDetail setText:totalMinutes];
 	}
+    [cell.categoryName setTextColor:[UIColor themePrimaryColor]];
     
 	return cell;
 }

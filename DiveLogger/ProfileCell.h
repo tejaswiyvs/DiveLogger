@@ -10,8 +10,8 @@
 
 @interface ProfileCell : UITableViewCell
 
-@property (nonatomic, retain) IBOutlet UILabel *categoryName;
-@property (nonatomic, retain) IBOutlet UILabel *categoryDetail;
-@property (nonatomic, retain) IBOutlet UIImageView *img;
+@property (nonatomic, strong) IBOutlet UILabel *categoryName;
+@property (nonatomic, strong) IBOutlet UILabel *categoryDetail;
+@property (nonatomic, strong) IBOutlet UIImageView *img;
 
 @end

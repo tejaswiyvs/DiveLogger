@@ -13,7 +13,7 @@
 
 @interface TYAppDelegate : UIResponder <UIApplicationDelegate, AppiraterDelegate>
 
-@property (nonatomic, retain) UITabBarController *tabBar;
+@property (nonatomic, strong) UITabBarController *tabBar;
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

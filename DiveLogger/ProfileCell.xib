@@ -13,41 +13,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3">
                         <rect key="frame" x="20" y="24" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="25" id="16"/>
-                            <constraint firstAttribute="height" constant="25" id="17"/>
-                        </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                        <rect key="frame" x="104" y="26" width="114" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                        <rect key="frame" x="103" y="26" width="114" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="114" id="9"/>
+                            <constraint firstAttribute="height" constant="21" id="Sr9-6N-KdX"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                        <rect key="frame" x="258" y="26" width="42" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                        <rect key="frame" x="139" y="26" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="fFw-oR-2pE"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </tableViewCellContentView>
-            <constraints>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="104" id="J6O-n7-5RZ"/>
-                <constraint firstItem="3" firstAttribute="top" secondItem="2" secondAttribute="top" constant="24" id="e8t-3X-6Tq"/>
-                <constraint firstItem="3" firstAttribute="centerY" secondItem="4" secondAttribute="centerY" id="iBj-tc-wjq"/>
-                <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="20" id="oEb-J3-sR9"/>
-                <constraint firstItem="3" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" id="vA4-HQ-44Z"/>
-                <constraint firstItem="5" firstAttribute="baseline" secondItem="4" secondAttribute="baseline" id="yaW-H4-KVC"/>
-            </constraints>
             <connections>
                 <outlet property="categoryDetail" destination="5" id="8"/>
                 <outlet property="categoryName" destination="4" id="7"/>
