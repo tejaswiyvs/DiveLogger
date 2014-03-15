@@ -10,8 +10,8 @@
 
 @interface DiveMap : UIViewController
 {
-    NSMutableArray *_dives;
-    MKMapView *_map;
+	NSMutableArray *_dives;
+	MKMapView *_map;
 }
 
 @property (nonatomic, retain) NSMutableArray *dives;

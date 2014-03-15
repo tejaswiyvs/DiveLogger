@@ -12,6 +12,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "TYGenericUtils.h"
-    #import "DebugLog.h"
     #import "Constants.h"
+    #import "DDLog.h"
 #endif

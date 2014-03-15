@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Dive" representedClassName="Dive" syncable="YES">
         <attribute name="airTemperature" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="diveDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="diveLocationX" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="diveLocationY" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="diveName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="diveNotes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="diveTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="visibility" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="waterTemperature" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -19,7 +20,7 @@
         <relationship name="dive" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Dive" inverseName="tank" inverseEntity="Dive" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Dive" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="Dive" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Tank" positionX="-128" positionY="183" width="128" height="120"/>
     </elements>
 </model>

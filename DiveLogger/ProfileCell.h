@@ -8,11 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileCell : UITableViewCell {
-    UILabel *_categoryName;
-    UILabel *_categoryDetail;
-    UIImageView *_img;
-}
+@interface ProfileCell : UITableViewCell
 
 @property (nonatomic, retain) IBOutlet UILabel *categoryName;
 @property (nonatomic, retain) IBOutlet UILabel *categoryDetail;

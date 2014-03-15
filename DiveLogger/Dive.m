@@ -22,10 +22,10 @@
 @dynamic diveTime;
 @dynamic tank;
 
--(CLLocationCoordinate2D) diveLocation {
-    CLLocationDegrees latitude = [self.diveLocationX floatValue];
-    CLLocationDegrees longitude = [self.diveLocationY floatValue];
-    return CLLocationCoordinate2DMake(latitude, longitude);
+- (CLLocationCoordinate2D)diveLocation {
+	CLLocationDegrees latitude = [self.diveLocationX floatValue];
+	CLLocationDegrees longitude = [self.diveLocationY floatValue];
+	return CLLocationCoordinate2DMake(latitude, longitude);
 }
 
 @end

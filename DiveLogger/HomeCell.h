@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeCell : UITableViewCell
-{
-    UILabel *diveName;
-    UILabel *diveDate;
-}
 
 @property (nonatomic, retain) IBOutlet UILabel *diveName;
 @property (nonatomic, retain) IBOutlet UILabel *diveDate;

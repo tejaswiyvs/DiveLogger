@@ -10,15 +10,15 @@
 #import <MapKit/MapKit.h>
 #import "Dive.h"
 
-@interface DiveLocationPicker : UIViewController<MKMapViewDelegate>
+@interface DiveLocationPicker : UIViewController <MKMapViewDelegate>
 {
-    MKMapView *_map;
-    Dive *_dive;
+	MKMapView *_map;
+	Dive *_dive;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *map;
 @property (nonatomic, retain) Dive *dive;
 
--(id) initWithDive:(Dive *) dive;
+- (id)initWithDive:(Dive *)dive;
 
 @end

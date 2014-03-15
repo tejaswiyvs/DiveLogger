@@ -9,4 +9,5 @@
 #import "Constants.h"
 
 CLLocationDegrees const EmptyLocation = -1000.0;
-CLLocationCoordinate2D const EmptyLocationCoordinate = {EmptyLocation, EmptyLocation};
+CLLocationCoordinate2D const EmptyLocationCoordinate = { EmptyLocation, EmptyLocation };
+int ddLogLevel = LOG_FLAG_VERBOSE;

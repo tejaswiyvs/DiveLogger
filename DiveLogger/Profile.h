@@ -10,11 +10,11 @@
 #import "TYAppDelegate.h"
 
 @interface Profile : UIViewController {
-    NSMutableArray *_dives;
-    UITableView *_profileTableView;
-    __unsafe_unretained TYAppDelegate *_appDelegate;
-    int _totalDives;
-    int _totalMinutesSpentDiving;
+	NSMutableArray *_dives;
+	UITableView *_profileTableView;
+	__unsafe_unretained TYAppDelegate *_appDelegate;
+	int _totalDives;
+	int _totalMinutesSpentDiving;
 }
 
 @property (nonatomic, retain) NSMutableArray *dives;

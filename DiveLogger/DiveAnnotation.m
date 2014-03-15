@@ -11,20 +11,20 @@
 @implementation DiveAnnotation
 @synthesize dive = _dive;
 
--(id) initWithDive:(Dive *) dive {
-    self = [super init];
-    if(self) {
-        [self setDive:dive];
-    }
-    return self;
+- (id)initWithDive:(Dive *)dive {
+	self = [super init];
+	if (self) {
+		[self setDive:dive];
+	}
+	return self;
 }
 
--(NSString *)title {
-    return [_dive diveName];
+- (NSString *)title {
+	return [_dive diveName];
 }
 
--(CLLocationCoordinate2D)coordinate {
-    return [_dive diveLocation];
+- (CLLocationCoordinate2D)coordinate {
+	return [_dive diveLocation];
 }
 
 @end

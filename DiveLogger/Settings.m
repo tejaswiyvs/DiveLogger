@@ -13,56 +13,43 @@
 
 @synthesize connectToFacebookBtn;
 
-- (id) init {
-    self = [super initWithNibName:@"Settings" bundle:nil];
-    if(self) {
-        [self setTitle:@"Settings"];
-        [self.tabBarItem setImage:[UIImage imageNamed:@"settings-icon.png"]];
-    }
-    return self;
+- (id)init {
+	self = [super initWithNibName:@"Settings" bundle:nil];
+	if (self) {
+		[self setTitle:@"Settings"];
+		[self.tabBarItem setImage:[UIImage imageNamed:@"settings-icon.png"]];
+	}
+	return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_active.png"]]];
+- (void)viewDidLoad {
+	[super viewDidLoad];
 }
 
--(void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    TYAppDelegate *appDelegate = (TYAppDelegate *) [UIApplication sharedApplication].delegate;
-    if([appDelegate.facebook isSessionValid]) {
-        [connectToFacebookBtn setEnabled:NO];
-        [connectToFacebookBtn setTitle:@"Connected" forState:UIControlStateNormal];
-    }
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void)viewDidUnload {
+	[super viewDidUnload];
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	// Return YES for supported orientations
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Event Handler
 
--(IBAction)connectToFacebookClicked:(id)sender {
-    TYAppDelegate *appDelegate = (TYAppDelegate *) [UIApplication sharedApplication].delegate;
-    NSArray *permissions = [NSArray arrayWithObjects:@"publish_stream", nil];
-    [appDelegate.facebook authorize:permissions];
+- (IBAction)connectToFacebookClicked:(id)sender {
 }
 
 @end

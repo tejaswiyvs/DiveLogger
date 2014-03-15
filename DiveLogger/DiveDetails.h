@@ -8,38 +8,37 @@
 
 #import "Dive.h"
 #import "TYAppDelegate.h"
-#import "Facebook.h"
 
 @protocol TYDiveDetailsDelegate;
-@interface DiveDetails : UITableViewController<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, FBDialogDelegate> {
-    __unsafe_unretained id<TYDiveDetailsDelegate> _delegate; // ?? TODO - Figure out later. Some ARC issue.
-    NSManagedObjectContext *_diveDetailsContext;
-    Dive *_dive;
-    BOOL _newDive;
-    TYAppDelegate *_appDelegate;
+@interface DiveDetails : UITableViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
+	__unsafe_unretained id <TYDiveDetailsDelegate> _delegate; // ?? TODO - Figure out later. Some ARC issue.
+	NSManagedObjectContext *_diveDetailsContext;
+	Dive *_dive;
+	BOOL _newDive;
+	TYAppDelegate *_appDelegate;
     
-    UITableView *_tableView;
-    UIDatePicker *_datePicker;
-    UIBarButtonItem *_doneButton;
-    UIBarButtonItem *_saveButton;
-    UIBarButtonItem *_cancelButton;
+	UITableView *_tableView;
+	UIDatePicker *_datePicker;
+	UIBarButtonItem *_doneButton;
+	UIBarButtonItem *_saveButton;
+	UIBarButtonItem *_cancelButton;
     
-    // TextFields
-    UITextField *_diveNameTxt;
-    UITextField *_diveDateTxt;
-    UITextField *_diveLocTxt;
-    UITextField *_diveTimeTxt;
-    UITextField *_tankStartingPressureTxt;
-    UITextField *_tankEndingPressureTxt;
-    UITextField *_tankAirCompositionTxt;
-    UITextField *_diveVisibilityTxt;
-    UITextField *_diveAirTempTxt;
-    UITextField *_diveWaterTempTxt;
-    CLLocationCoordinate2D diveLocation;
+	// TextFields
+	UITextField *_diveNameTxt;
+	UITextField *_diveDateTxt;
+	UITextField *_diveLocTxt;
+	UITextField *_diveTimeTxt;
+	UITextField *_tankStartingPressureTxt;
+	UITextField *_tankEndingPressureTxt;
+	UITextField *_tankAirCompositionTxt;
+	UITextField *_diveVisibilityTxt;
+	UITextField *_diveAirTempTxt;
+	UITextField *_diveWaterTempTxt;
+	CLLocationCoordinate2D diveLocation;
 }
 
 @property (nonatomic, retain) Dive *dive;
-@property (nonatomic, assign) id<TYDiveDetailsDelegate> delegate;
+@property (nonatomic, assign) id <TYDiveDetailsDelegate> delegate;
 @property (nonatomic, assign) BOOL newDive;
 @property (nonatomic, retain) NSManagedObjectContext *diveDetailsContext;
 @property (nonatomic, retain) TYAppDelegate *appDelegate;
@@ -60,17 +59,17 @@
 @property (nonatomic, retain) UITextField *diveAirTempTxt;
 @property (nonatomic, retain) UITextField *diveWaterTempTxt;
 
--(id) initWithDive:(Dive *) dive;
--(IBAction)cancelButtonClicked:(id)sender;
--(IBAction)saveButtonClicked:(id)sender;
--(void) doneButtonClicked:(id) sender;
--(void) postToFBClicked:(id) sender;
+- (id)initWithDive:(Dive *)dive;
+- (IBAction)cancelButtonClicked:(id)sender;
+- (IBAction)saveButtonClicked:(id)sender;
+- (void)doneButtonClicked:(id)sender;
+- (void)postToFBClicked:(id)sender;
 - (void)resignFirstResponderForSubviewsOfView:(UIView *)aView;
--(void) animateDatePickerOut;
--(void) animateDatePickerIn;
+- (void)animateDatePickerOut;
+- (void)animateDatePickerIn;
 @end
 
 @protocol TYDiveDetailsDelegate <NSObject>
--(void) didSaveDive:(Dive *) dive inContext:(NSManagedObjectContext *) managedObjectContext;
--(void) didDismissWithoutSaving;
+- (void)didSaveDive:(Dive *)dive inContext:(NSManagedObjectContext *)managedObjectContext;
+- (void)didDismissWithoutSaving;
 @end

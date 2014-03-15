@@ -11,9 +11,9 @@
 #import "DiveAnnotation.h"
 #import "TYAppDelegate.h"
 
-@interface DiveMap (private) 
--(void) populateTempData;
--(void) dropPins;
+@interface DiveMap (private)
+- (void)populateTempData;
+- (void)dropPins;
 @end
 
 @implementation DiveMap
@@ -21,52 +21,47 @@
 @synthesize dives = _dives;
 @synthesize map = _map;
 
--(id) init {
-    self = [super initWithNibName:@"DiveMap" bundle:nil];
-    if(self) {
-        [self setTitle:@"Map"];
-        [self.tabBarItem setImage:[UIImage imageNamed:@"map-marker.png"]];
-    }
-    return self;
+- (id)init {
+	self = [super initWithNibName:@"DiveMap" bundle:nil];
+	if (self) {
+		[self setTitle:@"Map"];
+		[self.tabBarItem setImage:[UIImage imageNamed:@"map-marker.png"]];
+	}
+	return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (void)viewDidLoad {
+	[super viewDidLoad];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    TYAppDelegate *appDelegate = (TYAppDelegate *) [[UIApplication sharedApplication] delegate];
-    _dives = [appDelegate reloadFromDB];
-    [self dropPins];
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	TYAppDelegate *appDelegate = (TYAppDelegate *)[[UIApplication sharedApplication] delegate];
+	_dives = [appDelegate reloadFromDB];
+	[self dropPins];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
+- (void)viewDidUnload {
+	[super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Helpers
 
--(void) dropPins
-{
-    for (int i=0; i<[_dives count]; i++) {
-        DiveAnnotation *annotation = [[DiveAnnotation alloc] initWithDive:[_dives objectAtIndex:i]];
-        [_map addAnnotation:annotation];
-    }
+- (void)dropPins {
+	for (int i = 0; i < [_dives count]; i++) {
+		DiveAnnotation *annotation = [[DiveAnnotation alloc] initWithDive:_dives[i]];
+		[_map addAnnotation:annotation];
+	}
 }
 
 @end

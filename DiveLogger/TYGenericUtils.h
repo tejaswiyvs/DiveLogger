@@ -14,10 +14,10 @@
 
 @interface TYGenericUtils : NSObject
 
-
-+(void) displayAttentionAlert:(NSString *) message;
-+(void) displayErrorAlert:(NSString *) message;
-+(NSString *) stringFromDate:(NSDate *) date;
-+(NSDate *) dateFromString:(NSString *) dateString;
++ (void)displayAttentionAlert:(NSString *)message;
++ (void)displayErrorAlert:(NSString *)message;
++ (NSString *)stringFromDate:(NSDate *)date;
++ (NSDate *)dateFromString:(NSString *)dateString;
 + (void)customizeNavigationController:(UINavigationController *)navController;
+
 @end

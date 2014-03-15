@@ -10,10 +10,10 @@
 #import <MapKit/MapKit.h>
 #import "Dive.h"
 
-@interface DiveAnnotation : NSObject<MKAnnotation> {
-    Dive *_dive;
+@interface DiveAnnotation : NSObject <MKAnnotation> {
+	Dive *_dive;
 }
 
 @property (nonatomic, retain) Dive *dive;
--(id) initWithDive:(Dive *) dive;
+- (id)initWithDive:(Dive *)dive;
 @end

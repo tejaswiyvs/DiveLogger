@@ -9,12 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface Settings : UIViewController
-{
-    IBOutlet UIButton *connectToFacebookBtn;
-}
 
 @property (nonatomic, retain) IBOutlet UIButton *connectToFacebookBtn;
 
-- (id) init;
--(IBAction)connectToFacebookClicked:(id)sender;
+- (id)init;
+- (IBAction)connectToFacebookClicked:(id)sender;
 @end
