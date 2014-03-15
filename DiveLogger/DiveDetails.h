@@ -40,11 +40,12 @@
 - (void)doneButtonClicked:(id)sender;
 - (void)postToFBClicked:(id)sender;
 - (void)resignFirstResponderForSubviewsOfView:(UIView *)aView;
-- (void)animateDatePickerOut;
-- (void)animateDatePickerIn;
+
 @end
 
 @protocol TYDiveDetailsDelegate <NSObject>
+
 - (void)didSaveDive:(Dive *)dive inContext:(NSManagedObjectContext *)managedObjectContext;
 - (void)didDismissWithoutSaving;
+
 @end

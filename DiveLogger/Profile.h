@@ -9,18 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TYAppDelegate.h"
 
-@interface Profile : UIViewController {
-	NSMutableArray *_dives;
-	UITableView *_profileTableView;
-	__unsafe_unretained TYAppDelegate *_appDelegate;
-	int _totalDives;
-	int _totalMinutesSpentDiving;
-}
+@interface Profile : UIViewController
 
 @property (nonatomic, strong) NSMutableArray *dives;
 @property (nonatomic, strong) IBOutlet UITableView *profileTableView;
 @property (nonatomic, assign) TYAppDelegate *appDelegate;
-@property (nonatomic, assign) int totalDives;
-@property (nonatomic, assign) int totalMinutesSpentDiving;
+@property (nonatomic, assign) NSUInteger totalDives;
+@property (nonatomic, assign) NSUInteger totalMinutesSpentDiving;
 
 @end

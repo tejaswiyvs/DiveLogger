@@ -16,7 +16,6 @@
 - (void)createBarButtons;
 - (void)createTempDives;
 - (void)sortDives;
-- (void)refreshBg;
 
 @end
 
@@ -133,7 +132,6 @@
 		if (![context save:&error]) {
 			[TYGenericUtils displayAttentionAlert:@"Couldn't save dive. Please restart the app."];
 		}
-		[self refreshBg];
 	}
 }
 
@@ -255,19 +253,6 @@
 }
 
 #pragma mark - Helpers
-
-- (void)refreshBg {
-	id <NSFetchedResultsSectionInfo> sectionInfo = [fetchedResultsController sections][0];
-	int count = [sectionInfo numberOfObjects];
-    
-	if (!fetchedResultsController || count == 0) {
-		[_divesList setHidden:YES];
-	}
-	else {
-		[_emptyLabel setHidden:YES];
-		[_divesList setHidden:NO];
-	}
-}
 
 - (void)createBarButtons {
 	UIBarButtonItem *addDive = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
