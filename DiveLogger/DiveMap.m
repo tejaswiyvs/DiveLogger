@@ -48,10 +48,6 @@
 	[super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 #pragma mark - Helpers
 
 - (void)dropPins {

@@ -49,6 +49,7 @@
 		B749E09B149BF5F9004186A9 /* home-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E098149BF5F9004186A9 /* home-icon@2x.png */; };
 		B749E09F149BFC94004186A9 /* map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E09D149BFC93004186A9 /* map-marker.png */; };
 		B749E0A0149BFC94004186A9 /* map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E09E149BFC93004186A9 /* map-marker@2x.png */; };
+		B7855564195BC2AC007FCCCC /* TYFormsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7855563195BC2AC007FCCCC /* TYFormsTableViewController.m */; };
 		B79DA3A4146C26960078179C /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3A3146C26960078179C /* HomeCell.xib */; };
 		B79DA3A7146C28710078179C /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3A6146C28710078179C /* HomeCell.m */; };
 		B79DA3C3146C68E20078179C /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3C1146C68E10078179C /* Profile.m */; };
@@ -56,6 +57,7 @@
 		B79DA3CE146CAE3E0078179C /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3CD146CAE3E0078179C /* ProfileCell.xib */; };
 		B79DA3D1146CAE5B0078179C /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3D0146CAE5B0078179C /* ProfileCell.m */; };
 		B7D1666B1469AF0C00280846 /* TYGenericUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D1666A1469AF0C00280846 /* TYGenericUtils.m */; };
+		B7E49E4418DEABB800C6E8C5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E49E4318DEABB800C6E8C5 /* libPods.a */; };
 		B7F85B4F14716754008EE873 /* DiveLogger.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */; };
 		B7F85B601471731A008EE873 /* Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F85B5F1471731A008EE873 /* Dive.m */; };
 		B7F85B631471731B008EE873 /* Tank.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F85B621471731B008EE873 /* Tank.m */; };
@@ -130,6 +132,8 @@
 		B749E098149BF5F9004186A9 /* home-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon@2x.png"; sourceTree = "<group>"; };
 		B749E09D149BFC93004186A9 /* map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker.png"; sourceTree = "<group>"; };
 		B749E09E149BFC93004186A9 /* map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker@2x.png"; sourceTree = "<group>"; };
+		B7855562195BC2AC007FCCCC /* TYFormsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TYFormsTableViewController.h; path = Libraries/TYFormsTableView/TYFormsTableViewController.h; sourceTree = "<group>"; };
+		B7855563195BC2AC007FCCCC /* TYFormsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TYFormsTableViewController.m; path = Libraries/TYFormsTableView/TYFormsTableViewController.m; sourceTree = "<group>"; };
 		B79DA3A3146C26960078179C /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		B79DA3A5146C28710078179C /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
 		B79DA3A6146C28710078179C /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 		B79DA3D0146CAE5B0078179C /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		B7D166691469AF0C00280846 /* TYGenericUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYGenericUtils.h; sourceTree = "<group>"; };
 		B7D1666A1469AF0C00280846 /* TYGenericUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYGenericUtils.m; sourceTree = "<group>"; };
+		B7E49E4318DEABB800C6E8C5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiveLogger.xcdatamodel; sourceTree = "<group>"; };
 		B7F85B5E1471731A008EE873 /* Dive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dive.h; sourceTree = "<group>"; };
 		B7F85B5F1471731A008EE873 /* Dive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dive.m; sourceTree = "<group>"; };
@@ -181,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E49E4418DEABB800C6E8C5 /* libPods.a in Frameworks */,
 				B7136C2114686123005CE555 /* SenTestingKit.framework in Frameworks */,
 				B7136C2214686123005CE555 /* UIKit.framework in Frameworks */,
 				B7136C2314686123005CE555 /* Foundation.framework in Frameworks */,
@@ -232,6 +238,7 @@
 		B7136C0714686123005CE555 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7E49E4318DEABB800C6E8C5 /* libPods.a */,
 				B737F39A179369DD00FECD0D /* FacebookSDKResources.bundle */,
 				B737F3981793699300FECD0D /* Social.framework */,
 				B737F3961793698D00FECD0D /* Security.framework */,
@@ -310,6 +317,7 @@
 		B737F39D1793723700FECD0D /* Views + Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B7855561195BC281007FCCCC /* UITableViewForms */,
 				B79DA3A2146C26780078179C /* CustomUITableViewCell */,
 				B7136C3714686309005CE555 /* Home.h */,
 				B7136C3814686309005CE555 /* Home.m */,
@@ -361,6 +369,15 @@
 				B74295C218D41316007A412F /* UIColor+ThemeColors.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		B7855561195BC281007FCCCC /* UITableViewForms */ = {
+			isa = PBXGroup;
+			children = (
+				B7855562195BC2AC007FCCCC /* TYFormsTableViewController.h */,
+				B7855563195BC2AC007FCCCC /* TYFormsTableViewController.m */,
+			);
+			name = UITableViewForms;
 			sourceTree = "<group>";
 		};
 		B79DA3A2146C26780078179C /* CustomUITableViewCell */ = {
@@ -547,6 +564,7 @@
 			files = (
 				B7136C1514686123005CE555 /* main.m in Sources */,
 				B7136C1914686123005CE555 /* TYAppDelegate.m in Sources */,
+				B7855564195BC2AC007FCCCC /* TYFormsTableViewController.m in Sources */,
 				B7136C3A14686309005CE555 /* Home.m in Sources */,
 				B70E61AA1468993000FABBA9 /* DiveMap.m in Sources */,
 				B70E61F71468E3F200FABBA9 /* DiveDetails.m in Sources */,
@@ -692,7 +710,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "93F20B7D-2493-43A4-AB7C-9734AEEB5C02";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93F20B7D-2493-43A4-AB7C-9734AEEB5C02";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -712,7 +730,7 @@
 				INFOPLIST_FILE = "DiveLogger/DiveLogger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -729,6 +747,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiveLogger/DiveLogger-Prefix.pch";
 				INFOPLIST_FILE = "DiveLoggerTests/DiveLoggerTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -747,6 +770,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiveLogger/DiveLogger-Prefix.pch";
 				INFOPLIST_FILE = "DiveLoggerTests/DiveLoggerTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;

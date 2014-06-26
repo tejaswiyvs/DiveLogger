@@ -1,7 +1,7 @@
 //
 //  FXForms.h
 //
-//  Version 1.0.2
+//  Version 1.1.6
 //
 //  Created by Nick Lockwood on 13/02/2014.
 //  Copyright (c) 2014 Charcoal Design. All rights reserved.
@@ -42,25 +42,32 @@ static NSString *const FXFormFieldType = @"type";
 static NSString *const FXFormFieldClass = @"class";
 static NSString *const FXFormFieldCell = @"cell";
 static NSString *const FXFormFieldTitle = @"title";
-static NSString *const FXFormFieldAction = @"action";
+static NSString *const FXFormFieldPlaceholder = @"placeholder";
 static NSString *const FXFormFieldOptions = @"options";
+static NSString *const FXFormFieldValueTransformer = @"valueTransformer";
+static NSString *const FXFormFieldAction = @"action";
 static NSString *const FXFormFieldHeader = @"header";
 static NSString *const FXFormFieldFooter = @"footer";
 static NSString *const FXFormFieldInline = @"inline";
+static NSString *const FXFormFieldViewController = @"viewController";
 
 static NSString *const FXFormFieldTypeDefault = @"default";
 static NSString *const FXFormFieldTypeLabel = @"label";
 static NSString *const FXFormFieldTypeText = @"text";
+static NSString *const FXFormFieldTypeLongText = @"longtext";
 static NSString *const FXFormFieldTypeURL = @"url";
 static NSString *const FXFormFieldTypeEmail = @"email";
 static NSString *const FXFormFieldTypePassword = @"password";
 static NSString *const FXFormFieldTypeNumber = @"number";
 static NSString *const FXFormFieldTypeInteger = @"integer";
+static NSString *const FXFormFieldTypeFloat = @"float";
+static NSString *const FXFormFieldTypeBitfield = @"bitfield";
 static NSString *const FXFormFieldTypeBoolean = @"boolean";
 static NSString *const FXFormFieldTypeOption = @"option";
 static NSString *const FXFormFieldTypeDate = @"date";
 static NSString *const FXFormFieldTypeTime = @"time";
 static NSString *const FXFormFieldTypeDateTime = @"datetime";
+static NSString *const FXFormFieldTypeImage = @"image";
 
 #endif
 
@@ -82,6 +89,11 @@ static NSString *const FXFormFieldTypeDateTime = @"datetime";
 - (NSArray *)fields;
 - (NSArray *)extraFields;
 
+// informal protocol:
+
+// - (NSDictionary *)<fieldKey>Field
+// - (NSString *)<fieldKey>FieldDescription
+
 @end
 
 
@@ -91,11 +103,11 @@ static NSString *const FXFormFieldTypeDateTime = @"datetime";
 @property (nonatomic, readonly) NSString *key;
 @property (nonatomic, readonly) NSString *type;
 @property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) id placeholder;
 @property (nonatomic, readonly) NSArray *options;
-@property (nonatomic, readonly) SEL action;
+@property (nonatomic, readonly) Class viewController;
+@property (nonatomic, readonly) void (^action)(id sender);
 @property (nonatomic, strong) id value;
-
-- (void)performActionWithResponder:(UIResponder *)responder sender:(id)sender;
 
 @end
 
@@ -112,6 +124,7 @@ static NSString *const FXFormFieldTypeDateTime = @"datetime";
 @interface FXFormController : NSObject
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) FXFormController *parentFormController;
 @property (nonatomic, weak) id<FXFormControllerDelegate> delegate;
 @property (nonatomic, strong) id<FXForm> form;
 
@@ -124,10 +137,21 @@ static NSString *const FXFormFieldTypeDateTime = @"datetime";
 - (void)registerDefaultFieldCellClass:(Class)cellClass;
 - (void)registerCellClass:(Class)cellClass forFieldType:(NSString *)fieldType;
 
+- (Class)viewControllerClassForFieldType:(NSString *)fieldType;
+- (void)registerDefaultViewControllerClass:(Class)controllerClass;
+- (void)registerViewControllerClass:(Class)controllerClass forFieldType:(NSString *)fieldType;
+
 @end
 
 
-@interface FXFormViewController : UIViewController <FXFormControllerDelegate>
+@protocol FXFormFieldViewController <NSObject>
+
+@property (nonatomic, strong) FXFormField *field;
+
+@end
+
+
+@interface FXFormViewController : UIViewController <FXFormFieldViewController, FXFormControllerDelegate>
 
 @property (nonatomic, readonly) FXFormController *formController;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -145,6 +169,7 @@ static NSString *const FXFormFieldTypeDateTime = @"datetime";
 
 @optional
 
++ (CGFloat)heightForField:(FXFormField *)field width:(CGFloat)width;
 + (CGFloat)heightForField:(FXFormField *)field;
 - (void)didSelectWithTableView:(UITableView *)tableView controller:(UIViewController *)controller;
 
@@ -153,14 +178,19 @@ static NSString *const FXFormFieldTypeDateTime = @"datetime";
 
 @interface FXFormBaseCell : UITableViewCell <FXFormFieldCell>
 
-@property (nonatomic, strong) FXFormField *field;
-
 @end
 
 
 @interface FXFormTextFieldCell : FXFormBaseCell
 
 @property (nonatomic, readonly) UITextField *textField;
+
+@end
+
+
+@interface FXFormTextViewCell : FXFormBaseCell
+
+@property (nonatomic, readonly) UITextView *textView;
 
 @end
 
@@ -189,6 +219,21 @@ static NSString *const FXFormFieldTypeDateTime = @"datetime";
 @interface FXFormDatePickerCell : FXFormBaseCell
 
 @property (nonatomic, readonly) UIDatePicker *datePicker;
+
+@end
+
+
+@interface FXFormImagePickerCell : FXFormBaseCell
+
+@property (nonatomic, readonly) UIImageView *imagePickerView;
+@property (nonatomic, readonly) UIImagePickerController *imagePickerController;
+
+@end
+
+
+@interface FXFormOptionPickerCell : FXFormBaseCell
+
+@property (nonatomic, readonly) UIPickerView *pickerView;
 
 @end
 

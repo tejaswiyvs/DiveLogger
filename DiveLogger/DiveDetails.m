@@ -82,10 +82,6 @@ static float kEmptyLocation = -1000;
 	[super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 #pragma mark - UITableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -566,11 +562,11 @@ static float kEmptyLocation = -1000;
 }
 
 - (UITableViewCell *)makeDiveTimeCell {
-	UITableViewCell *cell = [self makeNewCell];
-	[[cell textLabel] setText:@"Dive Time"];
-	_diveTimeTxt = [self makeTxtField];
+    _diveTimeTxt = [self makeTxtField];
 	_diveTimeTxt.keyboardType = UIKeyboardTypeNumberPad;
-	[cell addSubview:_diveTimeTxt];
+    
+	UITableViewCell *cell = [self tableViewCellWithLabelText:@"Dive Time" textField:_diveTimeTxt];
+
 	if ([_dive diveTime]) {
 		NSString *diveTime = [NSString stringWithFormat:@"%.2f", [_dive.diveTime floatValue]];
 		[_diveTimeTxt setText:diveTime];
@@ -587,6 +583,33 @@ static float kEmptyLocation = -1000;
 	[cell.textLabel setBackgroundColor:[UIColor clearColor]];
 	[cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
 	return cell;
+}
+
+- (UITableViewCell *)tableViewCellWithLabelText:(NSString *)labelTxt textField:(UITextField *)textField {
+    UITableViewCell *cell = [self makeNewCell];
+    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 80.0f, 20.0f)];
+    [textLabel setText:labelTxt];
+    [cell addSubview:textField];
+    [cell addSubview:textLabel];
+    
+    NSArray *constraints2 = [NSLayoutConstraint constraintsWithVisualFormat:@"V|-[textLabel]-|"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:NSDictionaryOfVariableBindings(textLabel, textField)];
+    
+    NSArray *constraints3 = [NSLayoutConstraint constraintsWithVisualFormat:@"V|-[textField]-|"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:NSDictionaryOfVariableBindings(textLabel, textField)];
+    
+    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-[textLabel]-[textField]-|"
+                                                                   options:0
+                                                                   metrics:nil
+                                                                     views:NSDictionaryOfVariableBindings(textLabel, textField)];
+    [cell addConstraints:constraints];
+    [cell addConstraints:constraints2];
+    [cell addConstraints:constraints3];
+    return cell;
 }
 
 @end

@@ -61,11 +61,6 @@ static float kEmptyLocation = -1000;
 	[super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 #pragma mark - Event Handlers
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer {

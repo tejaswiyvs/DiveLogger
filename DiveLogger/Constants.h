@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "DDLog.h"
 
 extern const CLLocationDegrees EmptyLocation;
 extern const CLLocationCoordinate2D EmptyLocationCoordinate;
