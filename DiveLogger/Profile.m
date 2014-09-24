@@ -7,7 +7,6 @@
 //
 
 #import "Profile.h"
-#import "DiveDetails.h"
 #import "ProfileCell.h"
 
 @interface Profile ()
@@ -88,14 +87,14 @@
 	if (indexPath.row == 0) {
 		[cell.img setImage:[UIImage imageNamed:@"line-chart.png"]];
 		[cell.categoryName setText:@"Total Dives"];
-		NSString *totalDives = [NSString stringWithFormat:@"%ul", _totalDives];
+		NSString *totalDives = [NSString stringWithFormat:@"%lu", _totalDives];
 		[cell.categoryDetail setText:totalDives];
 	}
 	else if (indexPath.row == 1) {
 		[cell.img setImage:[UIImage imageNamed:@"clock.png"]];
 		[cell.categoryName setText:@"Total Minutes"];
 		[cell.categoryName setShadowOffset:CGSizeMake(0.0, 1.0)];
-		NSString *totalMinutes = [NSString stringWithFormat:@"%ul", _totalMinutesSpentDiving];
+		NSString *totalMinutes = [NSString stringWithFormat:@"%lu", _totalMinutesSpentDiving];
 		[cell.categoryDetail setText:totalMinutes];
 	}
     [cell.categoryName setTextColor:[UIColor themePrimaryColor]];

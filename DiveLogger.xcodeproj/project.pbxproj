@@ -11,8 +11,6 @@
 		B70E61AA1468993000FABBA9 /* DiveMap.m in Sources */ = {isa = PBXBuildFile; fileRef = B70E61A81468993000FABBA9 /* DiveMap.m */; };
 		B70E61AB1468993000FABBA9 /* DiveMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E61A91468993000FABBA9 /* DiveMap.xib */; };
 		B70E61F11468A16500FABBA9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70E61F01468A16500FABBA9 /* CoreData.framework */; };
-		B70E61F71468E3F200FABBA9 /* DiveDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B70E61F51468E3F100FABBA9 /* DiveDetails.m */; };
-		B70E61F81468E3F200FABBA9 /* DiveDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E61F61468E3F200FABBA9 /* DiveDetails.xib */; };
 		B7136C0914686123005CE555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0814686123005CE555 /* UIKit.framework */; };
 		B7136C0B14686123005CE555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0A14686123005CE555 /* Foundation.framework */; };
 		B7136C0D14686123005CE555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7136C0C14686123005CE555 /* CoreGraphics.framework */; };
@@ -31,13 +29,13 @@
 		B71AEB68146CE37E00646545 /* line-chart.png in Resources */ = {isa = PBXBuildFile; fileRef = B71AEB67146CE37E00646545 /* line-chart.png */; };
 		B73358D4148D5E6C003BE6CA /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B73358D2148D5E6C003BE6CA /* Settings.m */; };
 		B73358D5148D5E6C003BE6CA /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73358D3148D5E6C003BE6CA /* Settings.xib */; };
-		B737F38F1793693800FECD0D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F38D1793693800FECD0D /* FacebookSDK.framework */; };
+		B737F38F1793693800FECD0D /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		B737F3911793697900FECD0D /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F3901793697900FECD0D /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B737F3931793697D00FECD0D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F3921793697D00FECD0D /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B737F3951793698700FECD0D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F3941793698700FECD0D /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B737F3971793698D00FECD0D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F3961793698D00FECD0D /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B737F3991793699300FECD0D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B737F3981793699300FECD0D /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		B737F39C179369DD00FECD0D /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B737F39A179369DD00FECD0D /* FacebookSDKResources.bundle */; };
+		B737F39C179369DD00FECD0D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		B74295BF18D40C5A007A412F /* TYThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B74295BE18D40C5A007A412F /* TYThemeManager.m */; };
 		B74295C318D41316007A412F /* UIColor+ThemeColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B74295C218D41316007A412F /* UIColor+ThemeColors.m */; };
 		B74295C518D4170B007A412F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B74295C418D4170B007A412F /* Images.xcassets */; };
@@ -49,7 +47,6 @@
 		B749E09B149BF5F9004186A9 /* home-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E098149BF5F9004186A9 /* home-icon@2x.png */; };
 		B749E09F149BFC94004186A9 /* map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E09D149BFC93004186A9 /* map-marker.png */; };
 		B749E0A0149BFC94004186A9 /* map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B749E09E149BFC93004186A9 /* map-marker@2x.png */; };
-		B7855564195BC2AC007FCCCC /* TYFormsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7855563195BC2AC007FCCCC /* TYFormsTableViewController.m */; };
 		B79DA3A4146C26960078179C /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B79DA3A3146C26960078179C /* HomeCell.xib */; };
 		B79DA3A7146C28710078179C /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3A6146C28710078179C /* HomeCell.m */; };
 		B79DA3C3146C68E20078179C /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3C1146C68E10078179C /* Profile.m */; };
@@ -58,9 +55,14 @@
 		B79DA3D1146CAE5B0078179C /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DA3D0146CAE5B0078179C /* ProfileCell.m */; };
 		B7D1666B1469AF0C00280846 /* TYGenericUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D1666A1469AF0C00280846 /* TYGenericUtils.m */; };
 		B7E49E4418DEABB800C6E8C5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E49E4318DEABB800C6E8C5 /* libPods.a */; };
-		B7F85B4F14716754008EE873 /* DiveLogger.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */; };
-		B7F85B601471731A008EE873 /* Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F85B5F1471731A008EE873 /* Dive.m */; };
-		B7F85B631471731B008EE873 /* Tank.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F85B621471731B008EE873 /* Tank.m */; };
+		B7F9628119D3327B00B33E54 /* _Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F9627A19D3327B00B33E54 /* _Dive.m */; };
+		B7F9628219D3327B00B33E54 /* _Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F9627A19D3327B00B33E54 /* _Dive.m */; };
+		B7F9628319D3327B00B33E54 /* _Tank.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F9627C19D3327B00B33E54 /* _Tank.m */; };
+		B7F9628419D3327B00B33E54 /* _Tank.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F9627C19D3327B00B33E54 /* _Tank.m */; };
+		B7F9628519D3327B00B33E54 /* Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F9627E19D3327B00B33E54 /* Dive.m */; };
+		B7F9628619D3327B00B33E54 /* Dive.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F9627E19D3327B00B33E54 /* Dive.m */; };
+		B7F9628719D3327B00B33E54 /* Tank.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F9628019D3327B00B33E54 /* Tank.m */; };
+		B7F9628819D3327B00B33E54 /* Tank.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F9628019D3327B00B33E54 /* Tank.m */; };
 		B7FFF2D3146B0365000CC125 /* DiveAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2D2146B0365000CC125 /* DiveAnnotation.m */; };
 		B7FFF2D5146B04E5000CC125 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FFF2D4146B04E5000CC125 /* MapKit.framework */; };
 		B7FFF2D9146B0973000CC125 /* DiveLocationPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FFF2D7146B0973000CC125 /* DiveLocationPicker.m */; };
@@ -84,9 +86,6 @@
 		B70E61A81468993000FABBA9 /* DiveMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveMap.m; sourceTree = "<group>"; };
 		B70E61A91468993000FABBA9 /* DiveMap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiveMap.xib; sourceTree = "<group>"; };
 		B70E61F01468A16500FABBA9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B70E61F41468E3F100FABBA9 /* DiveDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveDetails.h; sourceTree = "<group>"; };
-		B70E61F51468E3F100FABBA9 /* DiveDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveDetails.m; sourceTree = "<group>"; };
-		B70E61F61468E3F200FABBA9 /* DiveDetails.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiveDetails.xib; sourceTree = "<group>"; };
 		B7136C0414686123005CE555 /* DiveLoggr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveLoggr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7136C0814686123005CE555 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B7136C0A14686123005CE555 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -112,13 +111,11 @@
 		B73358D1148D5E6C003BE6CA /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		B73358D2148D5E6C003BE6CA /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		B73358D3148D5E6C003BE6CA /* Settings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
-		B737F38D1793693800FECD0D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "facebook-ios-sdk/build/FacebookSDK.framework"; sourceTree = "<group>"; };
 		B737F3901793697900FECD0D /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B737F3921793697D00FECD0D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B737F3941793698700FECD0D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B737F3961793698D00FECD0D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B737F3981793699300FECD0D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		B737F39A179369DD00FECD0D /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "facebook-ios-sdk/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"; sourceTree = "<group>"; };
 		B74295BD18D40C5A007A412F /* TYThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYThemeManager.h; sourceTree = "<group>"; };
 		B74295BE18D40C5A007A412F /* TYThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYThemeManager.m; sourceTree = "<group>"; };
 		B74295C118D41316007A412F /* UIColor+ThemeColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ThemeColors.h"; sourceTree = "<group>"; };
@@ -132,8 +129,6 @@
 		B749E098149BF5F9004186A9 /* home-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon@2x.png"; sourceTree = "<group>"; };
 		B749E09D149BFC93004186A9 /* map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker.png"; sourceTree = "<group>"; };
 		B749E09E149BFC93004186A9 /* map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker@2x.png"; sourceTree = "<group>"; };
-		B7855562195BC2AC007FCCCC /* TYFormsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TYFormsTableViewController.h; path = Libraries/TYFormsTableView/TYFormsTableViewController.h; sourceTree = "<group>"; };
-		B7855563195BC2AC007FCCCC /* TYFormsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TYFormsTableViewController.m; path = Libraries/TYFormsTableView/TYFormsTableViewController.m; sourceTree = "<group>"; };
 		B79DA3A3146C26960078179C /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		B79DA3A5146C28710078179C /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
 		B79DA3A6146C28710078179C /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
@@ -146,11 +141,14 @@
 		B7D166691469AF0C00280846 /* TYGenericUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYGenericUtils.h; sourceTree = "<group>"; };
 		B7D1666A1469AF0C00280846 /* TYGenericUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYGenericUtils.m; sourceTree = "<group>"; };
 		B7E49E4318DEABB800C6E8C5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
-		B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiveLogger.xcdatamodel; sourceTree = "<group>"; };
-		B7F85B5E1471731A008EE873 /* Dive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dive.h; sourceTree = "<group>"; };
-		B7F85B5F1471731A008EE873 /* Dive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dive.m; sourceTree = "<group>"; };
-		B7F85B611471731B008EE873 /* Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tank.h; sourceTree = "<group>"; };
-		B7F85B621471731B008EE873 /* Tank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tank.m; sourceTree = "<group>"; };
+		B7F9627919D3327B00B33E54 /* _Dive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _Dive.h; path = Models/_Dive.h; sourceTree = "<group>"; };
+		B7F9627A19D3327B00B33E54 /* _Dive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Dive.m; path = Models/_Dive.m; sourceTree = "<group>"; };
+		B7F9627B19D3327B00B33E54 /* _Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _Tank.h; path = Models/_Tank.h; sourceTree = "<group>"; };
+		B7F9627C19D3327B00B33E54 /* _Tank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Tank.m; path = Models/_Tank.m; sourceTree = "<group>"; };
+		B7F9627D19D3327B00B33E54 /* Dive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dive.h; path = Models/Dive.h; sourceTree = "<group>"; };
+		B7F9627E19D3327B00B33E54 /* Dive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Dive.m; path = Models/Dive.m; sourceTree = "<group>"; };
+		B7F9627F19D3327B00B33E54 /* Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tank.h; path = Models/Tank.h; sourceTree = "<group>"; };
+		B7F9628019D3327B00B33E54 /* Tank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tank.m; path = Models/Tank.m; sourceTree = "<group>"; };
 		B7FFF2D1146B0365000CC125 /* DiveAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveAnnotation.h; sourceTree = "<group>"; };
 		B7FFF2D2146B0365000CC125 /* DiveAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveAnnotation.m; sourceTree = "<group>"; };
 		B7FFF2D4146B04E5000CC125 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -190,7 +188,7 @@
 				B7136C2114686123005CE555 /* SenTestingKit.framework in Frameworks */,
 				B7136C2214686123005CE555 /* UIKit.framework in Frameworks */,
 				B7136C2314686123005CE555 /* Foundation.framework in Frameworks */,
-				B737F38F1793693800FECD0D /* FacebookSDK.framework in Frameworks */,
+				B737F38F1793693800FECD0D /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,13 +237,11 @@
 			isa = PBXGroup;
 			children = (
 				B7E49E4318DEABB800C6E8C5 /* libPods.a */,
-				B737F39A179369DD00FECD0D /* FacebookSDKResources.bundle */,
 				B737F3981793699300FECD0D /* Social.framework */,
 				B737F3961793698D00FECD0D /* Security.framework */,
 				B737F3941793698700FECD0D /* libsqlite3.dylib */,
 				B737F3921793697D00FECD0D /* AdSupport.framework */,
 				B737F3901793697900FECD0D /* Accounts.framework */,
-				B737F38D1793693800FECD0D /* FacebookSDK.framework */,
 				B7FFF2D4146B04E5000CC125 /* MapKit.framework */,
 				B70E61F01468A16500FABBA9 /* CoreData.framework */,
 				B7136C401468657B005CE555 /* CoreLocation.framework */,
@@ -265,7 +261,6 @@
 				B70E61A41468977400FABBA9 /* Images */,
 				B7136C3C1468650D005CE555 /* Models */,
 				B737F39D1793723700FECD0D /* Views + Controllers */,
-				B7F85B4E14716754008EE873 /* DiveLogger.xcdatamodel */,
 				B7136C1714686123005CE555 /* TYAppDelegate.h */,
 				B7136C1814686123005CE555 /* TYAppDelegate.m */,
 				B7136C0F14686123005CE555 /* Supporting Files */,
@@ -306,10 +301,14 @@
 		B7136C3C1468650D005CE555 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B7F85B611471731B008EE873 /* Tank.h */,
-				B7F85B621471731B008EE873 /* Tank.m */,
-				B7F85B5E1471731A008EE873 /* Dive.h */,
-				B7F85B5F1471731A008EE873 /* Dive.m */,
+				B7F9627919D3327B00B33E54 /* _Dive.h */,
+				B7F9627A19D3327B00B33E54 /* _Dive.m */,
+				B7F9627B19D3327B00B33E54 /* _Tank.h */,
+				B7F9627C19D3327B00B33E54 /* _Tank.m */,
+				B7F9627D19D3327B00B33E54 /* Dive.h */,
+				B7F9627E19D3327B00B33E54 /* Dive.m */,
+				B7F9627F19D3327B00B33E54 /* Tank.h */,
+				B7F9628019D3327B00B33E54 /* Tank.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -317,7 +316,6 @@
 		B737F39D1793723700FECD0D /* Views + Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B7855561195BC281007FCCCC /* UITableViewForms */,
 				B79DA3A2146C26780078179C /* CustomUITableViewCell */,
 				B7136C3714686309005CE555 /* Home.h */,
 				B7136C3814686309005CE555 /* Home.m */,
@@ -325,9 +323,6 @@
 				B70E61A71468992F00FABBA9 /* DiveMap.h */,
 				B70E61A81468993000FABBA9 /* DiveMap.m */,
 				B70E61A91468993000FABBA9 /* DiveMap.xib */,
-				B70E61F41468E3F100FABBA9 /* DiveDetails.h */,
-				B70E61F51468E3F100FABBA9 /* DiveDetails.m */,
-				B70E61F61468E3F200FABBA9 /* DiveDetails.xib */,
 				B7FFF2D1146B0365000CC125 /* DiveAnnotation.h */,
 				B7FFF2D2146B0365000CC125 /* DiveAnnotation.m */,
 				B7FFF2D6146B0973000CC125 /* DiveLocationPicker.h */,
@@ -369,15 +364,6 @@
 				B74295C218D41316007A412F /* UIColor+ThemeColors.m */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		B7855561195BC281007FCCCC /* UITableViewForms */ = {
-			isa = PBXGroup;
-			children = (
-				B7855562195BC2AC007FCCCC /* TYFormsTableViewController.h */,
-				B7855563195BC2AC007FCCCC /* TYFormsTableViewController.m */,
-			);
-			name = UITableViewForms;
 			sourceTree = "<group>";
 		};
 		B79DA3A2146C26780078179C /* CustomUITableViewCell */ = {
@@ -443,7 +429,7 @@
 			name = DiveLoggerTests;
 			productName = DiveLoggerTests;
 			productReference = B7136C1F14686123005CE555 /* DiveLoggerTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -451,8 +437,8 @@
 		B7136BFB14686122005CE555 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0510;
+				LastTestingUpgradeCheck = 0600;
+				LastUpgradeCheck = 0600;
 			};
 			buildConfigurationList = B7136BFE14686122005CE555 /* Build configuration list for PBXProject "DiveLogger" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -481,7 +467,6 @@
 				B74295C518D4170B007A412F /* Images.xcassets in Resources */,
 				B7136C3B14686309005CE555 /* Home.xib in Resources */,
 				B70E61AB1468993000FABBA9 /* DiveMap.xib in Resources */,
-				B70E61F81468E3F200FABBA9 /* DiveDetails.xib in Resources */,
 				B7FFF2DA146B0973000CC125 /* DiveLocationPicker.xib in Resources */,
 				B79DA3A4146C26960078179C /* HomeCell.xib in Resources */,
 				B79DA3C4146C68E20078179C /* Profile.xib in Resources */,
@@ -505,7 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7136C2B14686123005CE555 /* InfoPlist.strings in Resources */,
-				B737F39C179369DD00FECD0D /* FacebookSDKResources.bundle in Resources */,
+				B737F39C179369DD00FECD0D /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,22 +549,21 @@
 			files = (
 				B7136C1514686123005CE555 /* main.m in Sources */,
 				B7136C1914686123005CE555 /* TYAppDelegate.m in Sources */,
-				B7855564195BC2AC007FCCCC /* TYFormsTableViewController.m in Sources */,
 				B7136C3A14686309005CE555 /* Home.m in Sources */,
 				B70E61AA1468993000FABBA9 /* DiveMap.m in Sources */,
-				B70E61F71468E3F200FABBA9 /* DiveDetails.m in Sources */,
 				B7D1666B1469AF0C00280846 /* TYGenericUtils.m in Sources */,
 				B7FFF2D3146B0365000CC125 /* DiveAnnotation.m in Sources */,
+				B7F9628319D3327B00B33E54 /* _Tank.m in Sources */,
+				B7F9628519D3327B00B33E54 /* Dive.m in Sources */,
 				B7FFF2D9146B0973000CC125 /* DiveLocationPicker.m in Sources */,
 				B7FFF2DD146B1438000CC125 /* Constants.m in Sources */,
 				B79DA3A7146C28710078179C /* HomeCell.m in Sources */,
+				B7F9628119D3327B00B33E54 /* _Dive.m in Sources */,
 				B79DA3C3146C68E20078179C /* Profile.m in Sources */,
 				B74295C318D41316007A412F /* UIColor+ThemeColors.m in Sources */,
 				B79DA3D1146CAE5B0078179C /* ProfileCell.m in Sources */,
-				B7F85B4F14716754008EE873 /* DiveLogger.xcdatamodel in Sources */,
+				B7F9628719D3327B00B33E54 /* Tank.m in Sources */,
 				B74295BF18D40C5A007A412F /* TYThemeManager.m in Sources */,
-				B7F85B601471731A008EE873 /* Dive.m in Sources */,
-				B7F85B631471731B008EE873 /* Tank.m in Sources */,
 				B73358D4148D5E6C003BE6CA /* Settings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,7 +572,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7F9628819D3327B00B33E54 /* Tank.m in Sources */,
+				B7F9628419D3327B00B33E54 /* _Tank.m in Sources */,
+				B7F9628619D3327B00B33E54 /* Dive.m in Sources */,
 				B7136C2E14686123005CE555 /* DiveLoggerTests.m in Sources */,
+				B7F9628219D3327B00B33E54 /* _Dive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,10 +620,12 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tejaswi Yerukalapudi (RDKM9UC3U5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tejaswi Yerukalapudi (RDKM9UC3U5)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -671,9 +661,11 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -699,17 +691,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tejaswi Yerukalapudi (RDKM9UC3U5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tejaswi Yerukalapudi (RDKM9UC3U5)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/facebook-ios-sdk/build\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiveLogger/DiveLogger-Prefix.pch";
 				INFOPLIST_FILE = "DiveLogger/DiveLogger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "93F20B7D-2493-43A4-AB7C-9734AEEB5C02";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93F20B7D-2493-43A4-AB7C-9734AEEB5C02";
+				PROVISIONING_PROFILE = "617846a2-f315-49d4-92fa-41da41e01ab0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "617846a2-f315-49d4-92fa-41da41e01ab0";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -721,15 +710,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/facebook-ios-sdk/build\"",
-				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tejaswi Yerukalapudi (RDKM9UC3U5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tejaswi Yerukalapudi (RDKM9UC3U5)";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiveLogger/DiveLogger-Prefix.pch";
 				INFOPLIST_FILE = "DiveLogger/DiveLogger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "617846a2-f315-49d4-92fa-41da41e01ab0";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -742,7 +731,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"\"$(SRCROOT)/facebook-ios-sdk/build\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiveLogger/DiveLogger-Prefix.pch";
@@ -765,7 +753,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"\"$(SRCROOT)/facebook-ios-sdk/build\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiveLogger/DiveLogger-Prefix.pch";

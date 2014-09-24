@@ -15,4 +15,5 @@
     #import "Constants.h"
     #import "DDLog.h"
     #import "UIColor+ThemeColors.h"
+    #import <CocoaLumberjack/CocoaLumberjack.h>
 #endif

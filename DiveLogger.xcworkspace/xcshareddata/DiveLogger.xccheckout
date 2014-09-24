@@ -12,7 +12,7 @@
 	<dict>
 		<key>003DD13A-CD58-47CD-8F70-B05F5A99BD8C</key>
 		<string>https://github.com/facebook/facebook-ios-sdk.git</string>
-		<key>F89CD351-4D57-4FEE-B350-1FB48E179DA0</key>
+		<key>9D2187799AAFE61E76A5CE3D6A1ECF6511E437F6</key>
 		<string>ssh://github.com/tejaswiyvs/DiveLogger.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
@@ -21,22 +21,22 @@
 	<dict>
 		<key>003DD13A-CD58-47CD-8F70-B05F5A99BD8C</key>
 		<string>../facebook-ios-sdk</string>
-		<key>F89CD351-4D57-4FEE-B350-1FB48E179DA0</key>
+		<key>9D2187799AAFE61E76A5CE3D6A1ECF6511E437F6</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/tejaswiyvs/DiveLogger.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>F89CD351-4D57-4FEE-B350-1FB48E179DA0</string>
+	<string>9D2187799AAFE61E76A5CE3D6A1ECF6511E437F6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>F89CD351-4D57-4FEE-B350-1FB48E179DA0</string>
+			<string>9D2187799AAFE61E76A5CE3D6A1ECF6511E437F6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>DiveLogger</string>
 		</dict>

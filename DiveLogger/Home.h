@@ -5,10 +5,10 @@
 //  Created by Tejaswi Y on 11/7/11.
 //  Copyright (c) 2011 Tejaswi Yerukalapudi. All rights reserved.
 //
-#import "DiveDetails.h"
 #import "HomeCell.h"
+#import <CoreData/CoreData.h>
 
-@interface Home : UIViewController <NSFetchedResultsControllerDelegate, TYDiveDetailsDelegate>
+@interface Home : UIViewController <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) IBOutlet UITableView *divesList;

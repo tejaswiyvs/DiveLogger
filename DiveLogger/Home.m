@@ -7,9 +7,9 @@
 //
 
 #import "Home.h"
-#import "DiveDetails.h"
 #import "HomeCell.h"
 #import "TYAppDelegate.h"
+#import <FXForms/FXForms.h>
 
 @interface Home (private)
 
@@ -90,10 +90,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Dive *dive = [fetchedResultsController objectAtIndexPath:indexPath];
-	DiveDetails *diveDetails = [[DiveDetails alloc] initWithDive:dive];
-	[diveDetails setDelegate:self];
-	[self.navigationController pushViewController:diveDetails animated:YES];
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self displayFormWithDive:dive];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -133,10 +130,13 @@
 #pragma mark - Event Handlers
 
 - (void)addButtonClicked:(id)sender {
-	DiveDetails *diveDetails = [[DiveDetails alloc] initWithDive:nil];
-	[diveDetails setDelegate:self];
-	[self.navigationController pushViewController:diveDetails animated:YES];
     [TYGenericUtils trackEvent:@"AddButtonClicked" properties:nil];
+    Dive *dive = [NSEntityDescription insertNewObjectForEntityForName:@"Dive" inManagedObjectContext:fetchedResultsController.managedObjectContext];
+    [self displayFormWithDive:dive];
+}
+
+- (void)diveLocationClicked {
+    NSLog(@"Dive Location Clicked");
 }
 
 #pragma mark - DiveDetailsDelegate
@@ -239,6 +239,9 @@
 		case NSFetchedResultsChangeDelete:
 			[_divesList deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
+            
+        default:
+            break;
 	}
 }
 
@@ -248,6 +251,12 @@
 }
 
 #pragma mark - Helpers
+
+- (void)displayFormWithDive:(Dive *)dive {
+    FXFormViewController *formController = [[FXFormViewController alloc] init];
+    formController.formController.form = dive;
+    [self.navigationController pushViewController:formController animated:YES];
+}
 
 - (void)createBarButtons {
 	UIBarButtonItem *addDive = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
